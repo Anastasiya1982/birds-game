@@ -1,0 +1,22 @@
+$colorBackground:#303030;
+.question-container{
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  margin: 25px 0;
+  background-color: $colorBackground;
+  border-radius: 5px;
+
+   &__content{
+     padding: 15px 15px 15px 50px;
+     width: 75%;
+     &-audio{
+        width: 100%;
+        margin-top: 20px;
+       & .audio-item{
+         width: 100%;
+       }
+      }
+   }
+
+}
