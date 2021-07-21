@@ -1,0 +1,20 @@
+$colorBackground:#303030;
+
+
+.answer-list {
+  width: 48%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: $colorBackground;
+  grid-area: list;
+  border:1px solid gray;
+  border-radius: 5px;
+
+      @media (max-width: 687px){
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+}
+

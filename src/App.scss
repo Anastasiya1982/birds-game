@@ -33,3 +33,12 @@ h1, h2, h3, h4, p, ul, li, a {
       margin: 0 auto;
     }
 }
+.answer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+      @media (max-width: 687px){
+        flex-direction: column;
+      }
+}

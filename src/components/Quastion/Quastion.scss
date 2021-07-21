@@ -18,5 +18,9 @@ $colorBackground:#303030;
        }
       }
    }
+  @media (max-width: 585px) {
+   flex-direction: column;
+   align-items: center;
+  }
 
 }

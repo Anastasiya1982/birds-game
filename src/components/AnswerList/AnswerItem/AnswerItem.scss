@@ -1,0 +1,44 @@
+$colorBackground:#303030;
+
+.answer-item {
+  font-size: 1.2rem;
+  align-self: center;
+  list-style-type: none;
+  cursor: pointer;
+  transition: 150ms;
+  background:$colorBackground;
+  padding: .92rem 1.25rem;
+  border: 1px solid #555;
+
+  &:hover {
+    background: lighten(#2f2f2f, 15%);
+  }
+}
+
+.radioBtn {
+  line-height: 10px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 15px;
+  border-radius: 50%;
+  background: lighten(#222222, 15%);
+
+  @media only screen and (max-width: 480px) {
+    width: 15px;
+    height: 15px;
+  }
+
+  &.correct {
+    background: lime;
+  }
+
+  &.incorrect {
+    background: red;
+  }
+
+  &.reset {
+    background: lighten(#222222, 15%);
+  }
+}
+
