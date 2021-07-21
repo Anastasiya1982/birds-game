@@ -14,7 +14,7 @@ const Button = ({win, label, action, endGame}) => {
     }
 
     return (
-        <button className={btnStyle} disabled={disable} type="button" onClick={action}>
+        <button className={btnStyle} disabled={disable} onClick={action}>
             {label}
         </button>
     );

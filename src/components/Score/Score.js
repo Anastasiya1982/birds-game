@@ -3,7 +3,7 @@ import './Score.scss';
 
 const Score = ({ score }) => (
     <div className="score">
-       <span>Score:{score}</span>
+       <span>Score: {score}</span>
     </div>
 );
 

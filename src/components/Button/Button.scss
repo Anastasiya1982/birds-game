@@ -13,11 +13,9 @@ $mainColor:#fff;
   background-color: #008966;
   margin-top: 15px;
 
-
   &:hover {
     background-color: #00BC8C;
   }
-
   &:active,
   &:focus {
     outline: none;
@@ -28,11 +26,6 @@ $mainColor:#fff;
     height: 50px;
   }
 }
-
-.button:hover {
-
-}
-
 .button.disabled {
   cursor: not-allowed;
   background-color: #303030;

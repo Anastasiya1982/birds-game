@@ -3,7 +3,7 @@ import './Answer.scss';
 import birdsData from '../../birdData';
 import AnswerItem from "./AnswerItem/AnswerItem";
 
-const AnswerList = ({ section, selectAnswer }) => {
+const AnswerList = ({ section, ...otherProps}) => {
 
     return (
         <div className="answer-list">
@@ -11,6 +11,8 @@ const AnswerList = ({ section, selectAnswer }) => {
                <AnswerItem key={el.index}
                            id={el.id}
                            name={el.name}
+                          {...otherProps}
+
                />
             ))
             }

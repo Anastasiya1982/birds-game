@@ -13,7 +13,7 @@ const Quastion=(props)=>{
             <div className='question-container__content'>
                <Title title={props.title}/>
                  <div className="question-container__content-audio">
-                 <audio src={birdsSount} controls preload="auto" className='audio-item' />
+                 <audio src={props.src} controls preload="auto" className='audio-item' />
                 </div>
             </div>
         </div>
