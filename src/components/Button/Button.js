@@ -3,14 +3,14 @@ import './Button.scss';
 
 
 const Button = ({win, label, action, isEndGame}) => {
-    let btnStyle = 'button level ';
+    let btnStyle = 'button ';
     let disable = false;
     if (isEndGame) {
         disable = false;
     }
     if (!win && !isEndGame) {
         btnStyle += 'disabled';
-        disable = false;
+        disable = true;
     }
 
     return (

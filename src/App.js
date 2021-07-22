@@ -9,6 +9,7 @@ import Button from "./components/Button/Button";
 import rightAudio from './assets/audio/success.mp3';
 import wrongAudio from './assets/audio/fail.mp3';
 import FinishGame from "./components/FinishGame/FinishGame";
+import Game from "./components/Game/Game";
 
 function App() {
     const [section,setSection]=useState(0);
@@ -54,8 +55,8 @@ function App() {
 
     function goToNextLevel() {
         console.log(section) //TODO: выяснить как правильно прописать условие окончания игры
-        if (section > 5) {
-            setSection(-1);
+        if (section === 5 && win) {
+            setScore(score => score + 5 - mistake);
             endGame();
 
         } else {
@@ -67,6 +68,7 @@ function App() {
         }
     }
    function endGame(){
+         setSection(-1);
          setIsEndGame(true);
          setWin(false);
      }
@@ -87,17 +89,21 @@ function App() {
           <div className='wrapper'>
               <Header score={score}/>
               <Navbar section={section}/>
-              {!isEndGame ?
-                  (<div className='game-field'>
-                      <Quastion win={win} section={section} randomId={randomId}/>
-                      <div className='answer'>
-                          <AnswerList section={section} selectAnswer={selectAnswer} randomId={randomId} win={win}/>
-                          <Description section={section} selected={selectBird}/>
-                      </div>
-                      <Button label={btnLabel} win={win} action={goToNextLevel} isEndGame={isEndGame}/>
+              {!isEndGame
+                  ? <Game win={win}
+                          section={section}
+                          randomId={randomId}
+                          selectBird={selectBird}
+                          selectAnswer={selectAnswer}
+                          label={btnLabel}
+                          action={goToNextLevel}
+                          isEndGame={isEndGame}/>
 
-                  </div>)
-                  : <FinishGame win={win} action={startNewGame} score={score} isEndGame={isEndGame}/>
+                  : <FinishGame win={win}
+                                action={startNewGame}
+                                score={score}
+                                isEndGame={isEndGame}
+                  />
               }
           </div>
       </div>
