@@ -52,26 +52,24 @@ function App() {
        }
     }
 
-    function goToNextLevel(){
-        console.log(section)
-        if(section > 5){
+    function goToNextLevel() {
+        console.log(section) //TODO: выяснить как правильно прописать условие окончания игры
+        if (section > 5) {
             setSection(-1);
-            alert('finish game')
-            setIsEndGame(true);
-            setWin(false);
+            endGame();
 
-        }else{
-            setSection(section=>section+1);
-            setScore(score=>score+5-mistake);
+        } else {
+            setSection(section => section + 1);
+            setScore(score => score + 5 - mistake);
             setWin(false);
             setMistake(0);
             setSelectBird(0);
         }
+    }
+   function endGame(){
+         setIsEndGame(true);
+         setWin(false);
      }
-     // const endGame=()=>{
-     //     setIsEndGame(true);
-     //     setWin(false);
-     // }
 
      const startNewGame=()=>{
          setIsEndGame(false);
