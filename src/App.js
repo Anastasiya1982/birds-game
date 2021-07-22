@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './App.scss';
+import s from  './App.module.scss';
 import {Header} from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import rightAudio from './assets/audio/success.mp3';
@@ -50,7 +50,6 @@ function App() {
     }
 
     function goToNextLevel() {
-        console.log(section) //TODO: выяснить как правильно прописать условие окончания игры
         if (section === 5 && win) {
             setScore(score => score + 5 - mistake);
             endGame();
@@ -82,8 +81,8 @@ function App() {
 
 
     return (
-        <div className="game">
-            <div className='wrapper'>
+        <div className={s.game}>
+            <div className={s.wrapper}>
                 <Header score={score}/>
                 <Navbar section={section}/>
                 {!isEndGame
