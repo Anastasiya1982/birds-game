@@ -9,31 +9,28 @@ import Subtitle from "../Subtitle/Subtitle";
 
 const Details = ({ selected, id, section }) => {
     const styleTip = {
-        display: selected ? 'none' : 'block',
+        display: selected==null ? 'none' : 'block',
     };
 
     const elem=(
         <div className='description-content'>
             <div className='description-content__preview'>
                 <Image
-                    image={birdsData[section][1].image}
-                    alt={birdsData[section][1].name}
+                    image={birdsData[section][selected].image}
+                    alt={birdsData[section][selected].name}
                 />
                 <div className='description-content__preview-info'>
-                    <Title title={birdsData[section][1].name}/>
-                    <Subtitle subtitle={birdsData[section][1].species}/>
-                    <audio src={birdsSount} controls preload="auto" className='audio-item'/>
+                    <Title title={birdsData[section][selected].name}/>
+                    <Subtitle subtitle={birdsData[section][selected].species}/>
+                    <audio src={birdsData[section][selected].audio} controls preload="auto" className='audio-item'/>
                 </div>
 
             </div>
 
-            <DescriptionInfo text={birdsData[section][1].description}/>
+            <DescriptionInfo text={birdsData[section][selected].description}/>
 
         </div>
     )
-
-
-
 
     return (
            selected ? elem

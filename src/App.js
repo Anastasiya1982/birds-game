@@ -15,32 +15,59 @@ function App() {
     const [score,setScore]=useState(0);
     const [randomId,setRandomId]=useState(0);
     const [win, setWin]=useState(false);
+    const [mistake,setMistake]=useState(0);
+    const [endGame,setEndGame]=useState(false);
+    const [selectBird,setSelectBird]=useState(0);
+
 
     useEffect(()=>{
         setRandomId(getRandomId())
-    })
+    },[section]);
+
     function getRandomId(){
         const id = Math.floor((Math.random() * 6));
-        console.log(`Правильный ответ: ${id+1}`);
+        console.log(`рандомно проигрывается аудио с id: ${id+1}`);
         return id;
     }
 
     const selectAnswer=(id)=>{
-        checkAnswer(id);
+        let currentId=id-1
+        setSelectBird(currentId);
+        checkAnswer(currentId);
     }
 
     const checkAnswer=(id)=>{
        const rightAnswer=new Audio(rightAudio);
        const wrongAnswer=new Audio(wrongAudio);
-       if(id-1 === randomId){
+       if(id === randomId){
            rightAnswer.play();
            setWin(true);
-           setSection(section=>section+1)
+           setSelectBird(id);
+           setTimeout(()=>{
+               goToNextLevel()
+           },2000);
        }else{
            wrongAnswer.play();
+           setMistake((mistake)=>mistake+1);
        }
     }
 
+    function goToNextLevel(){
+        if(section===5){
+            setSection(-1);
+            setEndGame(true);
+            setWin(false);
+
+            //TODO create endGame function
+        }else{
+            setSection(section=>section+1);
+            setScore(score=>score+5-mistake);
+            setWin(false);
+            setMistake(0);
+            setSelectBird(0);
+
+        }
+     }
 
     const btnLabel = section === 5 ? 'Закончить игру' : 'Следующий' +
         ' вопрос';
@@ -50,10 +77,10 @@ function App() {
           <div className='wrapper'>
               <Header score={score}/>
               <Navbar section={section}/>
-              <Quastion src={birdsData[section][randomId].audio}/>
+              <Quastion win={win} section={section} randomId={randomId}/>
               <div className='answer'>
-                  <AnswerList section={1} selectAnswer={selectAnswer} randomId={randomId}/>
-                  <Description selected={1} section={1}/>
+                  <AnswerList section={section} selectAnswer={selectAnswer} randomId={randomId} win={win}/>
+                  <Description  section={section} selected={selectBird}/>
               </div>
               <Button label={btnLabel} win={win}/>
           </div>
