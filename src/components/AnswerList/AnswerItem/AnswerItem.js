@@ -6,6 +6,7 @@ const AnswerItem = (props) => {
     const [style, setStyle] = useState('');
 
     const selectAnswer = () => {
+        console.log('select is:',props.id)
         props.selectAnswer(props.id);
         if ((props.id - 1) === props.randomId) {
             setStyle('correct');

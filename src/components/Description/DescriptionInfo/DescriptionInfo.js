@@ -1,5 +1,5 @@
 import React from 'react';
-import './DescriptionInfo.scss';
+import  './DescriptionInfo.scss';
 
 const DescriptionInfo = ({ text }) => (
     <p className="description">

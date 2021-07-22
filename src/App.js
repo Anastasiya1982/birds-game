@@ -14,15 +14,12 @@ function App() {
     const [win, setWin] = useState(false);
     const [mistake, setMistake] = useState(0);
     const [isEndGame, setIsEndGame] = useState(false);
-    const [selectBird, setSelectBird] = useState(0);
+    const [selectBird, setSelectBird] = useState(null);
 
 
     useEffect(() => {
         setRandomId(getRandomId())
     }, [section]);
-    useEffect(() => {
-
-    })
 
     function getRandomId() {
         const id = Math.floor((Math.random() * 6));
@@ -75,6 +72,7 @@ function App() {
         setWin(0);
         setScore(0);
         setMistake(0);
+        setSelectBird(null);
     }
 
     let btnLabel = section === 5 ? 'Finish Game' : 'Next level';
