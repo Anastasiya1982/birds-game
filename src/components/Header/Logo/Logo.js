@@ -1,11 +1,11 @@
 import React from 'react';
 import logo from '../../../assets/image/logo.svg';
-import './Logo.scss'
+import s from './Logo.module.scss'
 
 
 const Logo = () => (
-    <div className="logo">
-        <img src={logo} alt="SongBird App Logo" className='logo__img' />
+    <div className={s.logo}>
+        <img src={logo} alt="SongBird App Logo" className={s.logoImg} />
     </div>
 );
 

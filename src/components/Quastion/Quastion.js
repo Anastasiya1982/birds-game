@@ -1,5 +1,5 @@
 import React from 'react';
-import './Quastion.scss';
+import s from './Quastion.module.scss';
 import defaultImg from '../../assets/image/bird.jpg'
 import Image from "../Image/Image";
 import Title from "../Title/Title";
@@ -13,15 +13,15 @@ const Quastion=({win, section,randomId})=>{
     const title= win ? birdsData[section][randomId].name : '* * * * * *';
 
     return (
-        <div className='question-container'>
+        <div className={s.questionContainer}>
                 <Image image={imgSrc} alt={alt}/>
-            <div className='question-container__content'>
+            <div className={s.content}>
                <Title title={title}/>
-                 <div className="question-container__content-audio">
-                 <audio src={birdsData[section][randomId].audio} controls preload="auto" className='audio-item' />
+                 <div className={s.contentAudio}>
+                 <audio src={birdsData[section][randomId].audio} controls preload="auto" className={s.audioItem} />
                 </div>
             </div>
         </div>
     )
 }
-export default Quastion
+export default Quastion;

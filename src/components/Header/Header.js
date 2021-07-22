@@ -1,11 +1,11 @@
 import React from 'react';
-import './Header.scss';
+import s from './Header.module.scss';
 import Logo from "./Logo/Logo";
 import Score from "../Score/Score";
 
 export const Header=(props)=>{
     return(
-        <div className='header'>
+        <div className={s.header}>
              <Logo/>
              <Score score={props.score}/>
         </div>

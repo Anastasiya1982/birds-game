@@ -1,9 +1,9 @@
 import React from 'react';
-import './Image.scss';
+import s from './Image.module.scss';
 
 
 const Image = ({ image, alt }) => (
-    <div className="bird-img">
+    <div className={s.birdImg}>
          <img  src={image} alt={alt}/>
     </div>
 );

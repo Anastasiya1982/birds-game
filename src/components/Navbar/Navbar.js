@@ -3,10 +3,7 @@ import s from './Navbar.module.scss';
 
 
 const Navbar =(props)=>{
-    const [active,setActive]=useState(false);
-    const birdsSectionArray=['Разминка','Воробьиные','Лесные птицы','Певчие птицы','Хищные птицы','Морские птицы'];
-
-
+       const birdsSectionArray=['Разминка','Воробьиные','Лесные птицы','Певчие птицы','Хищные птицы','Морские птицы'];
     return(
         <div className={s.sectionList}>
             {birdsSectionArray.map((section,index)=>{
