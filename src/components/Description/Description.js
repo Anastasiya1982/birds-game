@@ -6,12 +6,12 @@ import DescriptionInfo from "./DescriptionInfo/DescriptionInfo";
 import birdsData from "../../birdData";
 import Subtitle from "../Subtitle/Subtitle";
 
-const Details = ({ selected, id, section }) => {
+const Details = ({selected, section}) => {
     const styleTip = {
-        display: selected==null ? 'none' : 'block',
+        display: selected == null ? 'none' : 'block',
     };
 
-    const elem=(
+    const elem = (
         <div className='description-content'>
             <div className='description-content__preview'>
                 <Image
@@ -32,18 +32,17 @@ const Details = ({ selected, id, section }) => {
     )
 
     return (
-           selected ? elem
-                :<div
-                    className="instruction"
-                    style={styleTip}
-                >
-                    <div className='instruction__content' >Послушайте плеер.</div>
-                    <div className='instruction__content'>Выберите птицу из списка</div>
-                </div>
+        selected ? elem
+            : <div
+                className="instruction"
+                style={styleTip}
+            >
+                <div className='instruction__content'>Послушайте плеер.</div>
+                <div className='instruction__content'>Выберите птицу из списка</div>
+            </div>
 
     );
 };
-
 
 
 export default Details;

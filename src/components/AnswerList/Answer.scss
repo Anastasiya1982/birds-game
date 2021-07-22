@@ -8,13 +8,13 @@ $colorBackground:#303030;
   padding: 0;
   background: $colorBackground;
   grid-area: list;
-  border:1px solid gray;
+  border: 1px solid gray;
   border-radius: 5px;
 
-      @media (max-width: 687px){
-        width: 100%;
-        margin-bottom: 20px;
-      }
+  @media (max-width: 687px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
 }
 

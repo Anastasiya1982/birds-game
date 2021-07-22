@@ -1,24 +1,20 @@
-import React, {useEffect} from 'react';
-import './Navbar.scss';
+import React, {useEffect, useState} from 'react';
+import s from './Navbar.module.scss';
+
 
 const Navbar =(props)=>{
-    useEffect(()=>{
-       const section=document.querySelectorAll('.section');
-       section.forEach((sec,index)=>{
-           sec.classList.remove('section__active');
-           if(index===props.section){
-               sec.classList.add('section__active');
-           }
-       })
-    })
+    const [active,setActive]=useState(false);
+    const birdsSectionArray=['Разминка','Воробьиные','Лесные птицы','Певчие птицы','Хищные птицы','Морские птицы'];
+
+
     return(
-        <div className="section-list">
-            <div className="section section__active">Разминка</div>
-            <div className="section">Воробьиные</div>
-            <div className="section">Лесные птицы</div>
-            <div className="section">Певчие птицы</div>
-            <div className="section">Хищные птицы</div>
-            <div className="section">Морские птицы</div>
+        <div className={s.sectionList}>
+            {birdsSectionArray.map((section,index)=>{
+              return  <div id={index}
+                           key={index}
+                           className={props.section===index ? ` ${s.section} ${s.sectionActive}`:` ${s.section}`}>{section}</div>
+            })}
+
         </div>
 
     )

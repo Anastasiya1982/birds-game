@@ -1,8 +1,8 @@
 import React from 'react';
-import './Title.scss';
+import s from './Title.module.scss';
 
 const Title = (props) => (
-    <h3 className="title">
+    <h3 className={s.title}>
         {props.title}
     </h3>
 );

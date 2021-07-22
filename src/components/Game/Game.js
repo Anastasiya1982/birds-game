@@ -5,8 +5,8 @@ import AnswerList from "../AnswerList/AnswerList";
 import Description from "../Description/Description";
 import Button from "../Button/Button";
 
-const Game=({win,section,randomId,selectBird,selectAnswer,label,action,isEndGame})=>{
-    return(
+const Game = ({win, section, randomId, selectBird, selectAnswer, label, action, isEndGame}) => {
+    return (
         <div className='game-field'>
             <Quastion win={win} section={section} randomId={randomId}/>
             <div className='answer'>

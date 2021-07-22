@@ -3,29 +3,29 @@ import './AnswerItem.scss';
 
 
 const AnswerItem = (props) => {
-    const [style,setStyle]=useState('');
+    const [style, setStyle] = useState('');
 
-    const selectAnswer=()=>{
+    const selectAnswer = () => {
         props.selectAnswer(props.id);
-        if((props.id-1) === props.randomId){
+        if ((props.id - 1) === props.randomId) {
             setStyle('correct');
-        }else{
+        } else {
             setStyle('incorrect')
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         setStyle('')
-    },[props.section])
+    }, [props.section])
 
     return (
-                <div className="answer-item"
-                     key={props.id}
-                     onClick={selectAnswer}
-                     id={props.id}
-                >
-                    <span className={ `radioBtn ${style}`}/>
-                    {props.name}
-                </div>
+        <div className="answer-item"
+             key={props.id}
+             onClick={selectAnswer}
+             id={props.id}
+        >
+            <span className={`radioBtn ${style}`}/>
+            {props.name}
+        </div>
 
     );
 };

@@ -6,7 +6,7 @@ $colorBackground:#303030;
   list-style-type: none;
   cursor: pointer;
   transition: 150ms;
-  background:$colorBackground;
+  background: $colorBackground;
   padding: .92rem 1.25rem;
   border: 1px solid #555;
 
@@ -29,15 +29,15 @@ $colorBackground:#303030;
     height: 15px;
   }
 
-  &.correct {
+   &.correct {
     background: lime;
   }
 
-  &.incorrect {
+   &.incorrect {
     background: red;
   }
 
-  &.reset {
+   &.reset {
     background: lighten(#222222, 15%);
   }
 }

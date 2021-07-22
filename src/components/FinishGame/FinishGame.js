@@ -3,7 +3,7 @@ import './FinishGame.scss';
 import Button from "../Button/Button";
 
 
-const FinishGame = ({win,action,score,isEndGame}) => {
+const FinishGame = ({win, action, score, isEndGame}) => {
     return (
         <div className='finishGame-container'>
             <h1 className='finishGame-container__title'>Поздравлям!</h1>

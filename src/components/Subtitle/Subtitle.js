@@ -1,8 +1,8 @@
 import React from 'react';
-import './Subtitle.scss';
+import s from './Subtitle.module.scss';
 
 const Subtitle = ({ subtitle }) => (
-    <div className="subtitle">
+    <div className={s.subtitle}>
         {subtitle}
     </div>
 );

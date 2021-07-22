@@ -1,8 +1,8 @@
 import React from 'react';
-import './Score.scss';
+import s from './Score.module.scss';
 
 const Score = ({ score }) => (
-    <div className="score">
+    <div className={s.score}>
        <span>Score: {score}</span>
     </div>
 );
