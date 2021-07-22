@@ -10,6 +10,7 @@ const AnswerList = ({ section, ...otherProps}) => {
                <AnswerItem key={el.id}
                            id={el.id}
                            name={el.name}
+                           section={section}
                           {...otherProps}
 
                />

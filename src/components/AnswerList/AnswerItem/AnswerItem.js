@@ -13,6 +13,9 @@ const AnswerItem = (props) => {
             setStyle('incorrect')
         }
     }
+    useEffect(()=>{
+        setStyle('')
+    },[props.section])
 
     return (
                 <div className="answer-item"

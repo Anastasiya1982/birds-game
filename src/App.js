@@ -6,7 +6,6 @@ import Quastion from "./components/Quastion/Quastion";
 import AnswerList from "./components/AnswerList/AnswerList";
 import Description from "./components/Description/Description";
 import Button from "./components/Button/Button";
-import birdsData from "./birdData";
 import rightAudio from './assets/audio/success.mp3';
 import wrongAudio from './assets/audio/fail.mp3';
 
