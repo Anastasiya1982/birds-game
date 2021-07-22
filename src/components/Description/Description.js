@@ -4,7 +4,6 @@ import Image from "../Image/Image";
 import Title from "../Title/Title";
 import DescriptionInfo from "./DescriptionInfo/DescriptionInfo";
 import birdsData from "../../birdData";
-import birdsSount from "../../assets/audio/success.mp3";
 import Subtitle from "../Subtitle/Subtitle";
 
 const Details = ({ selected, id, section }) => {

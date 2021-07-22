@@ -2,13 +2,13 @@ import React from 'react';
 import './Button.scss';
 
 
-const Button = ({win, label, action, endGame}) => {
+const Button = ({win, label, action, isEndGame}) => {
     let btnStyle = 'button level ';
     let disable = false;
-    if (endGame) {
+    if (isEndGame) {
         disable = false;
     }
-    if (!win && !endGame) {
+    if (!win && !isEndGame) {
         btnStyle += 'disabled';
         disable = false;
     }

@@ -12,7 +12,6 @@ const AnswerList = ({ section, ...otherProps}) => {
                            name={el.name}
                            section={section}
                           {...otherProps}
-
                />
             ))
             }

@@ -8,6 +8,7 @@ import Description from "./components/Description/Description";
 import Button from "./components/Button/Button";
 import rightAudio from './assets/audio/success.mp3';
 import wrongAudio from './assets/audio/fail.mp3';
+import FinishGame from "./components/FinishGame/FinishGame";
 
 function App() {
     const [section,setSection]=useState(0);
@@ -15,13 +16,16 @@ function App() {
     const [randomId,setRandomId]=useState(0);
     const [win, setWin]=useState(false);
     const [mistake,setMistake]=useState(0);
-    const [endGame,setEndGame]=useState(false);
+    const [isEndGame,setIsEndGame]=useState(false);
     const [selectBird,setSelectBird]=useState(0);
 
 
     useEffect(()=>{
         setRandomId(getRandomId())
     },[section]);
+    useEffect(()=>{
+
+    })
 
     function getRandomId(){
         const id = Math.floor((Math.random() * 6));
@@ -42,9 +46,6 @@ function App() {
            rightAnswer.play();
            setWin(true);
            setSelectBird(id);
-           setTimeout(()=>{
-               goToNextLevel()
-           },2000);
        }else{
            wrongAnswer.play();
            setMistake((mistake)=>mistake+1);
@@ -52,36 +53,54 @@ function App() {
     }
 
     function goToNextLevel(){
-        if(section===5){
+        console.log(section)
+        if(section > 5){
             setSection(-1);
-            setEndGame(true);
+            alert('finish game')
+            setIsEndGame(true);
             setWin(false);
 
-            //TODO create endGame function
         }else{
             setSection(section=>section+1);
             setScore(score=>score+5-mistake);
             setWin(false);
             setMistake(0);
             setSelectBird(0);
-
         }
      }
+     // const endGame=()=>{
+     //     setIsEndGame(true);
+     //     setWin(false);
+     // }
 
-    const btnLabel = section === 5 ? 'Закончить игру' : 'Следующий' +
-        ' вопрос';
+     const startNewGame=()=>{
+         setIsEndGame(false);
+         setSection(0);
+         setWin(0);
+         setScore(0);
+         setMistake(0);
+     }
+
+   let btnLabel = section === 5 ? 'Finish Game' : 'Next level';
+
 
   return (
       <div className="game">
           <div className='wrapper'>
               <Header score={score}/>
               <Navbar section={section}/>
-              <Quastion win={win} section={section} randomId={randomId}/>
-              <div className='answer'>
-                  <AnswerList section={section} selectAnswer={selectAnswer} randomId={randomId} win={win}/>
-                  <Description  section={section} selected={selectBird}/>
-              </div>
-              <Button label={btnLabel} win={win}/>
+              {!isEndGame ?
+                  (<div className='game-field'>
+                      <Quastion win={win} section={section} randomId={randomId}/>
+                      <div className='answer'>
+                          <AnswerList section={section} selectAnswer={selectAnswer} randomId={randomId} win={win}/>
+                          <Description section={section} selected={selectBird}/>
+                      </div>
+                      <Button label={btnLabel} win={win} action={goToNextLevel} isEndGame={isEndGame}/>
+
+                  </div>)
+                  : <FinishGame win={win} action={startNewGame} score={score} isEndGame={isEndGame}/>
+              }
           </div>
       </div>
   );
