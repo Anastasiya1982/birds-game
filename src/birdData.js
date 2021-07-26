@@ -1,5 +1,6 @@
 
-    [
+   const birdsData = [
+       [
         {
             id: 1,
             name: 'Ворон',
@@ -298,7 +299,8 @@
             image: 'https://live.staticflickr.com/65535/48577115317_7034201dde.jpg',
             audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC501190-190801_06.50h_zilvermeeuw_duinen%20van%20goeree_roep_2ex_overvliegend_gezien_.mp3'
         }
-    ];
+    ]
+  ];
 
 
 export default birdsData;
