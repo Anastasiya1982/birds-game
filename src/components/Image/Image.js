@@ -1,11 +1,11 @@
-import React from 'react';
-import s from './Image.module.scss';
+import React from "react";
+import styles from "./Image.module.scss";
 
 
-const Image = ({ image, alt }) => (
-    <div className={s.birdImg}>
-         <img  src={image} alt={alt}/>
-    </div>
+const Image = ({image, alt}) => (
+	<div className={styles.birdImg}>
+		<img  src={image} alt={alt}/>
+	</div>
 );
 
 

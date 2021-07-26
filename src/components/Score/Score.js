@@ -1,12 +1,17 @@
-import React from 'react';
-import s from './Score.module.scss';
+import React from "react";
+import {useSelector} from "react-redux";
 
-const Score = ({ score }) => (
-    <div className={s.score}>
-       <span>Score: {score}</span>
-    </div>
-);
+import styles from "./Score.module.scss";
 
 
+const Score = () => {
+	const scoreCount = useSelector(state => state.birdsData.score);
+
+	return (
+		<div className={styles.score}>
+			<span>Score: {scoreCount}</span>
+		</div>
+	);
+};
 
 export default Score;

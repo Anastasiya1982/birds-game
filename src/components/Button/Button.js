@@ -1,23 +1,19 @@
-import React from 'react';
-import './Button.scss';
+import React from "react";
+// eslint-disable-next-line no-unused-vars
+import styles from "./Button.scss";
+import cn from "classnames";
 
+const Button = ({win, label, onClick, isEndGame}) => {
 
-const Button = ({win, label, action, isEndGame}) => {
-    let btnStyle = 'button ';
-    let disable = false;
-    if (isEndGame) {
-        disable = false;
-    }
-    if (!win && !isEndGame) {
-        btnStyle += 'disabled';
-        disable = true;
-    }
+	const btnClasses = cn("button", {
+		disabled: (!win && !isEndGame)
+	});
 
-    return (
-        <button className={btnStyle} disabled={disable} onClick={action}>
-            {label}
-        </button>
-    );
+	return (
+		<button className={btnClasses} onClick={onClick}>
+			{label}
+		</button>
+	);
 };
 
 export default Button;

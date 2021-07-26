@@ -1,22 +1,32 @@
-import React from 'react';
-import s from './Answer.module.scss';
-import birdsData from '../../birdData';
+import React from "react";
+import cnBind from "classnames/bind";
+
+import styles from "./Answer.module.scss";
+
+import birdsData from "../../birdData";
 import AnswerItem from "./AnswerItem/AnswerItem";
 
-const AnswerList = ({section, ...otherProps}) => {
-    return (
-        <div className={s.answerList}>
-            {birdsData[section].map((el) => (
-                <AnswerItem key={el.id}
-                            id={el.id}
-                            name={el.name}
-                            section={section}
-                            {...otherProps}
-                />
-            ))
-            }
-        </div>
-    );
+
+const cx=cnBind.bind(styles);
+
+const AnswerList = ({section,win, ...otherProps}) => {
+	// const birdsDataArr=useSelector(state => state.birdsData.birdsData);
+	const classes=cx(styles.answerList,{
+		disabled:win
+	});
+	return (
+		<div className={classes}>
+			{birdsData[section].map((el) => (
+				<AnswerItem key={el.id}
+					id={el.id}
+					name={el.name}
+					section={section}
+					{...otherProps}
+				/>
+			))
+			}
+		</div>
+	);
 };
 
 

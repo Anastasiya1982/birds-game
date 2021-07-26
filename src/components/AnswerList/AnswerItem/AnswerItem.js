@@ -1,34 +1,39 @@
-import React, {useEffect, useState} from 'react';
-import './AnswerItem.scss';
+import React, {useEffect, useState} from "react";
+import styles from "./AnswerItem.module.scss";
 
+import cnBind from "classnames/bind";
+const cx=cnBind.bind(styles);
 
 const AnswerItem = (props) => {
-    const [style, setStyle] = useState('');
+	// eslint-disable-next-line no-unused-vars
+	const [isSelected, setIsSelected] = useState(false);
 
-    const selectAnswer = () => {
-        console.log('select is:',props.id)
-        props.selectAnswer(props.id);
-        if ((props.id - 1) === props.randomId) {
-            setStyle('correct');
-        } else {
-            setStyle('incorrect')
-        }
-    }
-    useEffect(() => {
-        setStyle('')
-    }, [props.section])
+	useEffect(() => {
+		setIsSelected(false);
+	}, [props.section]);
 
-    return (
-        <div className="answer-item"
-             key={props.id}
-             onClick={selectAnswer}
-             id={props.id}
-        >
-            <span className={`radioBtn ${style}`}/>
-            {props.name}
-        </div>
+	const classesForBtn=cx(styles.radioBtn ,{
+		reset:!isSelected,
+		correct:isSelected &&((props.id - 1) === props.randomId),
+		incorrect:isSelected &&((props.id - 1) !== props.randomId)
+	});
 
-    );
+	const selectAnswer = () => {
+		props.selectAnswer(props.id);
+		setIsSelected(true);
+	};
+
+	return (
+		<div className={styles.answerItem}
+			key={props.id}
+			onClick={selectAnswer}
+			id={props.id}
+		>
+			<span className={classesForBtn}/>
+			{props.name}
+		</div>
+
+	);
 };
 
 

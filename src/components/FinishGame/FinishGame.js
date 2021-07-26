@@ -1,17 +1,19 @@
-import React from 'react';
-import  s from './FinishGame.module.scss';
+import React from "react";
+import  styles from "./FinishGame.module.scss";
 import Button from "../Button/Button";
+import {useSelector} from "react-redux";
 
 
-const FinishGame = ({win, action, score, isEndGame}) => {
-    return (
-        <div className={s.finishGameContainer}>
-            <h1 className={s.title}>Поздравлям!</h1>
-            <p className={s.content}>Вы прошли викторину и набрали {score} из возможных 30
+const FinishGame = ({win, startNewGame,  isEndGame}) => {
+	const score=useSelector(state => state.birdsData.score);
+	return (
+		<div className={styles.finishGameContainer}>
+			<h1 className={styles.title}>Поздравлям!</h1>
+			<p className={styles.content}>Вы прошли викторину и набрали {score} из возможных 30
                 баллов!</p>
-            <Button win={win} label={'Попробовать еще раз'} action={action} isEndGame={isEndGame}/>
-        </div>
-    );
+			<Button win={win} label={"Попробовать еще раз"} onClick={startNewGame} isEndGame={isEndGame}/>
+		</div>
+	);
 };
 
 export default FinishGame;
