@@ -6,8 +6,11 @@ import Image from "../Image/Image";
 import Title from "../Title/Title";
 
 import birdsData from "../../birdData";
+import {useSelector} from "react-redux";
 
 const Question=({win, section,randomId})=>{
+	const data=useSelector(state =>state.birdsData.birdsData );
+	console.log(data);
 
 	const imgSrc=win ? birdsData[section][randomId].image : defaultImg;
 	const alt = win ? birdsData[section][randomId].name : "imagOfBird";

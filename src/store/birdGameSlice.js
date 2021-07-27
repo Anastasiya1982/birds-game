@@ -1,45 +1,60 @@
-import {createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-const resUrl="https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js";
-
-const fetchData = async () => {
-    const result = await axios.get(resUrl);
-    const birdsData=result.data;
-    return  {
-        birdsData:birdsData
-    };
-};
-const birdsDataArr=fetchData();
-
+export const getBirdsData=createAsyncThunk(
+    "birdGame/getBirdsData",
+    async ()=>{
+        return fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
+            .then(res=>res.data);
+    }
+);
 
 const birdGameSlice = createSlice({
     name: "birdGame",
     initialState: {
-        birdsData:birdsDataArr,
+        birdsData:[],
+        status:null,
+        initialScore:0,
         score:0,
         section:0,
         mistake:0,
-        win:false,
+        isWin:false,
         selectedBird:null
     },
+    extraReducers: {
+        [getBirdsData.pending]: (state) => {
+            state.status = "loading";
+        },
+        [getBirdsData.fulfilled]: (state, { payload }) => {
+            state.birdsData = payload;
+            state.status = "success";
+        },
+        [getBirdsData.rejected]: (state) => {
+            state.status = "failed";
+        }
+    },
     reducers: {
+        setBirdsData(state,action){
+            state.birdsData=action.payload.data;
+        },
         setScore(state) {
-            state.score=state.score + 5 - state.mistake;
+            state.score = state.score + 5 - state.mistake;
         },
-        resetScore(state){
-            state.score=0;
+        resetScore(state) {
+            state.score = 0;
         },
-       setMistake(state){
-            state.mistake=state.mistake+1;
-       },
-        resetMistakes(state){
-            state.mistake=0;
+        setMistake(state) {
+            state.mistake = state.mistake + 1;
         },
+        resetMistakes(state) {
+            state.mistake = 0;
+        },
+        setIsWin(state,action){
+            state.isWin=action.payload.value;
+        }
 
     }
 });
 
 
-export const {setMistake, resetMistakes,setScore, resetScore} = birdGameSlice.actions;
+export const {setMistake, resetMistakes,setScore, resetScore,setIsWin, setBirdsData} = birdGameSlice.actions;
 export default birdGameSlice.reducer;

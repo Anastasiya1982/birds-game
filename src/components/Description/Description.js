@@ -9,10 +9,10 @@ import birdsData from "../../birdData";
 
 
 
-const Description = ({selected, section}) => {
+const Description = ({selectBird, section}) => {
 
 	return (
-		selected===null ? <div
+		!selectBird ? <div
 			className={styles.instruction}
 		>
 			<div className={styles.instructionContent}>Послушайте плеер.</div>
@@ -21,17 +21,17 @@ const Description = ({selected, section}) => {
 			:(<div className={styles.descriptionContent}>
 				<div className={styles.preview}>
 					<Image
-						image={birdsData[section][selected].image}
-						alt={birdsData[section][selected].name}
+						image={birdsData[section][selectBird].image}
+						alt={birdsData[section][selectBird].name}
 					/>
 					<div className={styles.previewInfo}>
-						<Title title={birdsData[section][selected].name}/>
-						<Subtitle subtitle={birdsData[section][selected].species}/>
-						<audio src={birdsData[section][selected].audio} controls preload="auto" className={styles.audioItem}/>
+						<Title title={birdsData[section][selectBird].name}/>
+						<Subtitle subtitle={birdsData[section][selectBird].species}/>
+						<audio src={birdsData[section][selectBird].audio} controls preload="auto" className={styles.audioItem}/>
 					</div>
 				</div>
 				<p className={styles.description}>
-					{birdsData[section][selected].description}
+					{birdsData[section][selectBird].description}
 			    </p>
 
 			</div>)
