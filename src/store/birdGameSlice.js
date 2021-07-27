@@ -1,12 +1,12 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
-export const getBirdsData=createAsyncThunk(
-    "birdGame/getBirdsData",
-    async ()=>{
-        return fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
-            .then(res=>res.data);
-    }
-);
+// export const getBirdsData=createAsyncThunk(
+//     "birdGame/getBirdsData",
+//     async ()=>{
+//         return fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
+//             .then(res=>res.data);
+//     }
+// );
 
 const birdGameSlice = createSlice({
     name: "birdGame",
@@ -51,10 +51,24 @@ const birdGameSlice = createSlice({
         setIsWin(state,action){
             state.isWin=action.payload.value;
         }
-
     }
 });
 
 
 export const {setMistake, resetMistakes,setScore, resetScore,setIsWin, setBirdsData} = birdGameSlice.actions;
+
+
+export const getBirdsData = () => dispatch => {
+    // dispatch loading true
+
+    // send request for data
+    fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds2.js").then(res=>res.json()).then(response => {
+        // set data to BirdsData
+    }).catch((err) =>{
+        // set error
+    })
+
+    //dispatch loading false
+};
+
 export default birdGameSlice.reducer;
