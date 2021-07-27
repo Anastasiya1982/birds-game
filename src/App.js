@@ -19,7 +19,7 @@ function App() {
     const [isEndGame, setIsEndGame] = useState(false);
     const [selectBird, setSelectBird] = useState(null);
     const win = useSelector(state => state.birdsData.isWin);
-    const status=useSelector(state => state.birdsData.status);
+    const isLoading =useSelector(state => state.birdsData.isLoading);
     const dispatch = useDispatch();
 
     // if (!isInit) {
@@ -32,7 +32,7 @@ function App() {
 
     const data=useSelector(state => state.birdsData.birdsData);
     console.log(data);
-    console.log(status);
+    console.log(isLoading);
 
     useEffect(() => {
         setRandomId(getRandomId());
@@ -102,7 +102,7 @@ function App() {
 
 
     return (
-        status!=="success" ? <div>LOADING....</div> :
+        isLoading ? <div>LOADING....</div> :
         <div className={styles.game}>
             <div className={styles.wrapper}>
                 <Header/>
