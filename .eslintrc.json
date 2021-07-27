@@ -25,10 +25,6 @@
         "no-unused-vars": ["error", { "caughtErrorsIgnorePattern": "^ignore" }],
         "react/jsx-uses-react": 1,
         "react/jsx-uses-vars": "error",
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         "quotes": [
             "error",
             "double"

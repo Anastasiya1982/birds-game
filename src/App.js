@@ -31,7 +31,7 @@ function App() {
     }, [dispatch]);
 
     const data=useSelector(state => state.birdsData.birdsData);
-    console.log(data);
+    console.log("data from state: ", data);
     console.log(isLoading);
 
     useEffect(() => {

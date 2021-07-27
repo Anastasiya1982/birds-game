@@ -42,7 +42,7 @@ const birdGameSlice = createSlice({
             state.isWin=action.payload.value;
         },
         setIsLoading(state,action){
-            state.status=action.payload.value;
+            state.status=action.payload;
         },
         setError(state,action){
             state.error=action.payload.value;
@@ -55,13 +55,12 @@ const birdGameSlice = createSlice({
 export const {setMistake, resetMistakes,setScore, resetScore,setIsWin, setBirdsData,setIsLoading,setError} = birdGameSlice.actions;
 
 export const getBirdsData = () => dispatch => {
-       dispatch(setIsLoading({value:true}));
+       dispatch(setIsLoading(true));
 
     // send request for data
     //     fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
 
     birdsApi.getBirds()
-      .then(res => res.json())
         .then((res) =>{
             const data=res.data;
             dispatch(setBirdsData({data:data}));
