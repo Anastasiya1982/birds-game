@@ -63,9 +63,11 @@ export const getBirdsData = () => dispatch => {
     birdsApi.getBirds()
         .then((res) => {
                 const data = res.data;
-            //TODO: данные приходят строкой
-                console.log("data", typeof data);
-                dispatch(setBirdsData({data: data}));
+                const newData=data.replace("const birdsData = ","").replace("export default birdsData;","").replaceAll("\n","");
+
+                const birds=eval(newData);
+                console.log("new data",birds);
+                dispatch(setBirdsData({data: birds}));
             }
         ).catch((err) => {
         dispatch(setError({value: err.toString()}));
@@ -75,3 +77,4 @@ export const getBirdsData = () => dispatch => {
 };
 
 export default birdGameSlice.reducer;
+//replace('const birdsData = ','').replace('export default birdsData;','').replaceAll("\n","")/eval()
