@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 
 const Game = ({ section, randomId, selectBird, selectAnswer, label, goToNextLevel, isEndGame}) => {
 
+
    const win=useSelector(state => state.birdsData.isWin);
 	return (
 		<div>

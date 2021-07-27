@@ -25,14 +25,14 @@ function App() {
     // if (!isInit) {
     // 	return <h1>loading..</h1>
 	// }
+    //TODO: данные приходят строкой
+    const data=useSelector(state => state.birdsData.birdsData);
+    console.log(typeof data);
 
     useEffect(() => {
 		dispatch(getBirdsData());
     }, [dispatch]);
 
-    const data=useSelector(state => state.birdsData.birdsData);
-    console.log(data);
-    console.log(isLoading);
 
     useEffect(() => {
         setRandomId(getRandomId());

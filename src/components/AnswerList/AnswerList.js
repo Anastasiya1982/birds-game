@@ -10,7 +10,8 @@ import AnswerItem from "./AnswerItem/AnswerItem";
 const cx=cnBind.bind(styles);
 
 const AnswerList = ({section,win, ...otherProps}) => {
-	// const birdsDataArr=useSelector(state => state.birdsData.birdsData);
+
+
 	const classes=cx(styles.answerList,{
 		disabled:win
 	});

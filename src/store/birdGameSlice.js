@@ -12,19 +12,19 @@ import {birdsApi} from "../api";
 const birdGameSlice = createSlice({
     name: "birdGame",
     initialState: {
-        birdsData:[],
-        isLoading:false,
-        initialScore:0,
-        score:0,
-        section:0,
-        mistake:0,
-        isWin:false,
-        selectedBird:null,
-        error:null
+        birdsData: [],
+        isLoading: true,
+        initialScore: 0,
+        score: 0,
+        section: 0,
+        mistake: 0,
+        isWin: false,
+        selectedBird: null,
+        error: null
     },
     reducers: {
-        setBirdsData(state,action){
-            state.birdsData=action.payload.data;
+        setBirdsData(state, action) {
+            state.birdsData = action.payload.data;
         },
         setScore(state) {
             state.score = state.score + 5 - state.mistake;
@@ -38,37 +38,38 @@ const birdGameSlice = createSlice({
         resetMistakes(state) {
             state.mistake = 0;
         },
-        setIsWin(state,action){
-            state.isWin=action.payload.value;
+        setIsWin(state, action) {
+            state.isWin = action.payload.value;
         },
-        setIsLoading(state,action){
-            state.status=action.payload.value;
+        setIsLoading(state, action) {
+            state.isLoading = action.payload.value;
         },
-        setError(state,action){
-            state.error=action.payload.value;
+        setError(state, action) {
+            state.error = action.payload.value;
         }
 
     }
 });
 
 
-export const {setMistake, resetMistakes,setScore, resetScore,setIsWin, setBirdsData,setIsLoading,setError} = birdGameSlice.actions;
+export const {setMistake, resetMistakes, setScore, resetScore, setIsWin, setBirdsData, setIsLoading, setError} = birdGameSlice.actions;
 
 export const getBirdsData = () => dispatch => {
-       dispatch(setIsLoading({value:true}));
+    dispatch(setIsLoading({value: true}));
 
     // send request for data
     //     fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
 
     birdsApi.getBirds()
-      .then(res => res.json())
-        .then((res) =>{
-            const data=res.data;
-            dispatch(setBirdsData({data:data}));
-          }
+        .then((res) => {
+                const data = res.data;
+            //TODO: данные приходят строкой
+                console.log("data", typeof data);
+                dispatch(setBirdsData({data: data}));
+            }
         ).catch((err) => {
         dispatch(setError({value: err.toString()}));
-        });
+    });
 
     dispatch(setIsLoading({value: false}));
 };
