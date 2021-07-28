@@ -2,12 +2,25 @@
 <h1>Birds-Game</h1>
 </div>
 
+This is one-page application, a quiz for recognizing birds by their voices.
+
+## Application Structure
+
+The quiz game field consists of four blocks:
+1. header
+2. the block with the current question
+3. a block with answer options
+4. a block with a description of the bird
+
 This project was create with [Create React App](https://github.com/facebook/create-react-app).
   
   ## Technologies
 Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
+* [Sass](https://sass-lang.com/)
+* [Redux Toolkit](https://redux-toolkit.js.org/)
+* [Classnames](https://www.npmjs.com/package/classnames)
+
+
+
 
 
