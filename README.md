@@ -4,6 +4,8 @@
 
 This is one-page application, a quiz for recognizing birds by their voices.
 
+The deploy version 
+
 ## Application Structure
 
 The quiz game field consists of four blocks:
