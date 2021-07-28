@@ -9,18 +9,21 @@ import Button from "../Button/Button";
 import {useSelector} from "react-redux";
 
 
-const Game = ({ section, randomId, selectBird, selectAnswer, label, goToNextLevel, isEndGame}) => {
+const Game = ({randomId, selectAnswer,  goToNextLevel}) => {
+	const birdsSectionArray=useSelector(state => state.birdsData.birdsSectionArray);
+	let currentSection=useSelector(state => state.birdsData.section);
 
-
+	let btnLabel = currentSection === birdsSectionArray.length-1 ? "Finish Game" : "Next level";
    const win=useSelector(state => state.birdsData.isWin);
+
 	return (
 		<div>
-			<Question win={win} section={section} randomId={randomId}/>
+			<Question win={win}  randomId={randomId}/>
 			<div className={styles.answer}>
-				<AnswerList section={section} selectBird={selectBird} selectAnswer={selectAnswer} randomId={randomId} win={win}/>
-				<Description section={section} selectBird={selectBird}/>
+				<AnswerList  selectAnswer={selectAnswer} randomId={randomId} win={win}/>
+				<Description  />
 			</div>
-			<Button label={label} win={win} onClick={goToNextLevel} isEndGame={isEndGame}/>
+			<Button label={btnLabel} win={win} onClick={goToNextLevel} />
 
 		</div>
 	);

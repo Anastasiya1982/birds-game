@@ -1,15 +1,15 @@
 import React from "react";
+import {useSelector} from "react-redux";
 import cnBind from "classnames/bind";
 
 import styles from "./Answer.module.scss";
 
-import birdsData from "../../birdData";
 import AnswerItem from "./AnswerItem/AnswerItem";
-
-
 const cx=cnBind.bind(styles);
 
-const AnswerList = ({section,win, ...otherProps}) => {
+const AnswerList = ({win, ...otherProps}) => {
+	const birdsData=useSelector(state =>state.birdsData.birdsData );
+	let currentSection=useSelector(state => state.birdsData.section);
 
 
 	const classes=cx(styles.answerList,{
@@ -17,11 +17,11 @@ const AnswerList = ({section,win, ...otherProps}) => {
 	});
 	return (
 		<div className={classes}>
-			{birdsData[section].map((el) => (
+			{birdsData[currentSection].map((el) => (
 				<AnswerItem key={el.id}
 					id={el.id}
 					name={el.name}
-					section={section}
+					section={currentSection}
 					{...otherProps}
 				/>
 			))

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
+import cnBind from "classnames/bind";
+
 import styles from "./AnswerItem.module.scss";
 
-import cnBind from "classnames/bind";
 const cx=cnBind.bind(styles);
 
 const AnswerItem = (props) => {

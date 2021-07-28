@@ -9,25 +9,19 @@ import rightAudio from "./assets/audio/success.mp3";
 import wrongAudio from "./assets/audio/fail.mp3";
 import FinishGame from "./components/FinishGame/FinishGame";
 import Game from "./components/Game/Game";
-import {setMistake, resetMistakes, setScore, resetScore, setIsWin, getBirdsData} from "./store/birdGameSlice";
+import {setMistake, resetMistakes, setScore, resetScore,setSelectedBird,
+    setIsWin, getBirdsData,setSection, resetCurrentSection,setIsGameOver} from "./store/birdGameSlice";
 
 
 
 function App() {
-    const [section, setSection] = useState(0);
     const [randomId, setRandomId] = useState(0);
-    const [isEndGame, setIsEndGame] = useState(false);
-    const [selectBird, setSelectBird] = useState(null);
     const win = useSelector(state => state.birdsData.isWin);
-    const isLoading =useSelector(state => state.birdsData.isLoading);
-    const dispatch = useDispatch();
+    const isInit=useSelector(state => state.birdsData.isInit);
+    const section=useSelector(state => state.birdsData.section);
+    const isEndGame=useSelector(state => state.birdsData.isGameOver);
 
-    // if (!isInit) {
-    // 	return <h1>loading..</h1>
-	// }
-    //TODO: данные приходят строкой
-    const data=useSelector(state => state.birdsData.birdsData);
-    console.log(typeof data);
+    const dispatch = useDispatch();
 
     useEffect(() => {
 		dispatch(getBirdsData());
@@ -40,7 +34,6 @@ function App() {
 
     function getRandomId() {
         const id = Math.floor((Math.random() * 6));
-        // eslint-disable-next-line no-console
         console.log(`рандомно проигрывается аудио с id: ${id + 1}`);
         return id;
     }
@@ -50,10 +43,14 @@ function App() {
     const getScore = () => dispatch(setScore());
     const resetAllScore = () => dispatch(resetScore());
     const setIsUserWin = ({value}) => dispatch(setIsWin({value}));
+    const setCurrentSection=()=>dispatch(setSection());
+    const resetSection=()=>dispatch(resetCurrentSection());
+    const setIsEndGame=({value})=>dispatch(setIsGameOver({value}));
+    const setSelectBird=({id})=>dispatch(setSelectedBird({id}));
 
     const selectAnswer = (id) => {
         let currentId = id - 1;
-        setSelectBird(currentId);
+        setSelectBird({id:currentId});
         checkAnswer(currentId);
     };
 
@@ -63,7 +60,7 @@ function App() {
         if (id === randomId) {
             rightAnswer.play();
             setIsUserWin({value: true});
-            setSelectBird(id);
+            setSelectBird({id:id});
             getScore();
         } else {
             wrongAnswer.play();
@@ -75,52 +72,47 @@ function App() {
         if (section === 5 && win) {
             endGame();
         } else {
-            setSection(section => section + 1);
+            setCurrentSection();
             resetAllMistakes();
             setIsUserWin({value: false});
-            setSelectBird(null);
+            setSelectBird({id:null});
         }
     }
 
     function endGame() {
-        setSection(-1);
-        setIsEndGame(true);
+        setCurrentSection();
+        setIsEndGame({value:true});
         setIsUserWin({value: false});
         resetAllMistakes();
     }
 
     const startNewGame = () => {
-        setIsEndGame(false);
-        setSection(0);
+        setIsEndGame({value:false});
+        resetSection();
         setIsUserWin({value: false});
         resetAllScore();
         resetAllMistakes();
-        setSelectBird(null);
+        setSelectBird({id:null});
     };
 
-    let btnLabel = section === 5 ? "Finish Game" : "Next level";
-
-
     return (
-        isLoading ? <div>LOADING....</div> :
         <div className={styles.game}>
             <div className={styles.wrapper}>
                 <Header/>
-                <Navbar section={section}/>
-                {!isEndGame
-                    ? <Game
-                        section={section}
-                        randomId={randomId}
-                        selectBird={selectBird}
-                        selectAnswer={selectAnswer}
-                        label={btnLabel}
-                        goToNextLevel={goToNextLevel}
-                        isEndGame={isEndGame}/>
-
-                    : <FinishGame
-                        startNewGame={startNewGame}
-                        isEndGame={isEndGame}
-                    />
+                {!isInit ? <h2>LOADING....</h2> :
+                    <>
+                        <Navbar/>
+                        {!isEndGame
+                            ? <Game
+                                randomId={randomId}
+                                selectAnswer={selectAnswer}
+                                goToNextLevel={goToNextLevel}
+                            />
+                            : <FinishGame
+                                startNewGame={startNewGame}
+                            />
+                        }
+                    </>
                 }
             </div>
         </div>

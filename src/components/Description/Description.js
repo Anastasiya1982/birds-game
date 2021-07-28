@@ -6,10 +6,13 @@ import Image from "../Image/Image";
 import Title from "../Title/Title";
 import Subtitle from "../Subtitle/Subtitle";
 import birdsData from "../../birdData";
+import {useSelector} from "react-redux";
 
 
 
-const Description = ({selectBird, section}) => {
+const Description = () => {
+	let currentSection=useSelector(state => state.birdsData.section);
+	const selectBird=useSelector(state => state.birdsData.selectedBird);
 
 	return (
 		!selectBird ? <div
@@ -21,17 +24,17 @@ const Description = ({selectBird, section}) => {
 			:(<div className={styles.descriptionContent}>
 				<div className={styles.preview}>
 					<Image
-						image={birdsData[section][selectBird].image}
-						alt={birdsData[section][selectBird].name}
+						image={birdsData[currentSection][selectBird].image}
+						alt={birdsData[currentSection][selectBird].name}
 					/>
 					<div className={styles.previewInfo}>
-						<Title title={birdsData[section][selectBird].name}/>
-						<Subtitle subtitle={birdsData[section][selectBird].species}/>
-						<audio src={birdsData[section][selectBird].audio} controls preload="auto" className={styles.audioItem}/>
+						<Title title={birdsData[currentSection][selectBird].name}/>
+						<Subtitle subtitle={birdsData[currentSection][selectBird].species}/>
+						<audio src={birdsData[currentSection][selectBird].audio} controls preload="auto" className={styles.audioItem}/>
 					</div>
 				</div>
 				<p className={styles.description}>
-					{birdsData[section][selectBird].description}
+					{birdsData[currentSection][selectBird].description}
 			    </p>
 
 			</div>)

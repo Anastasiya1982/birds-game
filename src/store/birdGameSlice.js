@@ -1,18 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {birdsApi} from "../api";
 
-// export const getBirdsData=createAsyncThunk(
-//     "birdGame/getBirdsData",
-//     async ()=>{
-//         return fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
-//             .then(res=>res.data);
-//     }
-// );
-
 const birdGameSlice = createSlice({
     name: "birdGame",
     initialState: {
         birdsData: [],
+        birdsSectionArray:["Разминка","Воробьиные","Лесные птицы","Певчие птицы","Хищные птицы","Морские птицы"],
+        isInit:false,
         isLoading: true,
         initialScore: 0,
         score: 0,
@@ -20,11 +14,24 @@ const birdGameSlice = createSlice({
         mistake: 0,
         isWin: false,
         selectedBird: null,
+        isGameOver:false,
         error: null
     },
     reducers: {
         setBirdsData(state, action) {
             state.birdsData = action.payload.data;
+        },
+        setIsInit(state,action){
+            state.isInit=action.payload.value;
+        },
+        setSection(state){
+            state.section = state.section + 1;
+        },
+        resetCurrentSection(state){
+            state.section=0;
+        },
+        setSelectedBird(state,action){
+            state.selectedBird=action.payload.id;
         },
         setScore(state) {
             state.score = state.score + 5 - state.mistake;
@@ -46,31 +53,32 @@ const birdGameSlice = createSlice({
         },
         setError(state, action) {
             state.error = action.payload.value;
+        },
+        setIsGameOver(state,action){
+            state.isGameOver=action.payload.value;
         }
 
     }
 });
 
 
-export const {setMistake, resetMistakes, setScore, resetScore, setIsWin, setBirdsData, setIsLoading, setError} = birdGameSlice.actions;
+export const {setMistake, resetMistakes, setScore, resetScore,
+    setIsWin, setBirdsData, setIsLoading, setError,setSection,setIsInit,
+    resetCurrentSection,setIsGameOver,setSelectedBird} = birdGameSlice.actions;
 
 export const getBirdsData = () => dispatch => {
     dispatch(setIsLoading({value: true}));
-
-    // send request for data
-    //     fetch("https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/songbird/birds.js")
 
     birdsApi.getBirds()
         .then((res) => {
                 const data = res.data;
                 const newData=data.replace("const birdsData = ","").replace("export default birdsData;","").replaceAll("\n","");
-
                 const birds=eval(newData);
-                console.log("new data",birds);
                 dispatch(setBirdsData({data: birds}));
+                dispatch(setIsInit({value:true}));
             }
         ).catch((err) => {
-        dispatch(setError({value: err.toString()}));
+        dispatch(setError({value: err.message}));
     });
 
     dispatch(setIsLoading({value: false}));
