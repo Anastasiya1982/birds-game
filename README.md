@@ -21,6 +21,7 @@ Project is created with:
 * [Sass](https://sass-lang.com/)
 * [Redux Toolkit](https://redux-toolkit.js.org/)
 * [Classnames](https://www.npmjs.com/package/classnames)
+* [Axios](https://www.npmjs.com/package/axios)
 
 
 
