@@ -1,10 +1,11 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
 import styles from "./Quastion.module.scss";
 import defaultImg from "../../assets/image/bird.jpg";
 import Image from "../Image/Image";
 import Title from "../Title/Title";
-import {useSelector} from "react-redux";
+
 
 
 const Question=({win,randomId})=>{

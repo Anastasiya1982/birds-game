@@ -71,7 +71,7 @@ function App() {
     function goToNextLevel() {
         if (section === 5 && win) {
             endGame();
-        } else {
+        } else if (win) {
             setCurrentSection();
             resetAllMistakes();
             setIsUserWin({value: false});

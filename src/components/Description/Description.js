@@ -1,21 +1,20 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
 import styles from "./Description.module.scss";
 
 import Image from "../Image/Image";
 import Title from "../Title/Title";
 import Subtitle from "../Subtitle/Subtitle";
-import birdsData from "../../birdData";
-import {useSelector} from "react-redux";
-
 
 
 const Description = () => {
+	const birdsData=useSelector(state =>state.birdsData.birdsData );
 	let currentSection=useSelector(state => state.birdsData.section);
 	const selectBird=useSelector(state => state.birdsData.selectedBird);
-
+	console.log(selectBird);
 	return (
-		!selectBird ? <div
+		!selectBird  ? <div
 			className={styles.instruction}
 		>
 			<div className={styles.instructionContent}>Послушайте плеер.</div>

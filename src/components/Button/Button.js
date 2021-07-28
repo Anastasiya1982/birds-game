@@ -5,13 +5,16 @@ import cn from "classnames";
 import {useSelector} from "react-redux";
 
 
-const Button = ({ label, onClick}) => {
- const win=useSelector(state => state.birdsData.isWin);
- const isEndGame=useSelector(state => state.birdsData.isGameOver);
+const Button = ({label, onClick}) => {
+
+	const win = useSelector(state => state.birdsData.isWin);
+	const isEndGame = useSelector(state => state.birdsData.isGameOver);
 
 	const btnClasses = cn("button", {
-		disabled: (win===false && !isEndGame)
+		disabled: (win === false && !isEndGame)
 	});
+
+
 
 	return (
 		<button className={btnClasses} onClick={onClick}>
