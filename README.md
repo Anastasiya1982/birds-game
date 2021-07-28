@@ -25,7 +25,12 @@ Project is created with:
 * [Classnames](https://www.npmjs.com/package/classnames)
 * [Axios](https://www.npmjs.com/package/axios)
 
-
+## Installation
+***
+$ git clone https://github.com/Anastasiya1982/birds-game
+$ cd birds-game
+$ npm install
+$ npm start
 
 
 
