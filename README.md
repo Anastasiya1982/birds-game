@@ -4,7 +4,7 @@
 
 This is one-page application, a quiz for recognizing birds by their voices.
 
-The deploy version 
+The deploy version [here will be the link]
 
 ## Application Structure
 
