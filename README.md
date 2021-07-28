@@ -12,6 +12,8 @@ The quiz game field consists of four blocks:
 3. a block with answer options
 4. a block with a description of the bird
 
+![screenshot](./bird-game/src/assets/image/screenshot.png)
+
 This project was create with [Create React App](https://github.com/facebook/create-react-app).
   
   ## Technologies
