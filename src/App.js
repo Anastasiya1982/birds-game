@@ -11,6 +11,9 @@ import FinishGame from "./components/FinishGame/FinishGame";
 import Game from "./components/Game/Game";
 import {setMistake, resetMistakes, setScore, resetScore,setSelectedBird,
     setIsWin, getBirdsData,setSection, resetCurrentSection,setIsGameOver} from "./store/birdGameSlice";
+import {Route, Switch} from "react-router";
+import LogIn from "./components/LogIn/Login";
+import SignUp from "./components/SignUp/SignUp";
 
 
 
@@ -96,26 +99,33 @@ function App() {
     };
 
     return (
-        <div className={styles.game}>
-            <div className={styles.wrapper}>
-                <Header/>
-                {!isInit ? <h2>LOADING....</h2> :
-                    <>
-                        <Navbar/>
-                        {!isEndGame
-                            ? <Game
-                                randomId={randomId}
-                                selectAnswer={selectAnswer}
-                                goToNextLevel={goToNextLevel}
-                            />
-                            : <FinishGame
-                                startNewGame={startNewGame}
-                            />
-                        }
-                    </>
-                }
+        <Switch>
+            <div className={styles.game}>
+                <div className={styles.wrapper}>
+                    <Header/>
+                    <Route path="/login" render={()=><LogIn/>}/>
+                    <Route path="/signup" render={()=><SignUp/>}/>
+                    {!isInit ? <h2>LOADING....</h2> :
+                        <Route exact path="/" render={() =>
+                            <>
+                                <Navbar/>
+                                {!isEndGame
+                                    ? <Game
+                                        randomId={randomId}
+                                        selectAnswer={selectAnswer}
+                                        goToNextLevel={goToNextLevel}
+                                    />
+                                    : <FinishGame
+                                        startNewGame={startNewGame}
+                                    />
+                                }
+                            </>
+                        }/>
+                    }
+
+                </div>
             </div>
-        </div>
+        </Switch>
     );
 }
 

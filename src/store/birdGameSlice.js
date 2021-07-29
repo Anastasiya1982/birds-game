@@ -48,8 +48,8 @@ const birdGameSlice = createSlice({
         setIsWin(state, action) {
             state.isWin = action.payload.value;
         },
-        setIsLoading(state, action) {
-            state.isLoading = action.payload.value;
+        setIsBirdsDataLoading(state, action) {
+            state.isLoading = action.payload;
         },
         setError(state, action) {
             state.error = action.payload.value;
@@ -63,11 +63,11 @@ const birdGameSlice = createSlice({
 
 
 export const {setMistake, resetMistakes, setScore, resetScore,
-    setIsWin, setBirdsData, setIsLoading, setError,setSection,setIsInit,
+    setIsWin, setBirdsData, setIsBirdsDataLoading, setError,setSection,setIsInit,
     resetCurrentSection,setIsGameOver,setSelectedBird} = birdGameSlice.actions;
 
 export const getBirdsData = () => dispatch => {
-    dispatch(setIsLoading({value: true}));
+    dispatch(setIsBirdsDataLoading(true));
 
     birdsApi.getBirds()
         .then((res) => {
@@ -81,7 +81,7 @@ export const getBirdsData = () => dispatch => {
         dispatch(setError({value: err.message}));
     });
 
-    dispatch(setIsLoading({value: false}));
+    dispatch(setIsBirdsDataLoading( false));
 };
 
 export default birdGameSlice.reducer;
