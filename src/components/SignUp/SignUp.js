@@ -69,7 +69,7 @@ const SignUp = () => {
                 <Grid item xs={4}>
                     <form onSubmit={formik.handleSubmit}>
                         <FormControl>
-                            <FormLabel className={classes.formLabel}>Please, enter your email and password to
+                            <FormLabel className={classes.formLabel}>To login to the game you must be registered. Please, create an account !
                                 form</FormLabel>
                             <FormGroup>
                                 <TextField label="Email"

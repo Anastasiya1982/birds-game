@@ -4,8 +4,6 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import {makeStyles} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
 
@@ -52,15 +50,11 @@ const LogIn = () => {
             const errors = {};
             if (!values.email) {
                 errors.email ="Email is required" ;
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                errors.email ="Invalid email address" ;
             }
             else if(!values.password ){
                 errors.password="password is required";
             }
-            else if(values.password !== values.confirmPassword){
-                errors.confirmPassword="confirmPassword is not valid";
-            }
+
             return errors;
         }
 
@@ -72,7 +66,7 @@ const LogIn = () => {
                 <Grid item xs={4}>
                     <form onSubmit={formik.handleSubmit}>
                         <FormControl>
-                            <FormLabel className={classes.formLabel}>Please, fill out the registration form</FormLabel>
+                            <FormLabel className={classes.formLabel}>Please, enter your email and password... if you are not registered, Sign Up ! </FormLabel>
                             <FormGroup>
                                 <TextField
                                     label="Email"
@@ -85,19 +79,7 @@ const LogIn = () => {
                                     type="password"
                                     {...formik.getFieldProps("password")}/>
                                 {formik.errors.password ? <div className={style.errorField}>{formik.errors.password}</div> : null}
-                                <TextField
-                                    label="Confirm Password"
-                                    margin="normal"
-                                    type="password"
-                                    {...formik.getFieldProps("confirmPassword")}/>
-                                {formik.errors.confirmPassword ? <div className={style.errorField}>{formik.errors.confirmPassword}</div> : null}
-                                <FormControlLabel className={classes.formControlLabel}
-                                                  label="Remember me"
-                                                  control={<Checkbox name="rememberMe"
-                                                                     checked={formik.values.rememberMe}
-                                                                     {...formik.getFieldProps("rememberMe")}
-                                                  />}
-                                />
+
                                 <Button type={"submit"} className={classes.button}> LogIn</Button>
                             </FormGroup>
                         </FormControl>
