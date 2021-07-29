@@ -16,18 +16,17 @@ import LogIn from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
 
 
-
 function App() {
     const [randomId, setRandomId] = useState(0);
     const win = useSelector(state => state.birdsData.isWin);
-    const isInit=useSelector(state => state.birdsData.isInit);
-    const section=useSelector(state => state.birdsData.section);
-    const isEndGame=useSelector(state => state.birdsData.isGameOver);
+    const isInit = useSelector(state => state.birdsData.isInit);
+    const section = useSelector(state => state.birdsData.section);
+    const isEndGame = useSelector(state => state.birdsData.isGameOver);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-		dispatch(getBirdsData());
+        dispatch(getBirdsData());
     }, [dispatch]);
 
 
@@ -46,14 +45,14 @@ function App() {
     const getScore = () => dispatch(setScore());
     const resetAllScore = () => dispatch(resetScore());
     const setIsUserWin = ({value}) => dispatch(setIsWin({value}));
-    const setCurrentSection=()=>dispatch(setSection());
-    const resetSection=()=>dispatch(resetCurrentSection());
-    const setIsEndGame=({value})=>dispatch(setIsGameOver({value}));
-    const setSelectBird=({id})=>dispatch(setSelectedBird({id}));
+    const setCurrentSection = () => dispatch(setSection());
+    const resetSection = () => dispatch(resetCurrentSection());
+    const setIsEndGame = ({value}) => dispatch(setIsGameOver({value}));
+    const setSelectBird = ({id}) => dispatch(setSelectedBird({id}));
 
     const selectAnswer = (id) => {
         let currentId = id - 1;
-        setSelectBird({id:currentId});
+        setSelectBird({id: currentId});
         checkAnswer(currentId);
     };
 
@@ -63,7 +62,7 @@ function App() {
         if (id === randomId) {
             rightAnswer.play();
             setIsUserWin({value: true});
-            setSelectBird({id:id});
+            setSelectBird({id: id});
             getScore();
         } else {
             wrongAnswer.play();
@@ -78,24 +77,24 @@ function App() {
             setCurrentSection();
             resetAllMistakes();
             setIsUserWin({value: false});
-            setSelectBird({id:null});
+            setSelectBird({id: null});
         }
     }
 
     function endGame() {
         setCurrentSection();
-        setIsEndGame({value:true});
+        setIsEndGame({value: true});
         setIsUserWin({value: false});
         resetAllMistakes();
     }
 
     const startNewGame = () => {
-        setIsEndGame({value:false});
+        setIsEndGame({value: false});
         resetSection();
         setIsUserWin({value: false});
         resetAllScore();
         resetAllMistakes();
-        setSelectBird({id:null});
+        setSelectBird({id: null});
     };
 
     return (
@@ -103,8 +102,8 @@ function App() {
             <div className={styles.game}>
                 <div className={styles.wrapper}>
                     <Header/>
-                    <Route path="/login" render={()=><LogIn/>}/>
-                    <Route path="/signup" render={()=><SignUp/>}/>
+                    <Route path="/login" render={() => <LogIn/>}/>
+                    <Route path="/signup" render={() => <SignUp/>}/>
                     {!isInit ? <h2>LOADING....</h2> :
                         <Route exact path="/" render={() =>
                             <>

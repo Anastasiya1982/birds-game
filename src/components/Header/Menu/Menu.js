@@ -30,20 +30,19 @@ function Menu (){
         console.log("SignUp");
     };
 
-    return(
+    return (
         <div className={style.menuContainer}>
             <ul className={style.nav}>
-                    <Link  to="/login" className={style.navItem}>
-                        <Button
+                <Link to="/login" className={style.navItem}>
+                    <Button
                         className={classes.root}
                         onClick={handleOnLoginClick}
-                        > LogIn</Button>
-                    </Link>
-                    <Link  to ="/signup" className={style.navItem}> <Button
-                        className={classes.root}
-                        onClick={handleOnSignInClick}
-                    > SignUp</Button></Link>
-
+                    > LogIn</Button>
+                </Link>
+                <Link to="/signup" className={style.navItem}> <Button
+                    className={classes.root}
+                    onClick={handleOnSignInClick}
+                > SignUp</Button></Link>
             </ul>
         </div>
     );
