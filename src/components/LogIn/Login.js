@@ -39,9 +39,7 @@ const LogIn = () => {
     const formik = useFormik({
         initialValues: {
             email:"",
-            password:"",
-            confirmPassword:"",
-            rememberMe:false
+            password:""
         },
         onSubmit:values => {
             alert(JSON.stringify(values));
