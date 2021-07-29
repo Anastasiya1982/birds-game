@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import {useFormik} from "formik";
 import { FormControl,Button, FormLabel, FormGroup, TextField,makeStyles } from "@material-ui/core";
 
-import style from "./LogIn.module.scss";
+import style from "./Account.module.scss";
 
 const useStyles = makeStyles({
     formLabel: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     }
 });
 
-const LogIn = () => {
+const Account = () => {
     const classes = useStyles();
     const formik = useFormik({
         initialValues: {
@@ -80,4 +80,4 @@ const LogIn = () => {
         </div>
     );
 };
-export default LogIn;
+export default Account;

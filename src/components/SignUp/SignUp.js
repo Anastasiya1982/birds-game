@@ -1,15 +1,9 @@
 import React from "react";
-import style from "./SignIn.module.scss";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import {makeStyles} from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import FormControl from "@material-ui/core/FormControl";
-import {Button} from "@material-ui/core";
+import {FormGroup,TextField,FormControlLabel,Checkbox,makeStyles} from "@material-ui/core";
+import {FormLabel,Grid,FormControl,Button} from "@material-ui/core";
 import {useFormik} from "formik";
+
+import style from "./SignIn.module.scss";
 
 const useStyles = makeStyles({
     formLabel: {
@@ -32,7 +26,6 @@ const useStyles = makeStyles({
         "&:hover": {
             background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)"
         },
-
     }
 });
 
@@ -65,12 +58,12 @@ const SignUp = () => {
     });
     return (
         <div className={style.signInContainer}>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
                 <Grid item xs={4}>
                     <form onSubmit={formik.handleSubmit}>
                         <FormControl>
                             <FormLabel className={classes.formLabel}>To login to the game you must be registered. Please, create an account !
-                                form</FormLabel>
+                            </FormLabel>
                             <FormGroup>
                                 <TextField label="Email"
                                            margin="normal"

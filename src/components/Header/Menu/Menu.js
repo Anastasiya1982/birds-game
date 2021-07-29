@@ -29,6 +29,9 @@ function Menu (){
     const handleOnSignInClick = () => {
         console.log("SignUp");
     };
+    const handleOnAccountClick = () => {
+        console.log("Account");
+    };
 
     return (
         <div className={style.menuContainer}>
@@ -38,8 +41,14 @@ function Menu (){
                         className={classes.root}
                         onClick={handleOnLoginClick}
                     > LogIn</Button>
+                    <Link to="/account" className={style.navItem}>
+                        <Button
+                            className={classes.root}
+                            onClick={handleOnAccountClick}
+                        > Account</Button></Link>
                 </Link>
-                <Link to="/signup" className={style.navItem}> <Button
+                <Link to="/signup" className={style.navItem}>
+                    <Button
                     className={classes.root}
                     onClick={handleOnSignInClick}
                 > SignUp</Button></Link>

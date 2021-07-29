@@ -14,6 +14,7 @@ import {setMistake, resetMistakes, setScore, resetScore,setSelectedBird,
 import {Route, Switch} from "react-router";
 import LogIn from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
+import Account from "./components/Account/Account";
 
 
 function App() {
@@ -104,6 +105,7 @@ function App() {
                     <Header/>
                     <Route path="/login" render={() => <LogIn/>}/>
                     <Route path="/signup" render={() => <SignUp/>}/>
+                    <Route path="/account" render={() => <Account/>}/>
                     {!isInit ? <h2>LOADING....</h2> :
                         <Route exact path="/" render={() =>
                             <>
