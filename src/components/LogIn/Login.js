@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {useFormik} from "formik";
 import { FormControl,Button, FormLabel, FormGroup, TextField,makeStyles } from "@material-ui/core";
+import {setIsUserLogin} from "../../store/loginSlice";
 
 import style from "./LogIn.module.scss";
+import {useHistory} from "react-router";
+
 
 const useStyles = makeStyles({
     formLabel: {
@@ -31,14 +35,35 @@ const useStyles = makeStyles({
 
 const LogIn = () => {
     const classes = useStyles();
+    const isUserLogin=useSelector(state => state.loginData.isUserLogin);
+
+
+    const dispatch=useDispatch();
+    const history=useHistory();
+
+    useEffect(()=>{
+       const user = localStorage.getItem("user");
+        console.log(user);
+        console.log(isUserLogin);
+        if(user){
+            history.push("/account");
+        }else{
+            history.push("/login");
+        }
+    },[isUserLogin]);
+
+    const updateUserStatus=(val)=>dispatch(setIsUserLogin(val));
+
     const formik = useFormik({
         initialValues: {
             email:"",
             password:""
         },
-        onSubmit:values => {
-            alert(JSON.stringify(values));
+        onSubmit:(values) => {
+            localStorage.setItem("user",(JSON.stringify(values)));
+            updateUserStatus(true);
         },
+
         validate:(values)=>{
             const errors = {};
             if (!values.email) {
@@ -50,6 +75,7 @@ const LogIn = () => {
             return errors;
         }
     });
+
 
     return (
         <div className={style.loginContainer}>

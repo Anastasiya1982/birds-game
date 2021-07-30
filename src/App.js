@@ -99,10 +99,11 @@ function App() {
     };
 
     return (
-        <Switch>
+
             <div className={styles.game}>
                 <div className={styles.wrapper}>
                     <Header/>
+                    <Switch>
                     <Route path="/login" render={() => <LogIn/>}/>
                     <Route path="/signup" render={() => <SignUp/>}/>
                     <Route path="/account" render={() => <Account/>}/>
@@ -123,10 +124,10 @@ function App() {
                             </>
                         }/>
                     }
-
+                    </Switch>
                 </div>
             </div>
-        </Switch>
+
     );
 }
 

@@ -1,12 +1,24 @@
-.loginContainer{
+.accountContainer{
   width: 90%;
-  min-height: 565px;
-  padding-top: 100px;
-  height: 100%;
+  min-height: 525px;
+  padding-top: 35px;
+  height: auto;
   background-color: #e2e2e2;
   margin-top: 50px;
   border-radius: 5px;
+   & .form{
+     width: 100%;
+   }
 }
-.errorField{
-  color: red;
+.avatarInfo{
+  max-width: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatarImg{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
