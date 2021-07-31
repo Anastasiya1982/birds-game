@@ -43,9 +43,7 @@ const LogIn = () => {
 
     useEffect(()=>{
        const user = localStorage.getItem("user");
-        console.log(user);
-        console.log(isUserLogin);
-        if(user){
+       if(user){
             history.push("/account");
         }else{
             history.push("/login");

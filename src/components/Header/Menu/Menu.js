@@ -32,13 +32,15 @@ function Menu (){
     const classes = useStyles();
     const history=useHistory();
 
+
+    console.log(isUserLogin);
     const updateUserStatus=(val)=>dispatch(setIsUserLogin(val));
 
     useEffect(()=>{
-       if (isUserLogin){
-           history.push("/account");
-       } else {
+       if (!isUserLogin){
            history.push("/login");
+       } else {
+           history.push("/account");
        }
     },[isUserLogin]);
 

@@ -7,6 +7,7 @@ import CreateIcon from "@material-ui/icons/Create";
 
 import style from "./Account.module.scss";
 import defaultAvatar from "../../assets/image/userIcon.png";
+import {useHistory} from "react-router";
 
 
 const useStyles = makeStyles({
@@ -80,16 +81,19 @@ const useStyles = makeStyles({
 const Account = () => {
     const [userPhoto, setUserPhoto] = useState(defaultAvatar);
 
+    const history=useHistory();
     const classes = useStyles();
+
     const formik = useFormik({
         initialValues: {
             userName: "",
             password: "",
+            userPhoto:userPhoto
 
         },
         onSubmit: values => {
             alert(JSON.stringify(values));
-
+            history.push("/");
         },
     });
 
@@ -102,7 +106,6 @@ const Account = () => {
             reader.readAsDataURL(event.target.files[0]);
         }
     };
-
 
     return (
         <div className={style.accountContainer}>
@@ -136,7 +139,7 @@ const Account = () => {
                                            type="password"
                                            {...formik.getFieldProps("password")}/>
                                 <CreateIcon className={classes.updatePasswordIcon}/>
-                                <Button type={"submit"} className={classes.button}> Update</Button>
+                                <Button type={"submit"} className={classes.button} > Update</Button>
                             </FormGroup>
                         </FormControl>
                     </form>

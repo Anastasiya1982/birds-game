@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import styles from "./App.module.scss";
-
 import {Header} from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import rightAudio from "./assets/audio/success.mp3";
@@ -10,11 +8,14 @@ import wrongAudio from "./assets/audio/fail.mp3";
 import FinishGame from "./components/FinishGame/FinishGame";
 import Game from "./components/Game/Game";
 import {setMistake, resetMistakes, setScore, resetScore,setSelectedBird,
-    setIsWin, getBirdsData,setSection, resetCurrentSection,setIsGameOver} from "./store/birdGameSlice";
+        setIsWin, getBirdsData,setSection, resetCurrentSection,setIsGameOver} from "./store/birdGameSlice";
 import {Route, Switch} from "react-router";
 import LogIn from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Account from "./components/Account/Account";
+import {setIsUserLogin} from "./store/loginSlice";
+
+import styles from "./App.module.scss";
 
 
 function App() {
@@ -25,6 +26,15 @@ function App() {
     const isEndGame = useSelector(state => state.birdsData.isGameOver);
 
     const dispatch = useDispatch();
+
+    const updateUserStatus=(val)=>dispatch(setIsUserLogin(val));
+
+    useEffect(()=>{
+        const user = localStorage.getItem("user");
+        if(user){
+            updateUserStatus(true);
+        }
+    },[]);
 
     useEffect(() => {
         dispatch(getBirdsData());
@@ -99,14 +109,13 @@ function App() {
     };
 
     return (
-
             <div className={styles.game}>
                 <div className={styles.wrapper}>
                     <Header/>
                     <Switch>
                     <Route path="/login" render={() => <LogIn/>}/>
                     <Route path="/signup" render={() => <SignUp/>}/>
-                    <Route path="/account" render={() => <Account/>}/>
+                    <Route exact path="/account" render={() => <Account/>}/>
                     {!isInit ? <h2>LOADING....</h2> :
                         <Route exact path="/" render={() =>
                             <>
