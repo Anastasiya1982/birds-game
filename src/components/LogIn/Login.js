@@ -1,12 +1,20 @@
 import React, {useEffect} from "react";
+import {useHistory} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {useFormik} from "formik";
-import { FormControl,Button, FormLabel, FormGroup, TextField,makeStyles } from "@material-ui/core";
+import {
+    FormControl,
+    Button,
+    FormLabel,
+    FormGroup,
+    TextField,
+    makeStyles
+} from "@material-ui/core";
 import {setIsUserLogin} from "../../store/loginSlice";
 
 import style from "./LogIn.module.scss";
-import {useHistory} from "react-router";
+
 
 
 const useStyles = makeStyles({

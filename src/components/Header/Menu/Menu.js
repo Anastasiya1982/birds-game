@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsUserLogin} from "../../../store/loginSlice";
 
 import style from "./Menu.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles({
@@ -54,6 +54,11 @@ function Menu (){
     return (
         <div className={style.menuContainer}>
             <ul className={style.nav}>
+                <Link to="/account" className={style.navItem}>
+                    <Button
+                        className={isUserLogin ? classes.root : classes.hide}
+                    > Account</Button>
+                </Link>
                 <Link to="/login" className={style.navItem}>
                     <Button
                         className={isUserLogin ? classes.root : classes.hide}
@@ -68,11 +73,7 @@ function Menu (){
                         className={isUserLogin ? classes.hide : classes.root}
                     > SignUp</Button>
                 </Link>
-                <Link to="/account" className={style.navItem}>
-                    <Button
-                        className={isUserLogin ? classes.root : classes.hide}
-                    > Account</Button>
-                </Link>
+
             </ul>
         </div>
     );

@@ -1,10 +1,10 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import cnBind from "classnames/bind";
-
-import styles from "./Answer.module.scss";
 
 import AnswerItem from "./AnswerItem/AnswerItem";
+
+import cnBind from "classnames/bind";
+import styles from "./Answer.module.scss";
 const cx=cnBind.bind(styles);
 
 const AnswerList = ({win, ...otherProps}) => {

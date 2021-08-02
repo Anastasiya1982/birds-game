@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import {useSelector} from "react-redux";
 
 
-const FinishGame = ({ startNewGame}) => {
+const FinishGame = ({startNewGame}) => {
 	const score=useSelector(state => state.birdsData.score);
 	return (
 		<div className={styles.finishGameContainer}>

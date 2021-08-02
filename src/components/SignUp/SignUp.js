@@ -1,6 +1,17 @@
-import React from "react";
-import {FormGroup,TextField,FormControlLabel,Checkbox,makeStyles} from "@material-ui/core";
-import {FormLabel,Grid,FormControl,Button} from "@material-ui/core";
+import React, {useState} from "react";
+import {
+    FormGroup,
+    TextField,
+    FormControlLabel,
+    Checkbox,
+    makeStyles
+} from "@material-ui/core";
+import {
+    FormLabel,
+    Grid,
+    FormControl,
+    Button
+} from "@material-ui/core";
 import {useFormik} from "formik";
 
 import style from "./SignIn.module.scss";
@@ -30,6 +41,7 @@ const useStyles = makeStyles({
 });
 
 const SignUp = () => {
+    const [isDisabled,setIsDisabled]=useState(true);
     const classes = useStyles();
     const formik = useFormik({
         initialValues: {
@@ -41,16 +53,22 @@ const SignUp = () => {
         onSubmit: values => {
             alert(JSON.stringify(values));
         },
+
         validate: (values) => {
             const errors = {};
             if (!values.email) {
                 errors.email = "Email is required";
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            }
+            /*the address must contain the @ dot character and at least 2 domain letters after the dot*/
+            else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
                 errors.email = "Invalid email address";
             } else if (!values.password) {
                 errors.password = "password is required";
             } else if (values.password !== values.confirmPassword) {
                 errors.confirmPassword = "confirmPassword is not valid";
+            }
+            else if(values.rememberMe===true){
+                setIsDisabled(false);
             }
             return errors;
         }
@@ -87,11 +105,12 @@ const SignUp = () => {
                                                   control={
                                                       <Checkbox name="rememberMe"
                                                                 checked={formik.values.rememberMe}
+                                                                onClick={()=>formik.values.rememberMe===true}
                                                                 {...formik.getFieldProps("rememberMe")}
                                                       />
                                                   }
                                 />
-                                <Button type={"submit"} className={classes.button}>Sign up</Button>
+                                <Button type={"submit"} className={classes.button} disabled={isDisabled}>Sign up</Button>
                             </FormGroup>
                         </FormControl>
                     </form>

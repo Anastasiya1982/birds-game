@@ -1,11 +1,11 @@
 import React from "react";
 import {useSelector} from "react-redux";
 
-import styles from "./Description.module.scss";
-
 import Image from "../Image/Image";
 import Title from "../Title/Title";
 import Subtitle from "../Subtitle/Subtitle";
+
+import styles from "./Description.module.scss";
 
 
 const Description = () => {

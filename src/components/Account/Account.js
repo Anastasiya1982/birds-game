@@ -1,13 +1,23 @@
 import React, {useState} from "react";
+import {useHistory} from "react-router";
 import Grid from "@material-ui/core/Grid";
 import {useFormik} from "formik";
 import {PhotoCamera} from "@material-ui/icons";
-import { FormControl,Button, FormLabel,Box,IconButton, FormGroup, TextField,makeStyles } from "@material-ui/core";
+import {
+    FormControl,
+    Button,
+    FormLabel,
+    Box,
+    IconButton,
+    FormGroup,
+    TextField,
+    makeStyles
+} from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
 
 import style from "./Account.module.scss";
 import defaultAvatar from "../../assets/image/userIcon.png";
-import {useHistory} from "react-router";
+
 
 
 const useStyles = makeStyles({
@@ -65,8 +75,8 @@ const useStyles = makeStyles({
         cursor: "pointer",
         fontSize: 22
     },
-    userPassword:{
-       position:"relative"
+    userPassword: {
+        position: "relative"
     },
     updatePasswordIcon: {
         fill: "#008966",
@@ -81,14 +91,14 @@ const useStyles = makeStyles({
 const Account = () => {
     const [userPhoto, setUserPhoto] = useState(defaultAvatar);
 
-    const history=useHistory();
+    const history = useHistory();
     const classes = useStyles();
 
     const formik = useFormik({
         initialValues: {
             userName: "",
             password: "",
-            userPhoto:userPhoto
+            userPhoto: userPhoto
 
         },
         onSubmit: values => {
@@ -139,7 +149,7 @@ const Account = () => {
                                            type="password"
                                            {...formik.getFieldProps("password")}/>
                                 <CreateIcon className={classes.updatePasswordIcon}/>
-                                <Button type={"submit"} className={classes.button} > Update</Button>
+                                <Button type={"submit"} className={classes.button}> Update</Button>
                             </FormGroup>
                         </FormControl>
                     </form>

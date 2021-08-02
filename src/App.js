@@ -7,8 +7,18 @@ import rightAudio from "./assets/audio/success.mp3";
 import wrongAudio from "./assets/audio/fail.mp3";
 import FinishGame from "./components/FinishGame/FinishGame";
 import Game from "./components/Game/Game";
-import {setMistake, resetMistakes, setScore, resetScore,setSelectedBird,
-        setIsWin, getBirdsData,setSection, resetCurrentSection,setIsGameOver} from "./store/birdGameSlice";
+import {
+    setMistake,
+    resetMistakes,
+    setScore,
+    resetScore,
+    setSelectedBird,
+    setIsWin,
+    getBirdsData,
+    setSection,
+    resetCurrentSection,
+    setIsGameOver
+} from "./store/birdGameSlice";
 import {Route, Switch} from "react-router";
 import LogIn from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
@@ -113,9 +123,9 @@ function App() {
                 <div className={styles.wrapper}>
                     <Header/>
                     <Switch>
-                    <Route path="/login" render={() => <LogIn/>}/>
-                    <Route path="/signup" render={() => <SignUp/>}/>
-                    <Route exact path="/account" render={() => <Account/>}/>
+                    <Route path="/login" component={LogIn}/>
+                    <Route path="/signup" component={SignUp}/>
+                    <Route exact path="/account" component={Account}/>
                     {!isInit ? <h2>LOADING....</h2> :
                         <Route exact path="/" render={() =>
                             <>

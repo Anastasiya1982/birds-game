@@ -1,14 +1,14 @@
 import React from "react";
-
-import styles from "./Logo.module.scss";
+import {Link} from "react-router-dom";
 
 import logo from "../../../assets/image/logo.svg";
 
+import styles from "./Logo.module.scss";
 
 
 const Logo = () => (
 	<div className={styles.logo}>
-		<img src={logo} alt="SongBird App Logo" className={styles.logoImg} />
+		<Link to="/"> <img src={logo} alt="SongBird App Logo" className={styles.logoImg} /></Link>
 	</div>
 );
 

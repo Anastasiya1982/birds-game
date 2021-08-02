@@ -1,8 +1,10 @@
 import React from "react";
+import {useSelector} from "react-redux";
+
 // eslint-disable-next-line no-unused-vars
 import styles from "./Button.scss";
 import cn from "classnames";
-import {useSelector} from "react-redux";
+
 
 
 const Button = ({label, onClick}) => {
