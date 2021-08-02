@@ -1,30 +1,21 @@
-import React, {useEffect} from "react";
-import {useHistory} from "react-router";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import {useFormik} from "formik";
-import {
-    FormControl,
-    Button,
-    FormLabel,
-    FormGroup,
-    TextField,
-    makeStyles
-} from "@material-ui/core";
-import {setIsUserLogin} from "../../store/loginSlice";
+import { useFormik } from "formik";
+import { FormControl, Button, FormLabel, FormGroup, TextField, makeStyles } from "@material-ui/core";
+import { setIsUserLogin } from "../../store/loginSlice";
 
 import style from "./LogIn.module.scss";
-
-
 
 const useStyles = makeStyles({
     formLabel: {
         margin: "0 0 30px 0",
         color: "#008966",
-        textAlign: "center"
+        textAlign: "center",
     },
     formControlLabel: {
-        color: "#008966"
+        color: "#008966",
     },
     button: {
         background: "linear-gradient(45deg, #008966 30%,  #00BC8C 90%)",
@@ -36,52 +27,49 @@ const useStyles = makeStyles({
         padding: "0 30px",
         margin: "20px auto",
         "&:hover": {
-            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)"
+            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
         },
-    }
+    },
 });
 
 const LogIn = () => {
     const classes = useStyles();
-    const isUserLogin=useSelector(state => state.loginData.isUserLogin);
+    const isUserLogin = useSelector((state) => state.loginData.isUserLogin);
 
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const dispatch=useDispatch();
-    const history=useHistory();
-
-    useEffect(()=>{
-       const user = localStorage.getItem("user");
-       if(user){
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        if (user) {
             history.push("/account");
-        }else{
+        } else {
             history.push("/login");
         }
-    },[isUserLogin]);
+    }, [isUserLogin]);
 
-    const updateUserStatus=(val)=>dispatch(setIsUserLogin(val));
+    const updateUserStatus = (val) => dispatch(setIsUserLogin(val));
 
     const formik = useFormik({
         initialValues: {
-            email:"",
-            password:""
+            email: "",
+            password: "",
         },
-        onSubmit:(values) => {
-            localStorage.setItem("user",(JSON.stringify(values)));
+        onSubmit: (values) => {
+            localStorage.setItem("user", JSON.stringify(values));
             updateUserStatus(true);
         },
 
-        validate:(values)=>{
+        validate: (values) => {
             const errors = {};
             if (!values.email) {
-                errors.email ="Email is required" ;
-            }
-            else if(!values.password ){
-                errors.password="password is required";
+                errors.email = "Email is required";
+            } else if (!values.password) {
+                errors.password = "password is required";
             }
             return errors;
-        }
+        },
     });
-
 
     return (
         <div className={style.loginContainer}>
@@ -89,21 +77,28 @@ const LogIn = () => {
                 <Grid item xs={4}>
                     <form onSubmit={formik.handleSubmit}>
                         <FormControl>
-                            <FormLabel className={classes.formLabel}>Please, enter your email and password... if you are not registered, Sign Up ! </FormLabel>
+                            <FormLabel className={classes.formLabel}>
+                                Please, enter your email and password... if you are not registered, Sign Up !{" "}
+                            </FormLabel>
                             <FormGroup>
-                                <TextField
-                                    label="Email"
-                                    margin="normal"
-                                    {...formik.getFieldProps("email")}/>
-                                {formik.errors.email ? <div className={style.errorField}>{formik.errors.email}</div> : null}
+                                <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
+                                {formik.errors.email ? (
+                                    <div className={style.errorField}>{formik.errors.email}</div>
+                                ) : null}
                                 <TextField
                                     label="Password"
                                     margin="normal"
                                     type="password"
-                                    {...formik.getFieldProps("password")}/>
-                                {formik.errors.password ? <div className={style.errorField}>{formik.errors.password}</div> : null}
+                                    {...formik.getFieldProps("password")}
+                                />
+                                {formik.errors.password ? (
+                                    <div className={style.errorField}>{formik.errors.password}</div>
+                                ) : null}
 
-                                <Button type={"submit"} className={classes.button}> LogIn</Button>
+                                <Button type={"submit"} className={classes.button}>
+                                    {" "}
+                                    LogIn
+                                </Button>
                             </FormGroup>
                         </FormControl>
                     </form>

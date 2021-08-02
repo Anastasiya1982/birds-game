@@ -5,7 +5,7 @@ import styles from "./Score.module.scss";
 
 
 const Score = () => {
-	const scoreCount = useSelector(state => state.birdsData.score);
+	const scoreCount = useSelector((state) => state.birdsData.score);
 
 	return (
 		<div className={styles.score}>

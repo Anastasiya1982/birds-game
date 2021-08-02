@@ -1,22 +1,30 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 import styles from "./Navbar.module.scss";
 
-const Navbar =()=>{
-	const birdsSectionArray=useSelector(state => state.birdsData.birdsSectionArray);
-    let currentSection=useSelector(state => state.birdsData.section);
+const Navbar = () => {
+    const birdsSectionArray = useSelector((state) => state.birdsData.birdsSectionArray);
+    let currentSection = useSelector((state) => state.birdsData.section);
 
-	return(
-		<div className={styles.sectionList}>
-			{birdsSectionArray.map((section,index)=>{
-				return  <div id={index}
-					key={index}
-					className={currentSection === index ? ` ${styles.section} ${styles.sectionActive}`:` ${styles.section}`}>{section}</div>;
-			})}
-
-		</div>
-
-	);
+    return (
+        <div className={styles.sectionList}>
+            {birdsSectionArray.map((section, index) => {
+                return (
+                    <div
+                        id={index}
+                        key={index}
+                        className={
+                            currentSection === index
+                                ? ` ${styles.section} ${styles.sectionActive}`
+                                : ` ${styles.section}`
+                        }
+                    >
+                        {section}
+                    </div>
+                );
+            })}
+        </div>
+    );
 };
 export default Navbar;

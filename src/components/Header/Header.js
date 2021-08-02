@@ -6,12 +6,12 @@ import Menu from "./Menu/Menu";
 
 import styles from "./Header.module.scss";
 
-export const Header=()=>{
-	return(
-		<div className={styles.header}>
-			<Logo/>
-			<Score />
-			<Menu/>
-		</div>
-	);
+export const Header = () => {
+    return (
+        <div className={styles.header}>
+            <Logo />
+            <Score />
+            <Menu />
+        </div>
+    );
 };
