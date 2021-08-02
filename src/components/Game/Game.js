@@ -1,12 +1,12 @@
 import React from "react";
 import {useSelector} from "react-redux";
 
-import styles from "./Game.module.scss";
-
 import Question from "../Question/Quastion";
 import AnswerList from "../AnswerList/AnswerList";
 import Description from "../Description/Description";
 import Button from "../Button/Button";
+
+import styles from "./Game.module.scss";
 
 
 

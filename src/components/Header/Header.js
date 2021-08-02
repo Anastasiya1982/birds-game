@@ -1,8 +1,10 @@
 import React from "react";
-import styles from "./Header.module.scss";
+
 import Logo from "./Logo/Logo";
 import Score from "../Score/Score";
 import Menu from "./Menu/Menu";
+
+import styles from "./Header.module.scss";
 
 export const Header=()=>{
 	return(

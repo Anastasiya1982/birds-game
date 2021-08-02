@@ -1,7 +1,9 @@
 import React from "react";
-import  styles from "./FinishGame.module.scss";
-import Button from "../Button/Button";
 import {useSelector} from "react-redux";
+
+import Button from "../Button/Button";
+
+import  styles from "./FinishGame.module.scss";
 
 
 const FinishGame = ({startNewGame}) => {

@@ -6,7 +6,6 @@ import styles from "./AnswerItem.module.scss";
 const cx=cnBind.bind(styles);
 
 const AnswerItem = (props) => {
-	// eslint-disable-next-line no-unused-vars
 	const [isSelected, setIsSelected] = useState(false);
 
 	useEffect(() => {

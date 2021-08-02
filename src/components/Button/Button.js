@@ -6,7 +6,6 @@ import styles from "./Button.scss";
 import cn from "classnames";
 
 
-
 const Button = ({label, onClick}) => {
 
 	const win = useSelector(state => state.birdsData.isWin);

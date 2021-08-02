@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {useFormik} from "formik";
+
 import {
     FormGroup,
     TextField,
@@ -12,7 +14,7 @@ import {
     FormControl,
     Button
 } from "@material-ui/core";
-import {useFormik} from "formik";
+
 
 import style from "./SignIn.module.scss";
 

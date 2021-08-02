@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Route, Switch} from "react-router";
 
 import {Header} from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import rightAudio from "./assets/audio/success.mp3";
-import wrongAudio from "./assets/audio/fail.mp3";
 import FinishGame from "./components/FinishGame/FinishGame";
 import Game from "./components/Game/Game";
 import {
@@ -19,11 +18,14 @@ import {
     resetCurrentSection,
     setIsGameOver
 } from "./store/birdGameSlice";
-import {Route, Switch} from "react-router";
+
 import LogIn from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Account from "./components/Account/Account";
 import {setIsUserLogin} from "./store/loginSlice";
+
+import rightAudio from "./assets/audio/success.mp3";
+import wrongAudio from "./assets/audio/fail.mp3";
 
 import styles from "./App.module.scss";
 
