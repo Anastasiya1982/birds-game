@@ -49,7 +49,7 @@ const SignUp = () => {
             if (!values.email) {
                 errors.email = "Email is required";
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            /*the address must contain the @ dot character and at least 2 domain letters after the dot*/
+                /*the address must contain the @ dot character and at least 2 domain letters after the dot*/
                 errors.email = "Invalid email address";
             } else if (!values.password) {
                 errors.password = "password is required";
