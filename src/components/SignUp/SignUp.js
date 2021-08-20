@@ -5,6 +5,8 @@ import { FormGroup, TextField, FormControlLabel, Checkbox, makeStyles } from "@m
 import { FormLabel, Grid, FormControl, Button } from "@material-ui/core";
 
 import style from "./SignIn.module.scss";
+import {registration} from "../../store/loginSlice";
+import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles({
     formLabel: {
@@ -33,6 +35,8 @@ const useStyles = makeStyles({
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
     const classes = useStyles();
+    const dispatch=useDispatch();
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -41,7 +45,8 @@ const SignUp = () => {
             rememberMe: false,
         },
         onSubmit: (values) => {
-            alert(JSON.stringify(values));
+            console.log(values.email,values.password);
+            dispatch(registration(values.email, values.password));
         },
 
         validate: (values) => {

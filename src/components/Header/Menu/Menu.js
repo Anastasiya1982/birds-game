@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setIsUserLogin } from "../../../store/loginSlice";
+import {logout, setIsUserLogin} from "../../../store/loginSlice";
 import Button from "@material-ui/core/Button";
 
 import style from "./Menu.module.scss";
@@ -32,31 +32,35 @@ function Menu() {
     const classes = useStyles();
     const history = useHistory();
 
-    console.log(isUserLogin);
     const updateUserStatus = (val) => dispatch(setIsUserLogin(val));
+
 
     useEffect(() => {
         if (!isUserLogin) {
             history.push("/login");
         } else {
-            history.push("/account");
+            history.push("/");
         }
     }, [isUserLogin]);
 
-    const handleOnLogoutClick = () => {
-        localStorage.removeItem("user");
+    const handleOnLogoutClick=()=>{
+        console.log("logout button pressed");
+       dispatch(logout());
         updateUserStatus(false);
+    };
+
+    const onAccountButtonClick=()=>{
+        history.push("/account");
     };
 
     return (
         <div className={style.menuContainer}>
             <ul className={style.nav}>
                 <Link to="/account" className={style.navItem}>
-                    <Button className={isUserLogin ? classes.root : classes.hide}> Account</Button>
+                    <Button className={isUserLogin ? classes.root : classes.hide} onClick={onAccountButtonClick}> Account</Button>
                 </Link>
                 <Link to="/login" className={style.navItem}>
                     <Button className={isUserLogin ? classes.root : classes.hide} onClick={handleOnLogoutClick}>
-                        {" "}
                         LogOut
                     </Button>
                     <Button className={isUserLogin ? classes.hide : classes.root}> LogIn</Button>

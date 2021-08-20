@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { useFormik } from "formik";
 import { FormControl, Button, FormLabel, FormGroup, TextField, makeStyles } from "@material-ui/core";
-import { setIsUserLogin } from "../../store/loginSlice";
+import {login} from "../../store/loginSlice";
 
 import style from "./LogIn.module.scss";
 
@@ -40,15 +40,15 @@ const LogIn = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const user = localStorage.getItem("user");
-        if (user) {
-            history.push("/account");
-        } else {
+
+        if (!isUserLogin) {
             history.push("/login");
+        } else {
+            history.push("/");
         }
     }, [isUserLogin]);
 
-    const updateUserStatus = (val) => dispatch(setIsUserLogin(val));
+
 
     const formik = useFormik({
         initialValues: {
@@ -56,8 +56,8 @@ const LogIn = () => {
             password: "",
         },
         onSubmit: (values) => {
-            localStorage.setItem("user", JSON.stringify(values));
-            updateUserStatus(true);
+            console.log(values.email,values.password);
+            dispatch(login(values.email, values.password));
         },
 
         validate: (values) => {

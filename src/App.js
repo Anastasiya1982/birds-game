@@ -22,7 +22,7 @@ import {
 import LogIn from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Account from "./components/Account/Account";
-import { setIsUserLogin } from "./store/loginSlice";
+import {checkAuthUser} from "./store/loginSlice";
 
 import rightAudio from "./assets/audio/success.mp3";
 import wrongAudio from "./assets/audio/fail.mp3";
@@ -38,12 +38,9 @@ function App() {
 
     const dispatch = useDispatch();
 
-    const updateUserStatus = (val) => dispatch(setIsUserLogin(val));
-
     useEffect(() => {
-        const user = localStorage.getItem("user");
-        if (user) {
-            updateUserStatus(true);
+         if (localStorage.getItem("token")) {
+            dispatch(checkAuthUser());
         }
     }, []);
 
@@ -54,6 +51,7 @@ function App() {
     useEffect(() => {
         setRandomId(getRandomId());
     }, [section]);
+
 
     function getRandomId() {
         const id = Math.floor(Math.random() * 6);
