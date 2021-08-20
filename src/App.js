@@ -35,6 +35,7 @@ function App() {
     const isInit = useSelector((state) => state.birdsData.isInit);
     const section = useSelector((state) => state.birdsData.section);
     const isEndGame = useSelector((state) => state.birdsData.isGameOver);
+    const isLoading=useSelector(state => state.loginData.isLoading);
 
     const dispatch = useDispatch();
 
@@ -51,6 +52,10 @@ function App() {
     useEffect(() => {
         setRandomId(getRandomId());
     }, [section]);
+
+    if(isLoading){
+        return <div>LOADING</div>;
+    }
 
 
     function getRandomId() {

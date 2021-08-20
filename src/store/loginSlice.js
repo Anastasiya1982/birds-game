@@ -6,7 +6,9 @@ import axios from "axios";
 const loginSlice = createSlice({
     name: "loginData",
     initialState: {
+        isLoading:false,
         isUserLogin: false,
+        users:[],
         user:{}
     },
     reducers: {
@@ -15,14 +17,18 @@ const loginSlice = createSlice({
         },
         setUser(state,action){
             state.user=action.payload;
+        },
+        setIsLoading(state,action){
+            state.isLoading=action.payload;
         }
     }
 });
 
-export const {setIsUserLogin,setUser} = loginSlice.actions;
+export const {setIsUserLogin,setUser,setIsLoading} = loginSlice.actions;
 
 
 export const login = (email, password) => dispatch => {
+    dispatch(  setIsLoading(true));
     api.post("http://localhost:5000/api/login", {email, password})
         .then(res => {
             console.log(res.data);
@@ -33,6 +39,7 @@ export const login = (email, password) => dispatch => {
         .catch(err => {
             dispatch(setError({value: err.message}));
         });
+    dispatch(  setIsLoading(false));
 };
 
 export const logout = () => dispatch => {
@@ -49,6 +56,7 @@ export const logout = () => dispatch => {
 };
 
 export const registration=(email, password)=>dispatch=> {
+    dispatch(  setIsLoading(true));
     api.post("http://localhost:5000/api/registration", {email, password})
         .then(res => {
             localStorage.setItem("token", res.data.accessToken);
@@ -58,6 +66,7 @@ export const registration=(email, password)=>dispatch=> {
         .catch(err => {
             dispatch(setError({value: err.message}));
         });
+    dispatch(setIsLoading(false));
 };
 
 
