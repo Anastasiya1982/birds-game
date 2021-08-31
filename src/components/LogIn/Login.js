@@ -7,6 +7,9 @@ import { FormControl, Button, FormLabel, FormGroup, TextField, makeStyles } from
 import {login} from "../../store/loginSlice";
 
 import style from "./LogIn.module.scss";
+import {toast} from "react-toastify";
+
+toast.configure();
 
 const useStyles = makeStyles({
     formLabel: {
@@ -35,19 +38,16 @@ const useStyles = makeStyles({
 const LogIn = () => {
     const classes = useStyles();
     const isUserLogin = useSelector((state) => state.loginData.isUserLogin);
-
+    // const error  =useSelector(state => state.loginData.error);
+    // const isSignUp=useSelector(state => state.loginData.isUserSignUp);
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-
-        if (!isUserLogin) {
-            history.push("/login");
-        } else {
+        if (isUserLogin) {
             history.push("/");
         }
     }, [isUserLogin]);
-
 
 
     const formik = useFormik({
@@ -56,8 +56,8 @@ const LogIn = () => {
             password: "",
         },
         onSubmit: (values) => {
-            console.log(values.email,values.password);
             dispatch(login(values.email, values.password));
+
         },
 
         validate: (values) => {
@@ -95,7 +95,7 @@ const LogIn = () => {
                                     <div className={style.errorField}>{formik.errors.password}</div>
                                 ) : null}
 
-                                <Button type={"submit"} className={classes.button}>
+                                <Button type={"submit"} className={classes.button} >
                                     {" "}
                                     LogIn
                                 </Button>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { useFormik } from "formik";
 
@@ -17,7 +17,9 @@ import {
 import CreateIcon from "@material-ui/icons/Create";
 
 import style from "./Account.module.scss";
-import defaultAvatar from "../../assets/image/userIcon.png";
+import {useDispatch, useSelector} from "react-redux";
+import {setAvatar} from "../../store/loginSlice";
+// import defaultAvatar from "../../assets/image/userIcon.png";
 
 const useStyles = makeStyles({
     formLabel: {
@@ -87,10 +89,12 @@ const useStyles = makeStyles({
 });
 
 const Account = () => {
-    const [userPhoto, setUserPhoto] = useState(defaultAvatar);
+    const userPhoto = useSelector(state => state.loginData.userAvatar);
 
     const history = useHistory();
+    const dispatch = useDispatch();
     const classes = useStyles();
+
 
 
     const formik = useFormik({
@@ -109,7 +113,7 @@ const Account = () => {
         if (event.target.files && event.target.files[0]) {
             let reader = new FileReader();
             reader.onload = (e) => {
-                setUserPhoto(e.target.result);
+                dispatch(setAvatar(e.target.result));
             };
             reader.readAsDataURL(event.target.files[0]);
         }

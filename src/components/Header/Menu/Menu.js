@@ -44,7 +44,6 @@ function Menu() {
     }, [isUserLogin]);
 
     const handleOnLogoutClick=()=>{
-        console.log("logout button pressed");
        dispatch(logout());
         updateUserStatus(false);
     };

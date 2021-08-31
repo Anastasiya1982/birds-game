@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch} from "react-redux";
 import { useFormik } from "formik";
 
 import { FormGroup, TextField, FormControlLabel, Checkbox, makeStyles } from "@material-ui/core";
@@ -6,8 +7,12 @@ import { FormLabel, Grid, FormControl, Button } from "@material-ui/core";
 
 import style from "./SignIn.module.scss";
 import {registration} from "../../store/loginSlice";
-import {useDispatch} from "react-redux";
+import { toast } from "react-toastify";
+// import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+
+toast.configure();
 const useStyles = makeStyles({
     formLabel: {
         margin: "0 0 30px 0",
@@ -34,10 +39,12 @@ const useStyles = makeStyles({
 
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
+    // const isUserSignUp=useSelector(state => state.loginData.isUserSignUp);
     const classes = useStyles();
+
     const dispatch=useDispatch();
 
-    const formik = useFormik({
+       const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
@@ -45,8 +52,10 @@ const SignUp = () => {
             rememberMe: false,
         },
         onSubmit: (values) => {
-            console.log(values.email,values.password);
+            console.log(values);
+            toast("confirm your registration by link on your email!");
             dispatch(registration(values.email, values.password));
+
         },
 
         validate: (values) => {
@@ -67,58 +76,61 @@ const SignUp = () => {
         },
     });
     return (
-        <div className={style.signInContainer}>
-            <Grid container justifyContent="center">
-                <Grid item xs={4}>
-                    <form onSubmit={formik.handleSubmit}>
-                        <FormControl>
-                            <FormLabel className={classes.formLabel}>
-                                To login to the game you must be registered. Please, create an account !
-                            </FormLabel>
-                            <FormGroup>
-                                <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
-                                {formik.errors.email ? (
-                                    <div className={style.errorField}>{formik.errors.email}</div>
-                                ) : null}
-                                <TextField
-                                    label="Password"
-                                    margin="normal"
-                                    type="password"
-                                    {...formik.getFieldProps("password")}
-                                />
-                                {formik.errors.password ? (
-                                    <div className={style.errorField}>{formik.errors.password}</div>
-                                ) : null}
-                                <TextField
-                                    label="Confirm Password"
-                                    margin="normal"
-                                    type="password"
-                                    {...formik.getFieldProps("confirmPassword")}
-                                />
-                                {formik.errors.confirmPassword ? (
-                                    <div className={style.errorField}>{formik.errors.confirmPassword}</div>
-                                ) : null}
-                                <FormControlLabel
-                                    className={classes.formControlLabel}
-                                    label="Remember me"
-                                    control={
-                                        <Checkbox
-                                            name="rememberMe"
-                                            checked={formik.values.rememberMe}
-                                            onClick={() => formik.values.rememberMe === true}
-                                            {...formik.getFieldProps("rememberMe")}
-                                        />
-                                    }
-                                />
-                                <Button type={"submit"} className={classes.button} disabled={isDisabled}>
-                                    Sign up
-                                </Button>
-                            </FormGroup>
-                        </FormControl>
-                    </form>
+        <>
+            <div className={style.signInContainer}>
+                <Grid container justifyContent="center">
+                    <Grid item xs={4}>
+                        <form onSubmit={formik.handleSubmit}>
+                            <FormControl>
+                                <FormLabel className={classes.formLabel}>
+                                    To login to the game you must be registered. Please, create an account !
+                                </FormLabel>
+                                <FormGroup>
+                                    <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
+                                    {formik.errors.email ? (
+                                        <div className={style.errorField}>{formik.errors.email}</div>
+                                    ) : null}
+                                    <TextField
+                                        label="Password"
+                                        margin="normal"
+                                        type="password"
+                                        {...formik.getFieldProps("password")}
+                                    />
+                                    {formik.errors.password ? (
+                                        <div className={style.errorField}>{formik.errors.password}</div>
+                                    ) : null}
+                                    <TextField
+                                        label="Confirm Password"
+                                        margin="normal"
+                                        type="password"
+                                        {...formik.getFieldProps("confirmPassword")}
+                                    />
+                                    {formik.errors.confirmPassword ? (
+                                        <div className={style.errorField}>{formik.errors.confirmPassword}</div>
+                                    ) : null}
+                                    <FormControlLabel
+                                        className={classes.formControlLabel}
+                                        label="Remember me"
+                                        control={
+                                            <Checkbox
+                                                name="rememberMe"
+                                                checked={formik.values.rememberMe}
+                                                onClick={() => formik.values.rememberMe === true}
+                                                {...formik.getFieldProps("rememberMe")}
+                                            />
+                                        }
+                                    />
+                                    <Button type={"submit"} className={classes.button} disabled={isDisabled} >
+                                        Sign up
+                                    </Button>
+                                </FormGroup>
+                            </FormControl>
+                        </form>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </div>
+                {/*<ToastContainer autoClose={5000} />*/}
+            </div>
+        </>
     );
 };
 export default SignUp;

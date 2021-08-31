@@ -29,6 +29,8 @@ import wrongAudio from "./assets/audio/fail.mp3";
 
 import styles from "./App.module.scss";
 
+
+
 function App() {
     const [randomId, setRandomId] = useState(0);
     const win = useSelector((state) => state.birdsData.isWin);
