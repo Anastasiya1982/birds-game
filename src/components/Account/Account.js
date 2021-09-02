@@ -18,7 +18,7 @@ import CreateIcon from "@material-ui/icons/Create";
 
 import style from "./Account.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {setAvatar} from "../../store/loginSlice";
+import {setAvatar, updateUser} from "../../store/loginSlice";
 // import defaultAvatar from "../../assets/image/userIcon.png";
 
 const useStyles = makeStyles({
@@ -89,22 +89,29 @@ const useStyles = makeStyles({
 });
 
 const Account = () => {
+
+
     const userPhoto = useSelector(state => state.loginData.userAvatar);
 
     const history = useHistory();
     const dispatch = useDispatch();
     const classes = useStyles();
+    const user = useSelector(state => state.loginData.user);
 
-
+    console.log("User from state redux",user);
+    console.log("email  from state redux",user["password"]);
 
     const formik = useFormik({
         initialValues: {
-            userName: "",
-            password: "",
+            userName: user["email"],
+            password: user["password"],
             userPhoto: userPhoto,
+            userId:user["id"]
         },
         onSubmit: (values) => {
-            alert(JSON.stringify(values));
+            alert(values.userId);
+            dispatch(updateUser(values.userId, values.userName, values.password));
+            console.log(values);
             history.push("/");
         },
     });

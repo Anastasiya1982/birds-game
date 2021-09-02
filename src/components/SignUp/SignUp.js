@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useFormik } from "formik";
 
 import { FormGroup, TextField, FormControlLabel, Checkbox, makeStyles } from "@material-ui/core";
@@ -39,10 +39,11 @@ const useStyles = makeStyles({
 
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
-    // const isUserSignUp=useSelector(state => state.loginData.isUserSignUp);
+    const isActivated=useSelector(state => state.loginData.isActivated);
     const classes = useStyles();
 
     const dispatch=useDispatch();
+    console.log(isActivated);
 
        const formik = useFormik({
         initialValues: {
@@ -52,17 +53,17 @@ const SignUp = () => {
             rememberMe: false,
         },
         onSubmit: (values) => {
-            console.log(values);
             toast("confirm your registration by link on your email!");
             dispatch(registration(values.email, values.password));
-
         },
+
 
         validate: (values) => {
             const errors = {};
             if (!values.email) {
                 errors.email = "Email is required";
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            } else
+                if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
                 /*the address must contain the @ dot character and at least 2 domain letters after the dot*/
                 errors.email = "Invalid email address";
             } else if (!values.password) {
@@ -86,26 +87,28 @@ const SignUp = () => {
                                     To login to the game you must be registered. Please, create an account !
                                 </FormLabel>
                                 <FormGroup>
-                                    <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
-                                    {formik.errors.email ? (
+                                    <TextField id="email" label="Email" margin="normal" {...formik.getFieldProps("email")} />
+                                    {formik.touched.email&& formik.dirty && formik.errors.email ? (
                                         <div className={style.errorField}>{formik.errors.email}</div>
                                     ) : null}
                                     <TextField
                                         label="Password"
                                         margin="normal"
                                         type="password"
+                                        id="password"
                                         {...formik.getFieldProps("password")}
                                     />
-                                    {formik.errors.password ? (
+                                    {formik.touched.password&&formik.dirty && formik.errors.password ? (
                                         <div className={style.errorField}>{formik.errors.password}</div>
                                     ) : null}
                                     <TextField
                                         label="Confirm Password"
                                         margin="normal"
                                         type="password"
+                                        id="confirmPassword"
                                         {...formik.getFieldProps("confirmPassword")}
                                     />
-                                    {formik.errors.confirmPassword ? (
+                                    {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
                                         <div className={style.errorField}>{formik.errors.confirmPassword}</div>
                                     ) : null}
                                     <FormControlLabel

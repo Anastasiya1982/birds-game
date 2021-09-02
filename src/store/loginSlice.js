@@ -10,7 +10,7 @@ const loginSlice = createSlice({
     name: "loginData",
     initialState: {
         isLoading:false,
-        isUserSignUp:false,
+        isActivated:false,
         isUserLogin: false,
         users:[],
         user:{},
@@ -18,7 +18,7 @@ const loginSlice = createSlice({
         error: null
     },
     reducers: {
-        setIsUserSignUp(state,action){
+        setIsActivated(state,action){
             state.isUserSignUp=action.payload;
         },
         setIsUserLogin(state, action) {
@@ -26,6 +26,9 @@ const loginSlice = createSlice({
         },
         setUser(state,action){
             state.user=action.payload.data;
+        },
+        updateUser(state, action){
+            state.user=action.payload.data
         },
         setIsLoading(state,action){
             state.isLoading=action.payload;
@@ -40,7 +43,7 @@ const loginSlice = createSlice({
     }
 });
 
-export const {setIsUserLogin,setUser,setIsLoading,setIsUserSignUp, setAvatar} = loginSlice.actions;
+export const {setIsUserLogin,setUser,setIsLoading,setIsActivated, setAvatar} = loginSlice.actions;
 
 
 export const login = (email, password) => dispatch => {
@@ -48,11 +51,12 @@ export const login = (email, password) => dispatch => {
     api.post("http://localhost:5000/api/login", {email, password})
         .then(res => {
             localStorage.setItem("token", res.data.accessToken);
+            console.log(res.data.user);
             dispatch(setUser({data:res.data.user}));
             dispatch(setIsUserLogin(true));
         })
         .catch(err => {
-            toast.warn("OOPS...there is no such user.. please register your account",{ autoClose: 7000 });
+            toast.warn("OOPS...there is no such user.. please register your account",{ autoClose:10000 });
             dispatch(setError({value: err.response.status}));
         });
     dispatch(  setIsLoading(false));
@@ -61,7 +65,7 @@ export const login = (email, password) => dispatch => {
 export const logout = () => dispatch => {
     api.post("http://localhost:5000/api/logout")
         .then(res => {
-            console.log(res.data);
+            console.log(res)
             localStorage.removeItem("token");
             dispatch(setUser({}));
             dispatch(setIsUserLogin(false));
@@ -78,7 +82,7 @@ export const registration=(email, password)=>dispatch=> {
         .then(res => {
             localStorage.setItem("token", res.data.accessToken);
             dispatch(setUser({data:res.data.user}));
-            dispatch(setIsUserSignUp(true));
+            dispatch(setIsActivated(true));
             console.log(res.status);
 
         })
@@ -102,5 +106,15 @@ export const checkAuthUser=()=>dispatch=>{
                dispatch(setError( err.message));
            });
 };
+export const updateUser=(id,email, password)=>dispatch=>{
+    axios.patch(`http://localhost:5000/api/${id}`,{email, password})
+        .then(res=>{
+            console.log("YYYEEEEE");
+            dispatch(setUser({data:res.data.user}))
+        }).catch(err => {
+        dispatch(setError( err.message));
+    });
+}
+
 
 export default loginSlice.reducer;
