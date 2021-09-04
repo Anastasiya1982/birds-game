@@ -57,7 +57,8 @@ export const login = (email, password) => dispatch => {
         })
         .catch(err => {
             toast.warn("OOPS...there is no such user.. please register your account",{ autoClose:10000 });
-            dispatch(setError({value: err.response.status}));
+            // dispatch(setError({value: err.response.status}));
+            console.log(err)
         });
     dispatch(  setIsLoading(false));
 };
@@ -76,9 +77,9 @@ export const logout = () => dispatch => {
     toast.warn("you are out of the game... to start playing again, you need to log in",{ autoClose: 7000 });
 };
 
-export const registration=(email, password)=>dispatch=> {
+export const registration=(name,email, password)=>dispatch=> {
     dispatch(  setIsLoading(true));
-    api.post("http://localhost:5000/api/registration", {email, password})
+    api.post("http://localhost:5000/api/registration", {name,email, password})
         .then(res => {
             localStorage.setItem("token", res.data.accessToken);
             dispatch(setUser({data:res.data.user}));
@@ -106,13 +107,14 @@ export const checkAuthUser=()=>dispatch=>{
                dispatch(setError( err.message));
            });
 };
-export const updateUser=(id,email, password)=>dispatch=>{
-    axios.patch(`http://localhost:5000/api/${id}`,{email, password})
+export const updateUser=(id,name, email, password)=>dispatch=>{
+    axios.put("http://localhost:5000/api",{id, name,email, password})
         .then(res=>{
-            console.log("YYYEEEEE");
+            console.log(res);
             dispatch(setUser({data:res.data.user}))
         }).catch(err => {
-        dispatch(setError( err.message));
+        console.log(err)
+        // dispatch(setError( err.message));
     });
 }
 

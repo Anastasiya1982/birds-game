@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { useFormik } from "formik";
 
 import { FormGroup, TextField, FormControlLabel, Checkbox, makeStyles } from "@material-ui/core";
@@ -8,7 +8,7 @@ import { FormLabel, Grid, FormControl, Button } from "@material-ui/core";
 import style from "./SignIn.module.scss";
 import {registration} from "../../store/loginSlice";
 import { toast } from "react-toastify";
-// import {ToastContainer} from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -39,14 +39,15 @@ const useStyles = makeStyles({
 
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
-    const isActivated=useSelector(state => state.loginData.isActivated);
+    // const isActivated=useSelector(state => state.loginData.isActivated);
     const classes = useStyles();
 
     const dispatch=useDispatch();
-    console.log(isActivated);
+
 
        const formik = useFormik({
         initialValues: {
+            name:"",
             email: "",
             password: "",
             confirmPassword: "",
@@ -54,13 +55,17 @@ const SignUp = () => {
         },
         onSubmit: (values) => {
             toast("confirm your registration by link on your email!");
-            dispatch(registration(values.email, values.password));
+            dispatch(registration(values.name,values.email, values.password));
         },
 
 
         validate: (values) => {
             const errors = {};
-            if (!values.email) {
+
+            if(!values.name){
+                errors.name="Enter your login"
+            }
+            else if (!values.email) {
                 errors.email = "Email is required";
             } else
                 if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
@@ -87,6 +92,10 @@ const SignUp = () => {
                                     To login to the game you must be registered. Please, create an account !
                                 </FormLabel>
                                 <FormGroup>
+                                    <TextField id="name" label="Name" margin="normal" {...formik.getFieldProps("name")} />
+                                    {formik.touched.name&& formik.dirty && formik.errors.name ? (
+                                        <div className={style.errorField}>{formik.errors.name}</div>
+                                    ) : null}
                                     <TextField id="email" label="Email" margin="normal" {...formik.getFieldProps("email")} />
                                     {formik.touched.email&& formik.dirty && formik.errors.email ? (
                                         <div className={style.errorField}>{formik.errors.email}</div>

@@ -70,7 +70,15 @@ const useStyles = makeStyles({
     updateNameIcon: {
         fill: "#008966",
         position: "absolute",
-        top: "41%",
+        top: "35%",
+        right: 16,
+        cursor: "pointer",
+        fontSize: 22,
+    },
+    updateEmailIcon: {
+        fill: "#008966",
+        position: "absolute",
+        top: "52%",
         right: 16,
         cursor: "pointer",
         fontSize: 22,
@@ -81,7 +89,7 @@ const useStyles = makeStyles({
     updatePasswordIcon: {
         fill: "#008966",
         position: "absolute",
-        top: "64%",
+        top: "71%",
         right: 16,
         cursor: "pointer",
         fontSize: 22,
@@ -89,10 +97,7 @@ const useStyles = makeStyles({
 });
 
 const Account = () => {
-
-
     const userPhoto = useSelector(state => state.loginData.userAvatar);
-
     const history = useHistory();
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -103,14 +108,14 @@ const Account = () => {
 
     const formik = useFormik({
         initialValues: {
-            userName: user["email"],
-            password: user["password"],
+            userName:user["name"],
+            userEmail: user["email"],
+            password: "",
             userPhoto: userPhoto,
             userId:user["id"]
         },
         onSubmit: (values) => {
-            alert(values.userId);
-            dispatch(updateUser(values.userId, values.userName, values.password));
+            dispatch(updateUser(values.userId, values.userName,values.userEmail, values.password));
             console.log(values);
             history.push("/");
         },
@@ -162,6 +167,13 @@ const Account = () => {
                                     {...formik.getFieldProps("userName")}
                                 />
                                 <CreateIcon className={classes.updateNameIcon} />
+                                <TextField
+                                    className={classes.userInput}
+                                    label="User email"
+                                    margin="normal"
+                                    {...formik.getFieldProps("userEmail")}
+                                />
+                                <CreateIcon className={classes.updateEmailIcon} />
                                 <TextField
                                     className={classes.userPassword}
                                     label="Password"
