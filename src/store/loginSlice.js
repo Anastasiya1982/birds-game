@@ -34,12 +34,11 @@ const loginSlice = createSlice({
             state.isLoading=action.payload;
         },
         setAvatar(state,action){
-            state.userAvatar=action.payload;
+            state.userAvatar=action.payload.data;
         },
         setError(state, action) {
             state.error = action.payload.status;
         },
-
     }
 });
 
@@ -110,13 +109,29 @@ export const checkAuthUser=()=>dispatch=>{
 export const updateUser=(id,name, email, password)=>dispatch=>{
     axios.put("http://localhost:5000/api",{id, name,email, password})
         .then(res=>{
-            console.log(res);
+            console.log(res.data.user)
             dispatch(setUser({data:res.data.user}))
+
         }).catch(err => {
         console.log(err)
         // dispatch(setError( err.message));
     });
-}
+};
+
+export const uploadAvatar = (data) => dispatch => {
+    axios.post("http://localhost:5000/api/upload", data,{
+        headers:{
+            'content-type':'"multipart/form-data"'
+        }
+    })
+        .then(res => {
+            console.log(res.data);
+            dispatch(setAvatar({data:res.data.path}))
+        }).catch(err => {
+            console.log(err);
+        }
+    )
+    };
 
 
 export default loginSlice.reducer;

@@ -56,6 +56,7 @@ const LogIn = () => {
             password: "",
         },
         onSubmit: (values) => {
+            console.log(values)
             dispatch(login(values.email, values.password));
 
         },
