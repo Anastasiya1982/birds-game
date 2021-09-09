@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useHistory } from "react-router";
 import { useFormik } from "formik";
 
@@ -6,7 +6,6 @@ import { PhotoCamera } from "@material-ui/icons";
 import {
     FormControl,
     Button,
-    FormLabel,
     Box,
     Grid,
     IconButton,
@@ -18,8 +17,9 @@ import CreateIcon from "@material-ui/icons/Create";
 
 import style from "./Account.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {setAvatar, updateUser} from "../../store/loginSlice";
-// import defaultAvatar from "../../assets/image/userIcon.png";
+import {updateUser, uploadAvatar} from "../../store/loginSlice";
+
+
 
 const useStyles = makeStyles({
     formLabel: {
@@ -85,6 +85,8 @@ const useStyles = makeStyles({
     },
     userPassword: {
         position: "relative",
+        autocomplete:"off",
+
     },
     updatePasswordIcon: {
         fill: "#008966",
@@ -97,68 +99,75 @@ const useStyles = makeStyles({
 });
 
 const Account = () => {
+
     const userPhoto = useSelector(state => state.loginData.userAvatar);
     const history = useHistory();
     const dispatch = useDispatch();
     const classes = useStyles();
     const user = useSelector(state => state.loginData.user);
+    const[img,setImg]=useState(userPhoto);
 
-    console.log("User from state redux",user);
-    console.log("email  from state redux",user["password"]);
 
     const formik = useFormik({
         initialValues: {
             userName:user["name"],
             userEmail: user["email"],
-            password: "",
-            userPhoto: userPhoto,
+            password: user["password"],
             userId:user["id"]
         },
         onSubmit: (values) => {
             dispatch(updateUser(values.userId, values.userName,values.userEmail, values.password));
-            console.log(values);
+            //insert popap with information
             history.push("/");
         },
     });
 
-    const onSetUserPhotoToAvatar = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                dispatch(setAvatar(e.target.result));
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    };
+    // const onSetUserPhotoToAvatar = (event) => {
+    //     if (event.target.files && event.target.files[0]) {
+    //         let reader = new FileReader();
+    //         reader.onload = (e) => {
+    //             formik.setFieldProps("userPhoto",)// dispatch(setAvatar(e.target.result));
+    //         };
+    //         reader.readAsDataURL(event.target.files[0]);
+    //     }
+    // };
+    const changeAvatar=()=>{
+        const data=new FormData();
+        data.append("avatar",img);
+        dispatch (uploadAvatar(data))
+    }
 
+    console.log(img)
     return (
         <div className={style.accountContainer}>
             <Grid container justifyContent="center">
                 <Grid item xs={8}>
-                    <form onSubmit={formik.handleSubmit} className={style.form}>
-                        <FormControl className={classes.formControl}>
-                            <FormLabel className={classes.formLabel}>Personal info</FormLabel>
-                            <Box className={classes.box}>
-                                <div className={style.avatarInfo}>
-                                    <img src={userPhoto} className={style.avatarImg} alt="userAvatar" />
-                                    <Box component="span" m={1} className={classes.span}>
-                                        {" "}
-                                        Your avatar
-                                    </Box>
-                                </div>
-                                <input
-                                    accept="image/*"
-                                    className={classes.downloadInput}
-                                    id="icon-button-file"
-                                    type="file"
-                                    onChange={onSetUserPhotoToAvatar}
-                                />
-                                <label htmlFor="icon-button-file">
-                                    <IconButton aria-label="upload picture" component="span">
-                                        <PhotoCamera className={classes.cameraIcon} />
-                                    </IconButton>
-                                </label>
+                    <div className={classes.formLabel}>Personal info</div>
+                    <div className={classes.box}>
+                        <div className={style.avatarInfo}>
+                            <img src={userPhoto} className={style.avatarImg} alt="userAvatar" />
+                            <Box component="span" m={1} className={classes.span}>
+                                {" "}
+                                Your avatar
                             </Box>
+                        </div>
+                        <input
+                            accept="image/*"
+                            className={classes.downloadInput}
+                            id="icon-button-file"
+                            name="image"
+                            type="file"
+                            onChange={(e)=>setImg(e.target.files[0])}
+                        />
+                        <label htmlFor="icon-button-file">
+                            <IconButton aria-label="upload picture" component="span">
+                                <PhotoCamera className={classes.cameraIcon} />
+                            </IconButton>
+                        </label>
+                        <button onClick={changeAvatar}>save Image</button>
+                    </div>
+                    <form onSubmit={formik.handleSubmit} className={style.form}  >
+                        <FormControl className={classes.formControl}>
                             <FormGroup>
                                 <TextField
                                     className={classes.userInput}
@@ -177,6 +186,7 @@ const Account = () => {
                                 <TextField
                                     className={classes.userPassword}
                                     label="Password"
+                                    autocomplete="off"
                                     margin="normal"
                                     type="password"
                                     {...formik.getFieldProps("password")}
