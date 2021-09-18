@@ -10,16 +10,17 @@ const loginSlice = createSlice({
     name: "loginData",
     initialState: {
         isLoading:false,
-        isActivated:false,
+        // isActivated:false,
         isUserLogin: false,
         users:[],
         user:{},
         userAvatar:defaultAvatar,
-        error: null
+        error: null,
+        activationLink:null
     },
     reducers: {
         setIsActivated(state,action){
-            state.isUserSignUp=action.payload;
+            state.isActivated=action.payload;
         },
         setIsUserLogin(state, action) {
             state.isUserLogin = action.payload;
@@ -39,10 +40,12 @@ const loginSlice = createSlice({
         setError(state, action) {
             state.error = action.payload.status;
         },
+        setActivationLink(state,action){
+        state.activationLink=action.payload}
     }
 });
 
-export const {setIsUserLogin,setUser,setIsLoading,setIsActivated, setAvatar} = loginSlice.actions;
+export const {setIsUserLogin,setUser,setIsLoading,setIsActivated, setAvatar,setActivationLink} = loginSlice.actions;
 
 
 export const login = (email, password) => dispatch => {
@@ -50,12 +53,11 @@ export const login = (email, password) => dispatch => {
     api.post("http://localhost:5000/api/login", {email, password})
         .then(res => {
             localStorage.setItem("token", res.data.accessToken);
-            console.log(res.data.user);
             dispatch(setUser({data:res.data.user}));
             dispatch(setIsUserLogin(true));
         })
         .catch(err => {
-            toast.warn("OOPS...there is no such user.. please register your account",{ autoClose:10000 });
+            toast.warn(`${err.response.status}! ${err.response.data}`, { autoClose:10000 });
             // dispatch(setError({value: err.response.status}));
             console.log(err)
         });
@@ -80,20 +82,36 @@ export const registration=(name,email, password)=>dispatch=> {
     dispatch(  setIsLoading(true));
     api.post("http://localhost:5000/api/registration", {name,email, password})
         .then(res => {
+            toast("you need to conferm link on mail",{ autoClose: false });
             localStorage.setItem("token", res.data.accessToken);
             dispatch(setUser({data:res.data.user}));
-            dispatch(setIsActivated(true));
-            console.log(res.status);
-
+            dispatch(setActivationLink(res.data.user.isActivated));
+            // checkIsActivated();
         })
         .catch(err => {
-            if(err.response.status===400)toast.warn(`${err.response.status}! Sorry  but  user with such mail is already exist.. Enter another email`,{ autoClose: 7000 });
+            console.log(err)
+            if(err.response.status===400)toast.warn(`${err.response.status}! ${err.response.data}`,{ autoClose:20000 });
             else if(err.response.status===500) toast.warn("something wrong with connection... try later again");
         });
+
 
     dispatch(setIsLoading(false));
   };
 
+// export const  checkIsActivated=()=>dispatch=>{
+//     axios.get("http://localhost:5000/api/refresh",{withCredentials:true})
+//         .then(res => {
+//             localStorage.setItem("token", res.data.accessToken);
+//             dispatch(setUser({data:res.data.user}));
+//             console.log(res.data.user.isActivated)
+//             if(res.data.user.isActivated){
+//                 dispatch(setIsActivated(true))
+//             }
+//         })
+//         .catch(err => {
+//             dispatch(setError( err.message));
+//         })
+// }
 
 export const checkAuthUser=()=>dispatch=>{
        axios.get("http://localhost:5000/api/refresh",{withCredentials:true})
@@ -107,10 +125,14 @@ export const checkAuthUser=()=>dispatch=>{
            });
 };
 export const updateUser=(id,name, email, password)=>dispatch=>{
-    axios.put("http://localhost:5000/api",{id, name,email, password})
+    let token=localStorage.getItem("token")
+    axios.put("http://localhost:5000/api/update",{id, name,email, password},{withCredentials:true, headers:{
+            authorization:'Bearer '+ token,
+        }})
         .then(res=>{
             console.log(res.data.user)
-            dispatch(setUser({data:res.data.user}))
+            dispatch(setUser({data:res.data.user}));
+            toast(`${res.status} User is successfully update`,)
 
         }).catch(err => {
         console.log(err)

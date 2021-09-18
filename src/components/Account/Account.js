@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import { useHistory } from "react-router";
 import { useFormik } from "formik";
 
 import { PhotoCamera } from "@material-ui/icons";
@@ -17,7 +16,7 @@ import CreateIcon from "@material-ui/icons/Create";
 
 import style from "./Account.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {updateUser, uploadAvatar} from "../../store/loginSlice";
+import {setAvatar, updateUser, uploadAvatar} from "../../store/loginSlice";
 
 
 
@@ -70,7 +69,7 @@ const useStyles = makeStyles({
     updateNameIcon: {
         fill: "#008966",
         position: "absolute",
-        top: "35%",
+        top: "10%",
         right: 16,
         cursor: "pointer",
         fontSize: 22,
@@ -78,7 +77,7 @@ const useStyles = makeStyles({
     updateEmailIcon: {
         fill: "#008966",
         position: "absolute",
-        top: "52%",
+        top: "35%",
         right: 16,
         cursor: "pointer",
         fontSize: 22,
@@ -88,10 +87,22 @@ const useStyles = makeStyles({
         autocomplete:"off",
 
     },
+    apdateAvatarButton:{
+        width:80,
+        height: 30,
+        border: 0,
+        borderRadius: 5,
+        color: "white",
+        background: "linear-gradient(45deg, #008966 30%,  #00BC8C 90%)",
+        margin: "20px auto",
+        "&:hover": {
+            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
+        },
+    },
     updatePasswordIcon: {
         fill: "#008966",
         position: "absolute",
-        top: "71%",
+        top: "60%",
         right: 16,
         cursor: "pointer",
         fontSize: 22,
@@ -101,36 +112,56 @@ const useStyles = makeStyles({
 const Account = () => {
 
     const userPhoto = useSelector(state => state.loginData.userAvatar);
-    const history = useHistory();
     const dispatch = useDispatch();
     const classes = useStyles();
     const user = useSelector(state => state.loginData.user);
     const[img,setImg]=useState(userPhoto);
+    const [isDisable,setIsDisable]=useState(true);
+    const [isBtnForAvatarDisable,setIsBtnForAvatarDisable]= useState(true);
+
 
 
     const formik = useFormik({
         initialValues: {
             userName:user["name"],
             userEmail: user["email"],
-            password: user["password"],
+            password: "",
             userId:user["id"]
         },
         onSubmit: (values) => {
+            // проверка  введены ли новые значения и изменились ли они и только тогда отправка формы
             dispatch(updateUser(values.userId, values.userName,values.userEmail, values.password));
-            //insert popap with information
-            history.push("/");
         },
-    });
+        validate: (values) => {
+            const errors = {};
+            if(values.userName===''){
+               errors.userName='name doesnt change'
+            }
+            if(values.userName !=="" && values.userName!==user["name"]){
+                setIsDisable(false)
+            }
+            else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                /*the address must contain the @ dot character and at least 2 domain letters after the dot*/
+                errors.email = "Invalid email address";
+             } else if(values.userEmail !=="" && values.userEmail!==user["email"]){
+                setIsDisable(false)
+             }else if(values.password !=="" && values.password !==user["password"]){
+                setIsDisable(false)
+            }
+        }});
 
-    // const onSetUserPhotoToAvatar = (event) => {
-    //     if (event.target.files && event.target.files[0]) {
-    //         let reader = new FileReader();
-    //         reader.onload = (e) => {
-    //             formik.setFieldProps("userPhoto",)// dispatch(setAvatar(e.target.result));
-    //         };
-    //         reader.readAsDataURL(event.target.files[0]);
-    //     }
-    // };
+    const onSetUserPhotoToAvatar = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setImg(event.target.files[0]);
+            setIsBtnForAvatarDisable(false);
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                // formik.setFieldProps("userPhoto",)//
+                dispatch(setAvatar(e.target.result));
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    };
     const changeAvatar=()=>{
         const data=new FormData();
         data.append("avatar",img);
@@ -145,7 +176,7 @@ const Account = () => {
                     <div className={classes.formLabel}>Personal info</div>
                     <div className={classes.box}>
                         <div className={style.avatarInfo}>
-                            <img src={userPhoto} className={style.avatarImg} alt="userAvatar" />
+                            <img src={img} className={style.avatarImg} alt="userAvatar" />
                             <Box component="span" m={1} className={classes.span}>
                                 {" "}
                                 Your avatar
@@ -157,14 +188,14 @@ const Account = () => {
                             id="icon-button-file"
                             name="image"
                             type="file"
-                            onChange={(e)=>setImg(e.target.files[0])}
+                            onChange={onSetUserPhotoToAvatar}
                         />
                         <label htmlFor="icon-button-file">
                             <IconButton aria-label="upload picture" component="span">
                                 <PhotoCamera className={classes.cameraIcon} />
                             </IconButton>
                         </label>
-                        <button onClick={changeAvatar}>save Image</button>
+                        <button onClick={changeAvatar} className={classes.apdateAvatarButton} disabled={isBtnForAvatarDisable}>save Image</button>
                     </div>
                     <form onSubmit={formik.handleSubmit} className={style.form}  >
                         <FormControl className={classes.formControl}>
@@ -192,7 +223,7 @@ const Account = () => {
                                     {...formik.getFieldProps("password")}
                                 />
                                 <CreateIcon className={classes.updatePasswordIcon} />
-                                <Button type={"submit"} className={classes.button}>
+                                <Button type={"submit"} className={classes.button} disabled={isDisable}>
                                     {" "}
                                     Update
                                 </Button>

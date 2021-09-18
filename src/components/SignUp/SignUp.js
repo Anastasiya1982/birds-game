@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {useDispatch} from "react-redux";
+import React, { useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import { useFormik } from "formik";
 
 import { FormGroup, TextField, FormControlLabel, Checkbox, makeStyles } from "@material-ui/core";
@@ -9,8 +9,9 @@ import style from "./SignIn.module.scss";
 import {registration} from "../../store/loginSlice";
 import { toast } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
 
+import "react-toastify/dist/ReactToastify.css";
+import Preloader from "../Preloader/Preloader";
 
 toast.configure();
 const useStyles = makeStyles({
@@ -39,11 +40,20 @@ const useStyles = makeStyles({
 
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
-    // const isActivated=useSelector(state => state.loginData.isActivated);
+    const isActivated=useSelector(state => state.loginData.isActivated);
+    const isLoading=useSelector(state => state.loginData.isLoading);
     const classes = useStyles();
 
     const dispatch=useDispatch();
-
+    //
+    // useEffect(() => {
+    //     if (localStorage.getItem("token")) {
+    //         dispatch(checkIsActivated());
+    //     }
+    // }, [dispatch]);
+    if(isActivated){
+        console.log("Activated  true");
+    }
 
        const formik = useFormik({
         initialValues: {
@@ -54,7 +64,6 @@ const SignUp = () => {
             rememberMe: false,
         },
         onSubmit: (values) => {
-            toast("confirm your registration by link on your email!");
             dispatch(registration(values.name,values.email, values.password));
         },
 
@@ -82,8 +91,9 @@ const SignUp = () => {
         },
     });
     return (
-        <>
+        <>{isLoading?<div><Preloader/></div> : (
             <div className={style.signInContainer}>
+
                 <Grid container justifyContent="center">
                     <Grid item xs={4}>
                         <form onSubmit={formik.handleSubmit}>
@@ -141,7 +151,7 @@ const SignUp = () => {
                     </Grid>
                 </Grid>
                 {/*<ToastContainer autoClose={5000} />*/}
-            </div>
+            </div>)}
         </>
     );
 };

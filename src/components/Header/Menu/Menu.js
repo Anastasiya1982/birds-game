@@ -27,21 +27,31 @@ const useStyles = makeStyles({
 });
 
 function Menu() {
+    const isUserRegister = useSelector((state) => state.loginData.isActivated);
     const isUserLogin = useSelector((state) => state.loginData.isUserLogin);
     const dispatch = useDispatch();
     const classes = useStyles();
     const history = useHistory();
 
     const updateUserStatus = (val) => dispatch(setIsUserLogin(val));
-
+    console.log("регистрацмя", isUserRegister);
 
     useEffect(() => {
-        if (!isUserLogin) {
-            history.push("/login");
-        } else {
-            history.push("/");
+        if ( !isUserRegister) {
+            history.push("/signup");
         }
-    }, [isUserLogin]);
+        else {
+            history.push("/")
+        }
+        }, [isUserRegister]);
+
+    // useEffect(() => {
+    //     if (!isUserLogin) {
+    //         history.push("/login");
+    //     } else {
+    //         history.push("/");
+    //     }
+    // }, [isUserLogin]);
 
     const handleOnLogoutClick=()=>{
        dispatch(logout());

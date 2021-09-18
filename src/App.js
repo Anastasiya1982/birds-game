@@ -27,7 +27,9 @@ import {checkAuthUser} from "./store/loginSlice";
 import rightAudio from "./assets/audio/success.mp3";
 import wrongAudio from "./assets/audio/fail.mp3";
 
+
 import styles from "./App.module.scss";
+import Preloader from "./components/Preloader/Preloader";
 
 
 
@@ -56,7 +58,7 @@ function App() {
     }, [section]);
 
     if(isLoading){
-        return <div>LOADING</div>;
+        return <div><Preloader/></div>;
     }
 
 
@@ -128,11 +130,11 @@ function App() {
             <div className={styles.wrapper}>
                 <Header />
                 <Switch>
-                    <Route path="/login" component={LogIn} />
-                    <Route path="/signup" component={SignUp} />
+                    <Route  path="/login" component={LogIn} />
+                    <Route  path="/signup" component={SignUp} />
                     <Route exact path="/account" component={Account} />
                     {!isInit ? (
-                        <h2>LOADING....</h2>
+                       <Preloader/>
                     ) : (
                         <Route
                             exact

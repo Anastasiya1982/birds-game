@@ -8,6 +8,7 @@ import {login} from "../../store/loginSlice";
 
 import style from "./LogIn.module.scss";
 import {toast} from "react-toastify";
+import Preloader from "../Preloader/Preloader";
 
 toast.configure();
 
@@ -38,16 +39,26 @@ const useStyles = makeStyles({
 const LogIn = () => {
     const classes = useStyles();
     const isUserLogin = useSelector((state) => state.loginData.isUserLogin);
+    const user = useSelector((state) => state.loginData.user);
+    const isLoading=useSelector((state) => state.loginData.isLoading);
     // const error  =useSelector(state => state.loginData.error);
     // const isSignUp=useSelector(state => state.loginData.isUserSignUp);
     const dispatch = useDispatch();
     const history = useHistory();
 
+
+ console.log(user)
+
     useEffect(() => {
-        if (isUserLogin) {
-            history.push("/");
+        if (!isUserLogin ) {
+            history.push("/login");
+        }else if(user.isActivated){
+            history.push('/');
         }
-    }, [isUserLogin]);
+        else{
+            alert("/Активируйте аккаунт");
+        }
+    }, [isUserLogin,user]);
 
 
     const formik = useFormik({
@@ -73,6 +84,7 @@ const LogIn = () => {
     });
 
     return (
+        <>{isLoading?<Preloader/>:(
         <div className={style.loginContainer}>
             <Grid container justifyContent="center">
                 <Grid item xs={4}>
@@ -106,6 +118,8 @@ const LogIn = () => {
                 </Grid>
             </Grid>
         </div>
+        )}
+        </>
     );
 };
 export default LogIn;
