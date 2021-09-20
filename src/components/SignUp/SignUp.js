@@ -8,8 +8,6 @@ import { FormLabel, Grid, FormControl, Button } from "@material-ui/core";
 import style from "./SignIn.module.scss";
 import {registration} from "../../store/loginSlice";
 import { toast } from "react-toastify";
-
-
 import "react-toastify/dist/ReactToastify.css";
 import Preloader from "../Preloader/Preloader";
 
@@ -56,7 +54,6 @@ const SignUp = () => {
         onSubmit: (values) => {
             dispatch(registration(values.name,values.email, values.password));
         },
-
 
         validate: (values) => {
             const errors = {};

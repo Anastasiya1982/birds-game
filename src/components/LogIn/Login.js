@@ -46,9 +46,6 @@ const LogIn = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
- console.log(user)
-
     useEffect(() => {
         if (!isUserLogin  ) {
             history.push("/login");

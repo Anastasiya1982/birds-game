@@ -45,14 +45,6 @@ function Menu() {
         }
         }, [isUserRegister]);
 
-    // useEffect(() => {
-    //     if (!isUserLogin) {
-    //         history.push("/login");
-    //     } else {
-    //         history.push("/");
-    //     }
-    // }, [isUserLogin]);
-
     const handleOnLogoutClick=()=>{
        dispatch(logout());
         updateUserStatus(false);
