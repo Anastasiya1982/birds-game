@@ -40,20 +40,10 @@ const useStyles = makeStyles({
 
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
-    const isActivated=useSelector(state => state.loginData.isActivated);
     const isLoading=useSelector(state => state.loginData.isLoading);
     const classes = useStyles();
 
     const dispatch=useDispatch();
-    //
-    // useEffect(() => {
-    //     if (localStorage.getItem("token")) {
-    //         dispatch(checkIsActivated());
-    //     }
-    // }, [dispatch]);
-    if(isActivated){
-        console.log("Activated  true");
-    }
 
        const formik = useFormik({
         initialValues: {

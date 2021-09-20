@@ -50,13 +50,14 @@ const LogIn = () => {
  console.log(user)
 
     useEffect(() => {
-        if (!isUserLogin ) {
+        if (!isUserLogin  ) {
             history.push("/login");
-        }else if(user.isActivated){
-            history.push('/');
+
+        } else if(user.isActivated && isUserLogin){
+            history.push('/')
         }
         else{
-            alert("/Активируйте аккаунт");
+           toast("Активируйте аккаунт, перейдя по ссылке на почте, указанной вами при регистрации",{});
         }
     }, [isUserLogin,user]);
 

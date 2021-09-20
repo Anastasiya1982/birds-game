@@ -98,21 +98,6 @@ export const registration=(name,email, password)=>dispatch=> {
     dispatch(setIsLoading(false));
   };
 
-// export const  checkIsActivated=()=>dispatch=>{
-//     axios.get("http://localhost:5000/api/refresh",{withCredentials:true})
-//         .then(res => {
-//             localStorage.setItem("token", res.data.accessToken);
-//             dispatch(setUser({data:res.data.user}));
-//             console.log(res.data.user.isActivated)
-//             if(res.data.user.isActivated){
-//                 dispatch(setIsActivated(true))
-//             }
-//         })
-//         .catch(err => {
-//             dispatch(setError( err.message));
-//         })
-// }
-
 export const checkAuthUser=()=>dispatch=>{
        axios.get("http://localhost:5000/api/refresh",{withCredentials:true})
            .then(res => {
@@ -141,9 +126,11 @@ export const updateUser=(id,name, email, password)=>dispatch=>{
 };
 
 export const uploadAvatar = (data) => dispatch => {
-    axios.post("http://localhost:5000/api/upload", data,{
+    let token=localStorage.getItem("token")
+    axios.post("http://localhost:5000/api/upload", data,{withCredentials:true,
         headers:{
-            'content-type':'"multipart/form-data"'
+            "content-type":"multipart/form-data",
+            authorization:'Bearer '+ token
         }
     })
         .then(res => {
