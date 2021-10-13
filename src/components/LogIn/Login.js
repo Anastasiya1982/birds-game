@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import Grid from "@material-ui/core/Grid";
 import { useFormik } from "formik";
+import Grid from "@material-ui/core/Grid";
+import { toast } from "react-toastify";
 import { FormControl, Button, FormLabel, FormGroup, TextField, makeStyles } from "@material-ui/core";
-import {login} from "../../store/loginSlice";
 
-import style from "./LogIn.module.scss";
-import {toast} from "react-toastify";
+import { login } from "../../store/loginSlice";
 import Preloader from "../Preloader/Preloader";
 
+import style from "./LogIn.module.scss";
 toast.configure();
 
 const useStyles = makeStyles({
@@ -40,24 +40,19 @@ const LogIn = () => {
     const classes = useStyles();
     const isUserLogin = useSelector((state) => state.loginData.isUserLogin);
     const user = useSelector((state) => state.loginData.user);
-    const isLoading=useSelector((state) => state.loginData.isLoading);
-    // const error  =useSelector(state => state.loginData.error);
-    // const isSignUp=useSelector(state => state.loginData.isUserSignUp);
+    const isLoading = useSelector((state) => state.loginData.isLoading);
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-        if (!isUserLogin  ) {
+        if (!isUserLogin) {
             history.push("/login");
-
-        } else if(user.isActivated && isUserLogin){
-            history.push('/')
+        } else if (user.isActivated && isUserLogin) {
+            history.push("/");
+        } else {
+            toast("Активируйте аккаунт, перейдя по ссылке на почте, указанной вами при регистрации", {});
         }
-        else{
-           toast("Активируйте аккаунт, перейдя по ссылке на почте, указанной вами при регистрации",{});
-        }
-    }, [isUserLogin,user]);
-
+    }, [isUserLogin, user]);
 
     const formik = useFormik({
         initialValues: {
@@ -65,9 +60,7 @@ const LogIn = () => {
             password: "",
         },
         onSubmit: (values) => {
-            console.log(values)
             dispatch(login(values.email, values.password));
-
         },
 
         validate: (values) => {
@@ -82,41 +75,42 @@ const LogIn = () => {
     });
 
     return (
-        <>{isLoading?<Preloader/>:(
-        <div className={style.loginContainer}>
-            <Grid container justifyContent="center">
-                <Grid item xs={4}>
-                    <form onSubmit={formik.handleSubmit}>
-                        <FormControl>
-                            <FormLabel className={classes.formLabel}>
-                                Please, enter your email and password... if you are not registered, Sign Up !{" "}
-                            </FormLabel>
-                            <FormGroup>
-                                <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
-                                {formik.errors.email ? (
-                                    <div className={style.errorField}>{formik.errors.email}</div>
-                                ) : null}
-                                <TextField
-                                    label="Password"
-                                    margin="normal"
-                                    type="password"
-                                    {...formik.getFieldProps("password")}
-                                />
-                                {formik.errors.password ? (
-                                    <div className={style.errorField}>{formik.errors.password}</div>
-                                ) : null}
-
-                                <Button type={"submit"} className={classes.button} >
-                                    {" "}
-                                    LogIn
-                                </Button>
-                            </FormGroup>
-                        </FormControl>
-                    </form>
-                </Grid>
-            </Grid>
-        </div>
-        )}
+        <>
+            {isLoading ? (
+                <Preloader />
+            ) : (
+                <div className={style.loginContainer}>
+                    <Grid container justifyContent="center">
+                        <Grid item xs={4}>
+                            <form onSubmit={formik.handleSubmit}>
+                                <FormControl>
+                                    <FormLabel className={classes.formLabel}>
+                                        Please, enter your email and password... if you are not registered, Sign Up!
+                                    </FormLabel>
+                                    <FormGroup>
+                                        <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
+                                        {formik.errors.email && (
+                                            <div className={style.errorField}>{formik.errors.email}</div>
+                                        )}
+                                        <TextField
+                                            label="Password"
+                                            margin="normal"
+                                            type="password"
+                                            {...formik.getFieldProps("password")}
+                                        />
+                                        {formik.errors.password && (
+                                            <div className={style.errorField}>{formik.errors.password}</div>
+                                        )}
+                                        <Button type={"submit"} className={classes.button}>
+                                            LogIn
+                                        </Button>
+                                    </FormGroup>
+                                </FormControl>
+                            </form>
+                        </Grid>
+                    </Grid>
+                </div>
+            )}
         </>
     );
 };

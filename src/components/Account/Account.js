@@ -1,25 +1,16 @@
-import React, {useState} from "react";
-import {useFormik} from "formik";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
-import {PhotoCamera} from "@material-ui/icons";
-import {
-    FormControl,
-    Button,
-    Box,
-    Grid,
-    IconButton,
-    FormGroup,
-    TextField,
-    makeStyles,
-} from "@material-ui/core";
+import { PhotoCamera } from "@material-ui/icons";
+import { FormControl, Button, Box, Grid, IconButton, FormGroup, TextField, makeStyles } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
 
-import style from "./Account.module.scss";
-import {useDispatch, useSelector} from "react-redux";
-import {setAvatar, updateUser} from "../../store/loginSlice";
-import {toast} from "react-toastify";
-import {useHistory} from "react-router";
+import { setAvatar, updateUser } from "../../store/loginSlice";
 
+import style from "./Account.module.scss";
 
 const useStyles = makeStyles({
     formLabel: {
@@ -86,7 +77,6 @@ const useStyles = makeStyles({
     userPassword: {
         position: "relative",
         autocomplete: "off",
-
     },
     buttonBack: {
         width: 80,
@@ -99,9 +89,9 @@ const useStyles = makeStyles({
         "&:hover": {
             background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
         },
-        cursor: "pointer"
+        cursor: "pointer",
     },
-    apdateAvatarButton: {
+    updateAvatarButton: {
         width: 80,
         height: 30,
         border: 0,
@@ -112,7 +102,7 @@ const useStyles = makeStyles({
         "&:hover": {
             background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
         },
-        cursor: "pointer"
+        cursor: "pointer",
     },
     updatePasswordIcon: {
         fill: "#008966",
@@ -125,46 +115,41 @@ const useStyles = makeStyles({
 });
 
 const Account = () => {
-
-    const userPhoto = useSelector(state => state.loginData.userAvatar);
+    const userPhoto = useSelector((state) => state.loginData.userAvatar);
     const dispatch = useDispatch();
     const classes = useStyles();
-    const user = useSelector(state => state.loginData.user);
+    const user = useSelector((state) => state.loginData.user);
     const [img, setImg] = useState(userPhoto);
     const [isDisable, setIsDisable] = useState(true);
     const history = useHistory();
 
     const goToPlay = () => {
-        history.push('/');
-    }
+        history.push("/");
+    };
 
     const formik = useFormik({
         initialValues: {
             userName: user["name"],
             userEmail: user["email"],
             password: "",
-            userId: user["id"]
+            userId: user["id"],
         },
         onSubmit: (values) => {
-            // проверка  введены ли новые значения и изменились ли они и только тогда отправка формы
             dispatch(updateUser(values.userId, values.userName, values.userEmail, values.password));
         },
         validate: (values) => {
             const errors = {};
             if (formik.touched.userName && formik.values.userName !== user["name"]) {
-                setIsDisable(false)
+                setIsDisable(false);
             }
             if (formik.touched.userEmail && !formik.values.userEmail) {
                 setIsDisable(false);
-                // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                //     /*the address must contain the @ dot character and at least 2 domain letters after the dot*/
-                // errors.email = "Invalid email address";
             }
             if (values.password !== "" && values.password !== user["password"]) {
-                setIsDisable(false)
+                setIsDisable(false);
             }
-            return errors
-        }
+            return errors;
+        },
     });
 
     const onSetUserPhotoToAvatar = (event) => {
@@ -177,14 +162,10 @@ const Account = () => {
         }
     };
     const changeAvatar = () => {
-        dispatch(setAvatar({data: img}));
-        toast("You change your avatar")
-        // const data=new FormData();
-        // data.append("avatar",img);
-        // dispatch (uploadAvatar(data))
-    }
+        dispatch(setAvatar({ data: img }));
+        toast("You change your avatar");
+    };
 
-    console.log(img)
     return (
         <div className={style.accountContainer}>
             <Button onClick={goToPlay} className={classes.buttonBack}>
@@ -195,9 +176,8 @@ const Account = () => {
                     <div className={classes.formLabel}>Personal info</div>
                     <div className={classes.box}>
                         <div className={style.avatarInfo}>
-                            <img src={img} className={style.avatarImg} alt="userAvatar"/>
+                            <img src={img} className={style.avatarImg} alt="userAvatar" />
                             <Box component="span" m={1} className={classes.span}>
-                                {" "}
                                 Your avatar
                             </Box>
                         </div>
@@ -211,10 +191,12 @@ const Account = () => {
                         />
                         <label htmlFor="icon-button-file">
                             <IconButton aria-label="upload picture" component="span">
-                                <PhotoCamera className={classes.cameraIcon}/>
+                                <PhotoCamera className={classes.cameraIcon} />
                             </IconButton>
                         </label>
-                        <button onClick={changeAvatar} className={classes.apdateAvatarButton}>save Image</button>
+                        <button onClick={changeAvatar} className={classes.updateAvatarButton}>
+                            save Image
+                        </button>
                     </div>
                     <form onSubmit={formik.handleSubmit} className={style.form}>
                         <FormControl className={classes.formControl}>
@@ -225,17 +207,17 @@ const Account = () => {
                                     margin="normal"
                                     {...formik.getFieldProps("userName")}
                                 />
-                                <CreateIcon className={classes.updateNameIcon}/>
+                                <CreateIcon className={classes.updateNameIcon} />
                                 <TextField
                                     className={classes.userInput}
                                     label="User email"
                                     margin="normal"
                                     {...formik.getFieldProps("userEmail")}
                                 />
-                                {formik.dirty && formik.errors.email ? (
+                                {formik.dirty && formik.errors.email && (
                                     <div className={style.errorField}>{formik.errors.email}</div>
-                                ) : null}
-                                <CreateIcon className={classes.updateEmailIcon}/>
+                                )}
+                                <CreateIcon className={classes.updateEmailIcon} />
                                 <TextField
                                     className={classes.userPassword}
                                     label="Password"
@@ -244,7 +226,7 @@ const Account = () => {
                                     type="password"
                                     {...formik.getFieldProps("password")}
                                 />
-                                <CreateIcon className={classes.updatePasswordIcon}/>
+                                <CreateIcon className={classes.updatePasswordIcon} />
                                 <Button type={"submit"} className={classes.button} disabled={isDisable}>
                                     Update
                                 </Button>

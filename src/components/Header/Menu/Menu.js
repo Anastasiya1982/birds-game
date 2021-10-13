@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import {logout, setIsUserLogin} from "../../../store/loginSlice";
 import Button from "@material-ui/core/Button";
-
-import style from "./Menu.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+
+import { logout, setIsUserLogin } from "../../../store/loginSlice";
+
+import styles from "./Menu.module.scss";
 
 const useStyles = makeStyles({
     root: {
@@ -34,39 +34,39 @@ function Menu() {
     const history = useHistory();
 
     const updateUserStatus = (val) => dispatch(setIsUserLogin(val));
-    console.log("регистрацмя", isUserRegister);
 
     useEffect(() => {
-        if ( !isUserRegister) {
+        if (!isUserRegister) {
             history.push("/signup");
+        } else {
+            history.push("/");
         }
-        else {
-            history.push("/")
-        }
-        }, [isUserRegister]);
+    }, [isUserRegister]);
 
-    const handleOnLogoutClick=()=>{
-       dispatch(logout());
+    const handleOnLogoutClick = () => {
+        dispatch(logout());
         updateUserStatus(false);
     };
 
-    const onAccountButtonClick=()=>{
+    const onAccountButtonClick = () => {
         history.push("/account");
     };
 
     return (
-        <div className={style.menuContainer}>
-            <ul className={style.nav}>
-                <Link to="/account" className={style.navItem}>
-                    <Button className={isUserLogin ? classes.root : classes.hide} onClick={onAccountButtonClick}> Account</Button>
+        <div className={styles.menuContainer}>
+            <ul className={styles.nav}>
+                <Link to="/account" className={styles.navItem}>
+                    <Button className={isUserLogin ? classes.root : classes.hide} onClick={onAccountButtonClick}>
+                        Account
+                    </Button>
                 </Link>
-                <Link to="/login" className={style.navItem}>
+                <Link to="/login" className={styles.navItem}>
                     <Button className={isUserLogin ? classes.root : classes.hide} onClick={handleOnLogoutClick}>
                         LogOut
                     </Button>
                     <Button className={isUserLogin ? classes.hide : classes.root}> LogIn</Button>
                 </Link>
-                <Link to="/signup" className={style.navItem}>
+                <Link to="/signup" className={styles.navItem}>
                     <Button className={isUserLogin ? classes.hide : classes.root}> SignUp</Button>
                 </Link>
             </ul>

@@ -1,12 +1,13 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {birdsApi} from "../api";
+import { createSlice } from "@reduxjs/toolkit";
+
+import { birdsApi } from "../api";
 
 const birdGameSlice = createSlice({
     name: "birdGame",
     initialState: {
         birdsData: [],
-        birdsSectionArray:["Разминка","Воробьиные","Лесные птицы","Певчие птицы","Хищные птицы","Морские птицы"],
-        isInit:false,
+        birdsSectionArray: ["Разминка", "Воробьиные", "Лесные птицы", "Певчие птицы", "Хищные птицы", "Морские птицы"],
+        isInit: false,
         isLoading: true,
         initialScore: 0,
         score: 0,
@@ -14,24 +15,24 @@ const birdGameSlice = createSlice({
         mistake: 0,
         isWin: false,
         selectedBird: null,
-        isGameOver:false,
-        error: null
+        isGameOver: false,
+        error: null,
     },
     reducers: {
         setBirdsData(state, action) {
             state.birdsData = action.payload.data;
         },
-        setIsInit(state,action){
-            state.isInit=action.payload.value;
+        setIsInit(state, action) {
+            state.isInit = action.payload.value;
         },
-        setSection(state){
+        setSection(state) {
             state.section = state.section + 1;
         },
-        resetCurrentSection(state){
-            state.section=0;
+        resetCurrentSection(state) {
+            state.section = 0;
         },
-        setSelectedBird(state,action){
-            state.selectedBird=action.payload.id;
+        setSelectedBird(state, action) {
+            state.selectedBird = action.payload.id;
         },
         setScore(state) {
             state.score = state.score + 5 - state.mistake;
@@ -54,35 +55,48 @@ const birdGameSlice = createSlice({
         setError(state, action) {
             state.error = action.payload.value;
         },
-        setIsGameOver(state,action){
-            state.isGameOver=action.payload.value;
-        }
-
-    }
+        setIsGameOver(state, action) {
+            state.isGameOver = action.payload.value;
+        },
+    },
 });
 
+export const {
+    setMistake,
+    resetMistakes,
+    setScore,
+    resetScore,
+    setIsWin,
+    setBirdsData,
+    setIsBirdsDataLoading,
+    setError,
+    setSection,
+    setIsInit,
+    resetCurrentSection,
+    setIsGameOver,
+    setSelectedBird,
+} = birdGameSlice.actions;
 
-export const {setMistake, resetMistakes, setScore, resetScore,
-    setIsWin, setBirdsData, setIsBirdsDataLoading, setError,setSection,setIsInit,
-    resetCurrentSection,setIsGameOver,setSelectedBird} = birdGameSlice.actions;
-
-export const getBirdsData = () => dispatch => {
+export const getBirdsData = () => (dispatch) => {
     dispatch(setIsBirdsDataLoading(true));
 
-    birdsApi.getBirds()
+    birdsApi
+        .getBirds()
         .then((res) => {
-                const data = res.data;
-                const newData=data.replace("const birdsData = ","").replace("export default birdsData;","").replaceAll("\n","");
-                const birds=eval(newData);
-                dispatch(setBirdsData({data: birds}));
-                dispatch(setIsInit({value:true}));
-            }
-        ).catch((err) => {
-        dispatch(setError({value: err.message}));
-    });
+            const data = res.data;
+            const newData = data
+                .replace("const birdsData = ", "")
+                .replace("export default birdsData;", "")
+                .replaceAll("\n", "");
+            const birds = eval(newData);
+            dispatch(setBirdsData({ data: birds }));
+            dispatch(setIsInit({ value: true }));
+        })
+        .catch((err) => {
+            dispatch(setError({ value: err.message }));
+        });
 
-    dispatch(setIsBirdsDataLoading( false));
+    dispatch(setIsBirdsDataLoading(false));
 };
 
 export default birdGameSlice.reducer;
-//replace('const birdsData = ','').replace('export default birdsData;','').replaceAll("\n","")/eval()

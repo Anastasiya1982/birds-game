@@ -1,14 +1,12 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import birdsDataReducer from "./birdGameSlice";
 import loginReducer from "./loginSlice";
 
-
-
-const rootReducer=combineReducers({
-	birdsData: birdsDataReducer,
-	loginData:loginReducer
+const rootReducer = combineReducers({
+    birdsData: birdsDataReducer,
+    loginData: loginReducer,
 });
 
-export const store= configureStore({
-	reducer: rootReducer,
+export const store = configureStore({
+    reducer: rootReducer,
 });

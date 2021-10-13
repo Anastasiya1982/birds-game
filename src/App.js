@@ -6,6 +6,11 @@ import { Header } from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import FinishGame from "./components/FinishGame/FinishGame";
 import Game from "./components/Game/Game";
+import LogIn from "./components/LogIn/Login";
+import SignUp from "./components/SignUp/SignUp";
+import Account from "./components/Account/Account";
+import { checkAuthUser } from "./store/loginSlice";
+import Preloader from "./components/Preloader/Preloader";
 import {
     setMistake,
     resetMistakes,
@@ -19,19 +24,10 @@ import {
     setIsGameOver,
 } from "./store/birdGameSlice";
 
-import LogIn from "./components/LogIn/Login";
-import SignUp from "./components/SignUp/SignUp";
-import Account from "./components/Account/Account";
-import {checkAuthUser} from "./store/loginSlice";
-
 import rightAudio from "./assets/audio/success.mp3";
 import wrongAudio from "./assets/audio/fail.mp3";
 
-
 import styles from "./App.module.scss";
-import Preloader from "./components/Preloader/Preloader";
-
-
 
 function App() {
     const [randomId, setRandomId] = useState(0);
@@ -39,12 +35,12 @@ function App() {
     const isInit = useSelector((state) => state.birdsData.isInit);
     const section = useSelector((state) => state.birdsData.section);
     const isEndGame = useSelector((state) => state.birdsData.isGameOver);
-    const isLoading=useSelector(state => state.loginData.isLoading);
+    const isLoading = useSelector((state) => state.loginData.isLoading);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-         if (localStorage.getItem("token")) {
+        if (localStorage.getItem("token")) {
             dispatch(checkAuthUser());
         }
     }, []);
@@ -57,14 +53,16 @@ function App() {
         setRandomId(getRandomId());
     }, [section]);
 
-    if(isLoading){
-        return <div><Preloader/></div>;
+    if (isLoading) {
+        return (
+            <div>
+                <Preloader />
+            </div>
+        );
     }
-
 
     function getRandomId() {
         const id = Math.floor(Math.random() * 6);
-        console.log(`рандомно проигрывается аудио с id: ${id + 1}`);
         return id;
     }
 
@@ -130,11 +128,11 @@ function App() {
             <div className={styles.wrapper}>
                 <Header />
                 <Switch>
-                    <Route  path="/login" component={LogIn} />
-                    <Route  path="/signup" component={SignUp} />
+                    <Route path="/login" component={LogIn} />
+                    <Route path="/signup" component={SignUp} />
                     <Route exact path="/account" component={Account} />
                     {!isInit ? (
-                       <Preloader/>
+                        <Preloader />
                     ) : (
                         <Route
                             exact

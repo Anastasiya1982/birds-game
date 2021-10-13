@@ -6,8 +6,6 @@ import {Provider} from "react-redux";
 import {store} from "./store/store";
 import {BrowserRouter} from "react-router-dom";
 
-
-
 ReactDOM.render(
 	<BrowserRouter>
 		<Provider store={store}>
@@ -15,7 +13,5 @@ ReactDOM.render(
 		</Provider>
 	</BrowserRouter>,
 document.getElementById("root")
-)
-;
-
+);
 
