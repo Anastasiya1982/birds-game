@@ -11,7 +11,7 @@ const Description = () => {
     const birdsData = useSelector((state) => state.birdsData.birdsData);
     let currentSection = useSelector((state) => state.birdsData.section);
     const selectBird = useSelector((state) => state.birdsData.selectedBird);
-    console.log(selectBird);
+
     return !selectBird && selectBird !== 0 ? (
         <div className={styles.instruction}>
             <div className={styles.instructionContent}>Послушайте плеер.</div>

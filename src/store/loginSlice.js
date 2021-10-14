@@ -54,7 +54,6 @@ export const login = (email, password) => (dispatch) => {
     api.post("http://localhost:5000/api/login", { email, password })
         .then((res) => {
             localStorage.setItem("token", res.data.accessToken);
-            console.log("response in login", res);
             dispatch(setUser({ data: res.data.user }));
             dispatch(setIsUserLogin(true));
         })

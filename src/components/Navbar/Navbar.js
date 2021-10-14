@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./Navbar.module.scss";
-// var classNames=require('classnames')
+//import className from 'classnames';
 
 const Navbar = () => {
     const birdsSectionArray = useSelector((state) => state.birdsData.birdsSectionArray);

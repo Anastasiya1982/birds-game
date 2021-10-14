@@ -1,27 +1,127 @@
-.accountContainer{
-  width: 90%;
-  min-height: 525px;
-  padding-top: 35px;
-  height: auto;
-  background-color: #e2e2e2;
-  margin-top: 50px;
-  border-radius: 5px;
-   & .form{
-     width: 100%;
+.accountContainer {
+    width: 90%;
+    min-height: 525px;
+    padding-top: 35px;
+    height: auto;
+    background-color: #e2e2e2;
+    margin-top: 50px;
+    border-radius: 5px;
+    & .form {
+        width: 100%;
+    }
+    .buttonBack {
+        width: 80px;
+        height: 50px;
+        border: 0;
+        border-radius: 5px;
+        color: white;
+        background: linear-gradient(45deg, #008966 30%, #00bc8c 90%);
+        margin-left: 88%;
+        cursor: pointer;
+        &:hover {
+            background: linear-gradient(45deg, #006b4a 30%, #008e5f 90%);
+        }
+    }
+    .button {
+        background: linear-gradient(45deg, #008966 30%, #00bc8c 90%);
+        border: 0;
+        border-radius: 5px;
+        color: white;
+        width: 120px;
+        height: 40px;
+        padding: 0px 30px;
+        margin: 20px auto;
+        &:hover {
+            background: linear-gradient(45deg, #006b4a 30%, #008e5f 90%);
+        }
+    }
+}
+
+.errorField {
+    color: red;
+}
+.formlabel {
+    margin: 0 0 30px 0;
+    color: #008966;
+    textalign: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+.formControlLabel {
+    color: #008966;
+}
+.box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .avatarInfo {
+        max-width: 200px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      .span{
+        color: #222222;
+      }
+    }
+.avatarImg {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+.downloadInput {
+        display: none;
+    }
+.cameraIcon {
+        fill: #008966;
+    }
+}
+.formControl {
+    width: 100%;
+}
+.userInput {
+         position:relative;
    }
-}
-.avatarInfo{
-  max-width: 200px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.avatarImg{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-.errorField{
-  color: red;
+.updateNameIcon {
+         fill:#008966;
+         position:absolute;
+         top:10%;
+         right: 16px;
+         cursor: pointer;
+         font-size: 22px;
+ }
+ .updateEmailIcon{
+         fill: #008966;
+         position: absolute;
+         top: 35%;
+         right: 16px;
+         cursor:pointer;
+         font-size: 22px;
+     }
+.userPassword {
+         position: relative;
+         autocomplete: off;
+     }
+
+.updateAvatarButton {
+         width: 80px;
+         height: 30px;
+         border: 0;
+         borderRadius: 5px;
+         color:white;
+         background:linear-gradient(45deg, #008966 30%,  #00BC8C 90%);
+         margin: 20px auto;
+         &:hover {
+             background: linear-gradient(45deg, #006B4A 30%,  #008E5F 90%);
+         }
+         cursor: pointer;
+     }
+.updatePasswordIcon{
+         fill: #008966;
+         position: absolute;
+         top: 60%;
+         right: 16px;
+         cursor: pointer;
+         font-size: 22px;
 }

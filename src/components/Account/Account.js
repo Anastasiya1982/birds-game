@@ -5,119 +5,15 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 
 import { PhotoCamera } from "@material-ui/icons";
-import { FormControl, Button, Box, Grid, IconButton, FormGroup, TextField, makeStyles } from "@material-ui/core";
-import CreateIcon from "@material-ui/icons/Create";
+import { FormControl, Button, Box, Grid, IconButton, FormGroup, TextField } from "@material-ui/core";
 
 import { setAvatar, updateUser } from "../../store/loginSlice";
 
-import style from "./Account.module.scss";
-
-const useStyles = makeStyles({
-    formLabel: {
-        margin: "0 0 30px 0",
-        color: "#008966",
-        textAlign: "center",
-        fontSize: 24,
-        fontWeight: "bold",
-    },
-    formControlLabel: {
-        color: "#008966",
-    },
-    button: {
-        background: "linear-gradient(45deg, #008966 30%,  #00BC8C 90%)",
-        border: 0,
-        borderRadius: 5,
-        color: "white",
-        width: 120,
-        height: 40,
-        padding: "0 30px",
-        margin: "20px auto",
-        "&:hover": {
-            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
-        },
-    },
-    box: {
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    formControl: {
-        fullWidth: "true",
-        width: "100%",
-    },
-    userInput: {
-        position: "relative",
-    },
-    span: {
-        color: "black",
-    },
-    downloadInput: {
-        display: "none",
-    },
-    cameraIcon: {
-        fill: "#008966",
-    },
-    updateNameIcon: {
-        fill: "#008966",
-        position: "absolute",
-        top: "10%",
-        right: 16,
-        cursor: "pointer",
-        fontSize: 22,
-    },
-    updateEmailIcon: {
-        fill: "#008966",
-        position: "absolute",
-        top: "35%",
-        right: 16,
-        cursor: "pointer",
-        fontSize: 22,
-    },
-    userPassword: {
-        position: "relative",
-        autocomplete: "off",
-    },
-    buttonBack: {
-        width: 80,
-        height: 50,
-        border: 0,
-        borderRadius: 5,
-        color: "white",
-        background: "linear-gradient(45deg, #008966 30%,  #00BC8C 90%)",
-        marginLeft: "88%",
-        "&:hover": {
-            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
-        },
-        cursor: "pointer",
-    },
-    updateAvatarButton: {
-        width: 80,
-        height: 30,
-        border: 0,
-        borderRadius: 5,
-        color: "white",
-        background: "linear-gradient(45deg, #008966 30%,  #00BC8C 90%)",
-        margin: "20px auto",
-        "&:hover": {
-            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
-        },
-        cursor: "pointer",
-    },
-    updatePasswordIcon: {
-        fill: "#008966",
-        position: "absolute",
-        top: "60%",
-        right: 16,
-        cursor: "pointer",
-        fontSize: 22,
-    },
-});
+import styles from "./Account.module.scss";
 
 const Account = () => {
     const userPhoto = useSelector((state) => state.loginData.userAvatar);
     const dispatch = useDispatch();
-    const classes = useStyles();
     const user = useSelector((state) => state.loginData.user);
     const [img, setImg] = useState(userPhoto);
     const [isDisable, setIsDisable] = useState(true);
@@ -167,23 +63,23 @@ const Account = () => {
     };
 
     return (
-        <div className={style.accountContainer}>
-            <Button onClick={goToPlay} className={classes.buttonBack}>
+        <div className={styles.accountContainer}>
+            <Button onClick={goToPlay} className={styles.buttonBack}>
                 Back to Game
             </Button>
             <Grid container justifyContent="center">
                 <Grid item xs={8}>
-                    <div className={classes.formLabel}>Personal info</div>
-                    <div className={classes.box}>
-                        <div className={style.avatarInfo}>
-                            <img src={img} className={style.avatarImg} alt="userAvatar" />
-                            <Box component="span" m={1} className={classes.span}>
+                    <div className={styles.formlabel}>Personal info</div>
+                    <div className={styles.box}>
+                        <div className={styles.avatarInfo}>
+                            <img src={img} className={styles.avatarImg} alt="userAvatar" />
+                            <Box component="span" m={1} className={styles.span}>
                                 Your avatar
                             </Box>
                         </div>
                         <input
                             accept="image/*"
-                            className={classes.downloadInput}
+                            className={styles.downloadInput}
                             id="icon-button-file"
                             name="image"
                             type="file"
@@ -191,43 +87,40 @@ const Account = () => {
                         />
                         <label htmlFor="icon-button-file">
                             <IconButton aria-label="upload picture" component="span">
-                                <PhotoCamera className={classes.cameraIcon} />
+                                <PhotoCamera className={styles.cameraIcon} />
                             </IconButton>
                         </label>
-                        <button onClick={changeAvatar} className={classes.updateAvatarButton}>
+                        <button onClick={changeAvatar} className={styles.updateAvatarButton}>
                             save Image
                         </button>
                     </div>
-                    <form onSubmit={formik.handleSubmit} className={style.form}>
-                        <FormControl className={classes.formControl}>
+                    <form onSubmit={formik.handleSubmit} className={styles.form}>
+                        <FormControl className={styles.formControl}>
                             <FormGroup>
                                 <TextField
-                                    className={classes.userInput}
+                                    className={styles.userInput}
                                     label="User name"
                                     margin="normal"
                                     {...formik.getFieldProps("userName")}
                                 />
-                                <CreateIcon className={classes.updateNameIcon} />
                                 <TextField
-                                    className={classes.userInput}
+                                    className={styles.userInput}
                                     label="User email"
                                     margin="normal"
                                     {...formik.getFieldProps("userEmail")}
                                 />
                                 {formik.dirty && formik.errors.email && (
-                                    <div className={style.errorField}>{formik.errors.email}</div>
+                                    <div className={styles.errorField}>{formik.errors.email}</div>
                                 )}
-                                <CreateIcon className={classes.updateEmailIcon} />
                                 <TextField
-                                    className={classes.userPassword}
+                                    className={styles.userPassword}
                                     label="Password"
                                     autocomplete="off"
                                     margin="normal"
                                     type="password"
                                     {...formik.getFieldProps("password")}
                                 />
-                                <CreateIcon className={classes.updatePasswordIcon} />
-                                <Button type={"submit"} className={classes.button} disabled={isDisable}>
+                                <Button type={"submit"} className={styles.button} disabled={isDisable}>
                                     Update
                                 </Button>
                             </FormGroup>

@@ -9,7 +9,6 @@ import {
     TextField,
     FormControlLabel,
     Checkbox,
-    makeStyles,
     FormLabel,
     Grid,
     FormControl,
@@ -23,34 +22,10 @@ import Preloader from "../Preloader/Preloader";
 
 toast.configure();
 
-const useStyles = makeStyles({
-    formLabel: {
-        margin: "0 0 30px 0",
-        color: "#008966",
-        textAlign: "center",
-    },
-    formControlLabel: {
-        color: "#008966",
-    },
-    button: {
-        background: "linear-gradient(45deg, #008966 30%,  #00BC8C 90%)",
-        border: 0,
-        borderRadius: 5,
-        color: "white",
-        width: 120,
-        height: 40,
-        padding: "0 30px",
-        margin: "20px auto",
-        "&:hover": {
-            background: "linear-gradient(45deg, #006B4A 30%,  #008E5F 90%)",
-        },
-    },
-});
-
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
     const isLoading = useSelector((state) => state.loginData.isLoading);
-    const classes = useStyles();
+    // const classes = useStyles();
 
     const dispatch = useDispatch();
 
@@ -98,7 +73,7 @@ const SignUp = () => {
                         <Grid item xs={4}>
                             <form onSubmit={formik.handleSubmit}>
                                 <FormControl>
-                                    <FormLabel className={classes.formLabel}>
+                                    <FormLabel className={styles.formlabel}>
                                         To login to the game you must be registered. Please, create an account !
                                     </FormLabel>
                                     <FormGroup>
@@ -141,7 +116,7 @@ const SignUp = () => {
                                             <div className={styles.errorField}>{formik.errors.confirmPassword}</div>
                                         )}
                                         <FormControlLabel
-                                            className={classes.formControlLabel}
+                                            className={styles.formControlLabel}
                                             label="Remember me"
                                             control={
                                                 <Checkbox
@@ -152,7 +127,7 @@ const SignUp = () => {
                                                 />
                                             }
                                         />
-                                        <Button type={"submit"} className={classes.button} disabled={isDisabled}>
+                                        <Button type={"submit"} className={styles.button} disabled={isDisabled}>
                                             Sign up
                                         </Button>
                                     </FormGroup>

@@ -1,12 +1,26 @@
-.menuContainer{
-  max-width: 350px;
-  width: 100%;
-  margin-right: 15px;
-  & .nav{
+.menuContainer {
+    max-width: 350px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-  }
+    margin-right: 15px;
+    & .nav {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .root {
+        background: linear-gradient(45deg, #008966 30%, #00bc8c 90%);
+        border: 0;
+        border-radius: 3px;
+        color: white;
+        width: 80px;
+        height: 35px;
+        padding: 0 30px;
+        &:hover {
+            background: linear-gradient(45deg, #006b4a 30%, #008e5f 90%);
+        }
+    }
+    .hide {
+        display: none;
+    }
 }
