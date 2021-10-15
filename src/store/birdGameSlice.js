@@ -84,12 +84,9 @@ export const getBirdsData = () => (dispatch) => {
         .getBirds()
         .then((res) => {
             const data = res.data;
-            const newData = data
-                .replace("const birdsData = ", "")
-                .replace("export default birdsData;", "")
-                .replaceAll("\n", "");
-            const birds = eval(newData);
-            dispatch(setBirdsData({ data: birds }));
+            console.log(data)
+            const newData = data;
+            dispatch(setBirdsData({ data: newData }));
             dispatch(setIsInit({ value: true }));
         })
         .catch((err) => {

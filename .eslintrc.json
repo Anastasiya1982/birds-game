@@ -11,6 +11,7 @@
             "experimentalObjectRestSpread": true,
             "jsx": true
         },
+        "ecmaVersion": 6,
         "sourceType": "module"
     },
     "plugins": ["react", "babel"],
