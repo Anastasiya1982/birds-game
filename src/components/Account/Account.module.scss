@@ -43,7 +43,7 @@
 .formlabel {
     margin: 0 0 30px 0;
     color: #008966;
-    textalign: center;
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
 }
@@ -101,14 +101,13 @@
 }
 .userPassword {
     position: relative;
-    autocomplete: off;
 }
 
 .updateAvatarButton {
     width: 80px;
     height: 30px;
     border: 0;
-    borderradius: 5px;
+    border-radius: 5px;
     color: white;
     background: linear-gradient(45deg, #008966 30%, #00bc8c 90%);
     margin: 20px auto;
