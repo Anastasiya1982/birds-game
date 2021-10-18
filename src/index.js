@@ -7,6 +7,7 @@ import App from "./App"
 import { store } from "./store/store"
 
 import "./index.scss"
+
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
