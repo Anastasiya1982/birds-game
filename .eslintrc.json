@@ -30,5 +30,10 @@
         "babel/no-unused-expressions": 1,
         "babel/valid-typeof": 1
     },
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "settings": {
+        "react": {
+            "version": "999.999.999"
+        }
+    }
 }

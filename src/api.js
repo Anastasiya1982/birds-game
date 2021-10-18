@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL:"https://raw.githubusercontent.com/Anastasiya1982/birdsData/master/birds.json"
+    baseURL: "https://raw.githubusercontent.com/Anastasiya1982/birdsData/master/birds.json",
 });
 export const birdsApi = {
     getBirds() {
@@ -36,5 +36,5 @@ api.interceptors.response.use(
             }
         }
         throw error;
-    }
+    },
 );

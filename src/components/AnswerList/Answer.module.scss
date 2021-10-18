@@ -1,22 +1,21 @@
-$colorBackground:#303030;
+$colorBackground: #303030;
 
 .answerList {
-  width: 48%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: $colorBackground;
-  grid-area: list;
-  border: 1px solid gray;
-  border-radius: 5px;
+    width: 48%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: $colorBackground;
+    grid-area: list;
+    border: 1px solid gray;
+    border-radius: 5px;
 
-  @media (max-width: 687px) {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  &.disabled{
-    pointer-events: none;
-    opacity: 0.8;
-  }
+    @media (max-width: 687px) {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.8;
+    }
 }
-

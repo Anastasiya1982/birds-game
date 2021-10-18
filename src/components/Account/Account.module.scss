@@ -61,19 +61,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-      .span{
-        color: #222222;
-      }
+        .span {
+            color: #222222;
+        }
     }
-.avatarImg {
+    .avatarImg {
         width: 50px;
         height: 50px;
         border-radius: 50%;
     }
-.downloadInput {
+    .downloadInput {
         display: none;
     }
-.cameraIcon {
+    .cameraIcon {
         fill: #008966;
     }
 }
@@ -81,47 +81,47 @@
     width: 100%;
 }
 .userInput {
-         position:relative;
-   }
+    position: relative;
+}
 .updateNameIcon {
-         fill:#008966;
-         position:absolute;
-         top:10%;
-         right: 16px;
-         cursor: pointer;
-         font-size: 22px;
- }
- .updateEmailIcon{
-         fill: #008966;
-         position: absolute;
-         top: 35%;
-         right: 16px;
-         cursor:pointer;
-         font-size: 22px;
-     }
+    fill: #008966;
+    position: absolute;
+    top: 10%;
+    right: 16px;
+    cursor: pointer;
+    font-size: 22px;
+}
+.updateEmailIcon {
+    fill: #008966;
+    position: absolute;
+    top: 35%;
+    right: 16px;
+    cursor: pointer;
+    font-size: 22px;
+}
 .userPassword {
-         position: relative;
-         autocomplete: off;
-     }
+    position: relative;
+    autocomplete: off;
+}
 
 .updateAvatarButton {
-         width: 80px;
-         height: 30px;
-         border: 0;
-         borderRadius: 5px;
-         color:white;
-         background:linear-gradient(45deg, #008966 30%,  #00BC8C 90%);
-         margin: 20px auto;
-         &:hover {
-             background: linear-gradient(45deg, #006B4A 30%,  #008E5F 90%);
-         }
-         cursor: pointer;
-     }
-.updatePasswordIcon{
-         fill: #008966;
-         position: absolute;
-         top: 60%;
-         right: 16px;
-         cursor: pointer;
-         font-size: 22px;
+    width: 80px;
+    height: 30px;
+    border: 0;
+    borderradius: 5px;
+    color: white;
+    background: linear-gradient(45deg, #008966 30%, #00bc8c 90%);
+    margin: 20px auto;
+    &:hover {
+        background: linear-gradient(45deg, #006b4a 30%, #008e5f 90%);
+    }
+    cursor: pointer;
+}
+.updatePasswordIcon {
+    fill: #008966;
+    position: absolute;
+    top: 60%;
+    right: 16px;
+    cursor: pointer;
+    font-size: 22px;
 }

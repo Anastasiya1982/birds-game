@@ -118,7 +118,7 @@ export const updateUser = (id, name, email, password) => (dispatch) => {
                 headers: {
                     authorization: "Bearer " + token,
                 },
-            }
+            },
         )
         .then((res) => {
             dispatch(setUser({ data: res.data.user }));

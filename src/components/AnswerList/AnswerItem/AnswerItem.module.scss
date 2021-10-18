@@ -1,53 +1,49 @@
-$colorBackground:#303030;
+$colorBackground: #303030;
 
 .answerItem {
-  font-size: 1.2rem;
-  align-self: center;
-  list-style-type: none;
-  cursor: pointer;
-  transition: 150ms;
-  background: $colorBackground;
-  padding: .93rem 1.25rem;
-  border: 1px solid #555;
+    font-size: 1.2rem;
+    align-self: center;
+    list-style-type: none;
+    cursor: pointer;
+    transition: 150ms;
+    background: $colorBackground;
+    padding: 0.93rem 1.25rem;
+    border: 1px solid #555;
 
-  &:hover {
-    background: lighten(#2f2f2f, 15%);
-  }
-
+    &:hover {
+        background: lighten(#2f2f2f, 15%);
+    }
 }
 
 .radioBtn {
-  line-height: 10px;
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 15px;
-  border-radius: 50%;
-  background-color: lighten(#222222, 15%);
-
-  @media only screen and (max-width: 480px) {
-    width: 15px;
-    height: 15px;
-  }
-
-  &.correct {
     line-height: 10px;
     display: inline-block;
     width: 10px;
     height: 10px;
     margin-right: 15px;
     border-radius: 50%;
-    background-color: lime;
-  }
+    background-color: lighten(#222222, 15%);
 
-  &.incorrect {
-    background-color: red;
-  }
+    @media only screen and (max-width: 480px) {
+        width: 15px;
+        height: 15px;
+    }
 
-  &.reset {
-    background-color: lighten(#535550, 15%);
-  }
+    &.correct {
+        line-height: 10px;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 15px;
+        border-radius: 50%;
+        background-color: lime;
+    }
+
+    &.incorrect {
+        background-color: red;
+    }
+
+    &.reset {
+        background-color: lighten(#535550, 15%);
+    }
 }
-
-
-

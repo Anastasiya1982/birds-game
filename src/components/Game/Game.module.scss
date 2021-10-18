@@ -1,9 +1,9 @@
-.answer{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.answer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 
-  @media (max-width: 687px){
-    flex-direction: column;
-  }
+    @media (max-width: 687px) {
+        flex-direction: column;
+    }
 }

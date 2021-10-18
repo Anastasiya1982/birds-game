@@ -3,12 +3,10 @@ import { useSelector } from "react-redux";
 
 import styles from "./Navbar.module.scss";
 
-
 const Navbar = () => {
     const birdsSectionArray = useSelector((state) => state.birdsData.birdsSectionArray);
     let currentSection = useSelector((state) => state.birdsData.section);
 
-   
     console.log(birdsSectionArray);
     console.log(currentSection);
     return (

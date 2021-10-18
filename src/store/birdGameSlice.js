@@ -84,7 +84,7 @@ export const getBirdsData = () => (dispatch) => {
         .getBirds()
         .then((res) => {
             const data = res.data;
-            console.log(data)
+            console.log(data);
             const newData = data;
             dispatch(setBirdsData({ data: newData }));
             dispatch(setIsInit({ value: true }));
