@@ -13,16 +13,16 @@ const Game = ({ randomId, selectAnswer, goToNextLevel }) => {
     let currentSection = useSelector((state) => state.birdsData.section);
 
     let btnLabel = currentSection === birdsSectionArray.length - 1 ? "Finish Game" : "Next level";
-    const win = useSelector((state) => state.birdsData.isWin);
+    const isWin = useSelector((state) => state.birdsData.isWin);
 
     return (
         <div>
-            <Question win={win} randomId={randomId} />
+            <Question win={isWin} randomId={randomId} />
             <div className={styles.answer}>
-                <AnswerList selectAnswer={selectAnswer} randomId={randomId} win={win} />
+                <AnswerList selectAnswer={selectAnswer} randomId={randomId} isPlayerWin={isWin} />
                 <Description />
             </div>
-            <Button label={btnLabel} win={win} onClick={goToNextLevel} />
+            <Button label={btnLabel} win={isWin} onClick={goToNextLevel} />
         </div>
     );
 };
