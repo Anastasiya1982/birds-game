@@ -18,6 +18,8 @@ const birdGameSlice = createSlice({
         isGameOver: false,
         error: null,
         itemsInSection: 6,
+        sectionsLength:5
+
     },
     reducers: {
         setBirdsData(state, action) {

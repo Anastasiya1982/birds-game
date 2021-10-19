@@ -37,8 +37,9 @@ function App() {
     const isEndGame = useSelector((state) => state.birdsData.isGameOver);
     const isLoading = useSelector((state) => state.loginData.isLoading);
     const itemsInSection = useSelector((state) => state.birdsData.itemsInSection);
+    const sectionsLength = useSelector((state) => state.birdsData.sectionsLength);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();  
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -87,7 +88,7 @@ function App() {
     };
 
     function goToNextLevel() {
-        if (section === 5 && win) {
+        if (section === sectionsLength && win) {
             endGame();
         } else if (win) {
             dispatch(setSection());
