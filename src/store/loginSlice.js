@@ -66,8 +66,7 @@ export const login = (email, password) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
     api.post("http://localhost:5000/api/logout")
-        .then((res) => {
-            console.log(res);
+        .then(() => {
             localStorage.removeItem("token");
             dispatch(setUser({}));
             dispatch(setIsUserLogin(false));

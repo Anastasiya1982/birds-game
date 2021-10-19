@@ -1,15 +1,16 @@
 import React from "react";
-import "./Preloader.scss";
+
+import styles from "./Preloader.module.scss";
 
 const Preloader = () => {
     return (
-        <div className="backdrop">
-            <div className="loader">
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
+        <div className={styles.backdrop}>
+            <div className={styles.loader}>
+                <div className={styles.dot}></div>
+                <div className={styles.dot}></div>
+                <div className={styles.dot}></div>
+                <div className={styles.dot}></div>
+                <div className={styles.dot}></div>
             </div>
         </div>
     );

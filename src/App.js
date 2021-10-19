@@ -57,24 +57,18 @@ function App() {
     if (isLoading) {
         return <Preloader />;
     }
+    if (!isInit) {
+        return <Preloader />;
+    }
+
     function getRandomId() {
         const id = Math.floor(Math.random() * itemsInSection);
         return id;
     }
 
-    const setNewMistake = () => dispatch(setMistake());
-    const resetAllMistakes = () => dispatch(resetMistakes());
-    const getScore = () => dispatch(setScore());
-    const resetAllScore = () => dispatch(resetScore());
-    const setIsUserWin = ({ value }) => dispatch(setIsWin({ value }));
-    const setCurrentSection = () => dispatch(setSection());
-    const resetSection = () => dispatch(resetCurrentSection());
-    const setIsEndGame = ({ value }) => dispatch(setIsGameOver({ value }));
-    const setSelectBird = ({ id }) => dispatch(setSelectedBird({ id }));
-
     const selectAnswer = (id) => {
         let currentId = id - 1;
-        setSelectBird({ id: currentId });
+        dispatch(setSelectedBird({ id: currentId }));
         checkAnswer(currentId);
     };
 
@@ -83,12 +77,12 @@ function App() {
         const wrongAnswer = new Audio(wrongAudio);
         if (id === randomId) {
             rightAnswer.play();
-            setIsUserWin({ value: true });
-            setSelectBird({ id: id });
-            getScore();
+            dispatch(setIsWin(true));
+            dispatch(setSelectedBird({ id: id }));
+            dispatch(setScore());
         } else {
             wrongAnswer.play();
-            setNewMistake();
+            dispatch(setMistake());
         }
     };
 
@@ -96,27 +90,27 @@ function App() {
         if (section === 5 && win) {
             endGame();
         } else if (win) {
-            setCurrentSection();
-            resetAllMistakes();
-            setIsUserWin({ value: false });
-            setSelectBird({ id: null });
+            dispatch(setSection());
+            dispatch(resetMistakes());
+            dispatch(setIsWin(false));
+            dispatch(setSelectedBird({ id: null }));
         }
     }
 
     function endGame() {
-        setCurrentSection();
-        setIsEndGame({ value: true });
-        setIsUserWin({ value: false });
-        resetAllMistakes();
+        dispatch(setSection());
+        dispatch(setIsGameOver(true));
+        dispatch(setIsWin(false));
+        dispatch(resetMistakes());
     }
 
     const startNewGame = () => {
-        setIsEndGame({ value: false });
-        resetSection();
-        setIsUserWin({ value: false });
-        resetAllScore();
-        resetAllMistakes();
-        setSelectBird({ id: null });
+        dispatch(setIsGameOver(false));
+        dispatch(resetCurrentSection());
+        dispatch(setIsWin(false));
+        dispatch(resetScore());
+        dispatch(resetMistakes());
+        dispatch(setSelectedBird({ id: null }));
     };
 
     return (
@@ -127,28 +121,25 @@ function App() {
                     <Route path="/login" component={LogIn} />
                     <Route path="/signup" component={SignUp} />
                     <Route exact path="/account" component={Account} />
-                    {!isInit ? (
-                        <Preloader />
-                    ) : (
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <>
-                                    <Navbar />
-                                    {!isEndGame ? (
-                                        <Game
-                                            randomId={randomId}
-                                            selectAnswer={selectAnswer}
-                                            goToNextLevel={goToNextLevel}
-                                        />
-                                    ) : (
-                                        <FinishGame startNewGame={startNewGame} />
-                                    )}
-                                </>
-                            )}
-                        />
-                    )}
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <>
+                                <Navbar />
+                                {!isEndGame ? (
+                                    <Game
+                                        randomId={randomId}
+                                        selectAnswer={selectAnswer}
+                                        goToNextLevel={goToNextLevel}
+                                    />
+                                ) : (
+                                    <FinishGame startNewGame={startNewGame} />
+                                )}
+                            </>
+                        )}
+                    />
+                    )
                 </Switch>
             </div>
         </div>

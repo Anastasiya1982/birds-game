@@ -48,7 +48,7 @@ const birdGameSlice = createSlice({
             state.mistake = 0;
         },
         setIsWin(state, action) {
-            state.isWin = action.payload.value;
+            state.isWin = action.payload;
         },
         setIsBirdsDataLoading(state, action) {
             state.isLoading = action.payload;
@@ -57,7 +57,7 @@ const birdGameSlice = createSlice({
             state.error = action.payload.value;
         },
         setIsGameOver(state, action) {
-            state.isGameOver = action.payload.value;
+            state.isGameOver = action.payload;
         },
         setItemsInSection(state) {
             state.itemsInSection = state.birdsData[state.section];
@@ -89,7 +89,6 @@ export const getBirdsData = () => (dispatch) => {
         .getBirds()
         .then((res) => {
             const data = res.data;
-            console.log(data);
             const newData = data;
             dispatch(setBirdsData({ data: newData }));
             dispatch(setIsInit({ value: true }));

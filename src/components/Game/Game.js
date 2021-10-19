@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import Question from "../Question/Quastion";
+import Question from "../Question/Question";
 import AnswerList from "../AnswerList/AnswerList";
 import Description from "../Description/Description";
 import Button from "../Button/Button";
