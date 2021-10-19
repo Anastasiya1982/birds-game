@@ -1,6 +1,4 @@
-<div align="center">
-<h1>Birds-Game</h1>
-</div>
+# Birds-Game
 
 This is one-page application, a quiz for recognizing birds by their voices.
 
@@ -9,6 +7,7 @@ The deploy version [here will be the link]
 ## Application Structure
 
 The quiz game field consists of four blocks:
+
 1. header
 2. the block with the current question
 3. a block with answer options
@@ -18,8 +17,10 @@ The quiz game field consists of four blocks:
 
 This project was create with [Create React App](https://github.com/facebook/create-react-app).
   
-  ## Technologies
+## Technologies
+
 Project is created with:
+
 * [Sass](https://sass-lang.com/)
 * [Redux Toolkit](https://redux-toolkit.js.org/)
 * [Classnames](https://www.npmjs.com/package/classnames)
@@ -27,13 +28,10 @@ Project is created with:
 
 ## Installation
 
-$ git clone https://github.com/Anastasiya1982/birds-game
+$ git clone <https://github.com/Anastasiya1982/birds-game>
 
 $ cd birds-game
 
 $ npm install
 
 $ npm start
-
-
-
