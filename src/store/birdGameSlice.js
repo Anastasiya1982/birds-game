@@ -17,6 +17,7 @@ const birdGameSlice = createSlice({
         selectedBird: null,
         isGameOver: false,
         error: null,
+        itemsInSection: 6,
     },
     reducers: {
         setBirdsData(state, action) {
@@ -58,6 +59,9 @@ const birdGameSlice = createSlice({
         setIsGameOver(state, action) {
             state.isGameOver = action.payload.value;
         },
+        setItemsInSection(state) {
+            state.itemsInSection = state.birdsData[state.section];
+        },
     },
 });
 
@@ -74,6 +78,7 @@ export const {
     setIsInit,
     resetCurrentSection,
     setIsGameOver,
+    setItemsInSection,
     setSelectedBird,
 } = birdGameSlice.actions;
 

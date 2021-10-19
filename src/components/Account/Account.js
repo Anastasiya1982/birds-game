@@ -19,7 +19,7 @@ const Account = () => {
     const [isDisable, setIsDisable] = useState(true);
     const history = useHistory();
 
-    const goToPlay = () => {
+    const returnToGamePage = () => {
         history.push("/");
     };
 
@@ -64,15 +64,15 @@ const Account = () => {
 
     return (
         <div className={styles.accountContainer}>
-            <Button onClick={goToPlay} className={styles.buttonBack}>
+            <Button onClick={returnToGamePage} className={styles.buttonBack}>
                 Back to Game
             </Button>
             <Grid container justifyContent="center">
                 <Grid item xs={8}>
-                    <div className={styles.formlabel}>Personal info</div>
+                    <div className={styles.formLabel}>Personal info</div>
                     <div className={styles.box}>
                         <div className={styles.avatarInfo}>
-                            <img src={img} className={styles.avatarImg} alt="userAvatar" />
+                            <img src={img} className={styles.avatarImg} alt="user Photo from account" />
                             <Box component="span" m={1} className={styles.span}>
                                 Your avatar
                             </Box>

@@ -36,6 +36,7 @@ function App() {
     const section = useSelector((state) => state.birdsData.section);
     const isEndGame = useSelector((state) => state.birdsData.isGameOver);
     const isLoading = useSelector((state) => state.loginData.isLoading);
+    const itemsInSection = useSelector((state) => state.birdsData.itemsInSection);
 
     const dispatch = useDispatch();
 
@@ -54,15 +55,10 @@ function App() {
     }, [section]);
 
     if (isLoading) {
-        return (
-            <div>
-                <Preloader />
-            </div>
-        );
+        return <Preloader />;
     }
-
     function getRandomId() {
-        const id = Math.floor(Math.random() * 6);
+        const id = Math.floor(Math.random() * itemsInSection);
         return id;
     }
 
