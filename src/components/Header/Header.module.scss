@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
+
     @media (max-width: 585px) {
         height: 100px;
         flex-direction: column;
