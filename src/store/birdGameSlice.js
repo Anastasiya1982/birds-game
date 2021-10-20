@@ -98,7 +98,7 @@ export const getBirdsData = () => (dispatch) => {
             const data = res.data;
             const newData = data;
             dispatch(setBirdsData({ data: newData }));
-            dispatch(setItemsInSection(newData[0].length));           
+            dispatch(setItemsInSection(newData.length));           
             dispatch(setIsInit({ value: true }));
         })
         .catch((err) => {
