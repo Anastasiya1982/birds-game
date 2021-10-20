@@ -2,11 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { birdsApi } from "../api";
 
+const   birdsSectionArray= ["Разминка", "Воробьиные", "Лесные птицы", "Певчие птицы", "Хищные птицы", "Морские птицы"];
+
 const birdGameSlice = createSlice({
     name: "birdGame",
     initialState: {
         birdsData: [],
-        birdsSectionArray: ["Разминка", "Воробьиные", "Лесные птицы", "Певчие птицы", "Хищные птицы", "Морские птицы"],
+        birdsSectionArray: birdsSectionArray,
+        sectionsLength: birdsSectionArray.length-1,
         isInit: false,
         isLoading: true,
         initialScore: 0,
@@ -17,9 +20,7 @@ const birdGameSlice = createSlice({
         selectedBird: null,
         isGameOver: false,
         error: null,
-        itemsInSection: 6,
-        sectionsLength:5
-
+        itemsInSection: null,
     },
     reducers: {
         setBirdsData(state, action) {
@@ -61,8 +62,11 @@ const birdGameSlice = createSlice({
         setIsGameOver(state, action) {
             state.isGameOver = action.payload;
         },
-        setItemsInSection(state) {
-            state.itemsInSection = state.birdsData[state.section];
+        setItemsInSection(state, action) {
+            state.itemsInSection = action.payload;
+        },
+        setSectionLength(state, action) {
+            state.sectionLength = action.payload;
         },
     },
 });
@@ -82,10 +86,11 @@ export const {
     setIsGameOver,
     setItemsInSection,
     setSelectedBird,
+    setSectionLength,
 } = birdGameSlice.actions;
 
 export const getBirdsData = () => (dispatch) => {
-    dispatch(setIsBirdsDataLoading(true));
+    dispatch(setIsBirdsDataLoading(true));  
 
     birdsApi
         .getBirds()
@@ -93,6 +98,7 @@ export const getBirdsData = () => (dispatch) => {
             const data = res.data;
             const newData = data;
             dispatch(setBirdsData({ data: newData }));
+            dispatch(setItemsInSection(newData[0].length));           
             dispatch(setIsInit({ value: true }));
         })
         .catch((err) => {

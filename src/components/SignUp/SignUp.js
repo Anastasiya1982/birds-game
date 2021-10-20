@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import {
     FormGroup,
     TextField,
@@ -15,17 +14,16 @@ import {
     Button,
 } from "@material-ui/core";
 
-import styles from "./SignIn.module.scss";
-
 import { registration } from "../../store/loginSlice";
 import Preloader from "../Preloader/Preloader";
+
+import styles from "./SignIn.module.scss";
 
 toast.configure();
 
 const SignUp = () => {
     const [isDisabled, setIsDisabled] = useState(true);
     const isLoading = useSelector((state) => state.loginData.isLoading);
-    // const classes = useStyles();
 
     const dispatch = useDispatch();
 

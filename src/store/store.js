@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+
 import birdsDataReducer from "./birdGameSlice";
 import loginReducer from "./loginSlice";
 
