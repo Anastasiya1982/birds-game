@@ -6,6 +6,7 @@ import styles from "./Button.module.scss";
 const Button = ({ label, onClick }) => {
     const win = useSelector((state) => state.birdsData.isWin);
     const isEndGame = useSelector((state) => state.birdsData.isGameOver);
+    let h=0;
 
     const btnClasses = !win && !isEndGame ? `${styles.button} ${styles.disabled}` : styles.button;
 
