@@ -1,0 +1,482 @@
+[33mcommit b78718685740373ea741774f93e9ac7699100755[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Oct 20 11:11:29 2021 +0300
+
+    fix imports and birdGameSlice
+
+[33mcommit fda7fcf052941de40cc8bbcce27a4e84af7185f2[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Oct 20 10:59:19 2021 +0300
+
+    fix: fix store  get data from api
+
+[33mcommit b98dac05a85126f2d988a2caa17ec7cbe592f326[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 15:49:07 2021 +0300
+
+    fix: readme file
+
+[33mcommit 9db43c80b2d147200c63b132c026c2a44eeaad79[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 15:42:08 2021 +0300
+
+    fix: delete all strange number
+
+[33mcommit 5361255512d9ca5d6742a3a57d9bdc7c2f2a45eb[m
+Merge: 72b9d68 18232b3
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 14:51:28 2021 +0300
+
+    Merge branch 'main' of https://github.com/Anastasiya1982/birds-game
+
+[33mcommit 72b9d68ca803edaab67a3dd3582311c90e4e6789[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 14:51:02 2021 +0300
+
+    fix:prettier for modules file with styles
+
+[33mcommit 18232b3f1d15a09658ceedaf9b215d1c19136e48[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Tue Oct 19 14:46:22 2021 +0300
+
+    Delete .vscode directory
+
+[33mcommit d04d6c1468b60b04da932485b1d0b0a870e25bc8[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Tue Oct 19 14:46:02 2021 +0300
+
+    Delete .idea directory
+
+[33mcommit 0095fd1e759b6dda98381b7c56209580c7bb0c04[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 14:45:26 2021 +0300
+
+    fix: refactoring in app
+
+[33mcommit 281135fe544ebf0c626dce9dc9d71301208ce52d[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 13:15:21 2021 +0300
+
+    fix:app component delete number 6 from code, create redux variable
+
+[33mcommit 233ba6297b0f75c02b248743b1d647e207360174[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 11:25:29 2021 +0300
+
+    fix:fix answer item component
+
+[33mcommit 8c02f66fdfa4c1fef8453d1650f9816929cc2652[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Oct 19 11:07:57 2021 +0300
+
+     fix:fix button component
+
+[33mcommit 4c9035af36d2335b471049796866aac2f4c980be[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Oct 18 16:34:44 2021 +0300
+
+    fix styles
+
+[33mcommit bafb697d43e0d4350056c4e71bf58d9b7e97a75b[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Oct 18 16:06:48 2021 +0300
+
+     fix: import order
+
+[33mcommit 9d64b1dbdeb1fdef22c3f73d7f336f0e3d97923d[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Oct 18 16:04:34 2021 +0300
+
+     fix: fix index.js
+
+[33mcommit a336e0be98b87f181b4d836a433f14ca76dc9feb[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Oct 18 15:45:51 2021 +0300
+
+    fix: fix style modules
+
+[33mcommit 2b53607fe2b9875b11be42cbef51632956552917[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Fri Oct 15 13:23:31 2021 +0300
+
+    fix: fix json file to get birdsData
+
+[33mcommit 2a744e20d485b591bda6325bf2f404c63e5df6c1[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Oct 14 12:18:13 2021 +0300
+
+    fix: remove styles from js file to scss
+
+[33mcommit f48932b5400ba28e4c00777c1145dd602582b636[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Oct 13 17:04:06 2021 +0300
+
+    fix: prettier
+
+[33mcommit 6f820ce8de931412eb21fac6ab6f4dba2a2db6bc[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Sep 20 12:28:08 2021 +0300
+
+    fix: prettier
+
+[33mcommit e70bcc4a63f714778c19637319af713d2ce70b1d[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Sep 20 12:24:03 2021 +0300
+
+    fix: routing bugs, create button to exit game in account
+
+[33mcommit 41665126e53986394a9b39846ca2800f6db85b9e[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Sat Sep 18 16:26:53 2021 +0300
+
+    fix: updeteUser reqiest, add routing if user isActivated
+
+[33mcommit cb6c5e03704dff789a330dc611d825bed5c11de9[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Sep 9 16:54:01 2021 +0300
+
+    fix: change account form
+
+[33mcommit 1ccc154cb2a12cb68eb80ec826f52d4c511beb02[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Sep 9 16:44:04 2021 +0300
+
+    fix: change account form
+
+[33mcommit bed3f14ec60a3c7469300eff72c363c2ef5f6ff6[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Sat Sep 4 19:11:29 2021 +0300
+
+     fix: fix updateUser in userSlice
+
+[33mcommit 8ad31e395037ec038c934f47f3d4551e720cb5d2[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Sep 2 16:43:14 2021 +0300
+
+     fix:in  registration form fix validation
+
+[33mcommit c529cc1a600b199df811a79329915f21ebd139d0[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Aug 31 10:33:47 2021 +0300
+
+    fix:fix register and login function
+
+[33mcommit be54d1aa9ffb00710735c328b0396be0c33c8261[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Fri Aug 20 16:23:25 2021 +0300
+
+    fix loading data
+
+[33mcommit 689b0221e98509c9ac066c6c04afa3f935d17a76[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Fri Aug 20 15:30:57 2021 +0300
+
+    feat:add login api function
+
+[33mcommit cc3b71f5c8d6b9e77c897fd631727a4c082272bf[m
+Merge: 30914a4 91a7993
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Tue Aug 3 09:20:24 2021 +0300
+
+    Merge pull request #1 from Anastasiya1982/fix/some-issues
+    
+    fix/some-issues
+
+[33mcommit 91a7993c4304dd345d04c715c884d0d38d9883fd[m[33m ([m[1;31morigin/fix/some-issues[m[33m)[m
+Author: Viktar Rudzenia <viktarrudzenia@gmail.com>
+Date:   Tue Aug 3 09:16:46 2021 +0300
+
+    fix/some-issues
+
+[33mcommit 30914a4db1f713bd0628e0d9c4262f8a35fd171d[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Aug 2 12:41:50 2021 +0300
+
+    fix: reform  files with prettier
+
+[33mcommit eab57389d77b5d0930fe9c3ce5c30728d2c23cfc[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Aug 2 12:24:37 2021 +0300
+
+    fix styles and imports
+
+[33mcommit d6de5ce3232c7282997aeb3d07eb23aa8fe074ae[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Aug 2 12:16:43 2021 +0300
+
+    fix import add add disabled button to pignUp component
+
+[33mcommit 6ba86530a314652b48cee3c936b91c0ddab3ddff[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Sat Jul 31 14:07:35 2021 +0300
+
+    fix routes
+
+[33mcommit a7e135f839a223671740618da496ef16c67e9d47[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Fri Jul 30 14:24:39 2021 +0300
+
+    feat: add  routing to menu depends on is Usaer login and add function to create user avatar
+
+[33mcommit 65e7251fe959df6871eefe2c09135fb532dbcb91[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 29 21:13:04 2021 +0300
+
+     feat:add account component
+
+[33mcommit 5d083790b07ee18cfd896fbc6c01dd941a899947[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 29 14:06:16 2021 +0300
+
+    fix:fix data from login form
+
+[33mcommit 523b33329d6c32247e5aa52054848de0d24a2092[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 29 14:03:39 2021 +0300
+
+    fix:fix login form
+
+[33mcommit 94c1f95d9526e490992aa9aaf011e6ef2ed39d1e[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 29 13:54:20 2021 +0300
+
+    feat:add form to Login page and to SignUp page
+
+[33mcommit dce2e347906f71987b898fb8a407a975a92c1b31[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 29 12:39:16 2021 +0300
+
+    feat:add routing to app, create Login and Signup component
+
+[33mcommit 7a4d21912df07b8c680b4a37c36f71a84bfe4a9a[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:48:59 2021 +0300
+
+    Update README.md
+
+[33mcommit 6d5a2af08d77baed0a06ebf64c8b6eca96c17b9c[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:47:50 2021 +0300
+
+    Update README.md
+
+[33mcommit 2a2a35d0bc1ffe65aa518d8c211e455b01e701e1[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:46:45 2021 +0300
+
+    Update README.md
+
+[33mcommit ededefc9dabc562ebb19bdf818d70b6c0dd41b1e[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:43:07 2021 +0300
+
+    Update README.md
+
+[33mcommit 54e9d246805a352c01711e985d8ced731f3dcc73[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:40:16 2021 +0300
+
+    Update README.md
+
+[33mcommit 3f7312a2d4d81fd29cdb1e3ad0ccb27e00d80bb7[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:36:25 2021 +0300
+
+    Update README.md
+
+[33mcommit 6c94560ca259d2f8514b51937ba7018e7b515334[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:31:19 2021 +0300
+
+    Update README.md
+
+[33mcommit beb2ad1e33a31891d55a51d59d1d3bffbe0ebaff[m
+Merge: e87192b 4b16471
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 28 14:20:58 2021 +0300
+
+    Merge branch 'main' of https://github.com/Anastasiya1982/birds-game into main
+
+[33mcommit e87192b97b6e23d89be7a60af29fc55a1b03a3ab[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 28 14:18:11 2021 +0300
+
+    feat:add screenshot to app
+
+[33mcommit 4b164719ac9ee7d1b61fe70bca5631b38c8f03c3[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:13:37 2021 +0300
+
+    Update README.md
+
+[33mcommit ce6c9f1581d5376b376ca37d8754b766d0944d68[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 14:04:21 2021 +0300
+
+    Update README.md
+
+[33mcommit 02dd0a6c98111003c5b7208cbc211be40196054b[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Wed Jul 28 13:51:55 2021 +0300
+
+    Update README.md
+
+[33mcommit 0e9e9df88a86db361ba1aaf0ee55c0617783b3c5[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 28 12:50:41 2021 +0300
+
+    fix:fix description component to first item image
+
+[33mcommit 1893a1a5128ece58366b1e174f55fae151cefa32[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 28 12:23:58 2021 +0300
+
+    fix:fix some styles
+
+[33mcommit 325ae5190b6cac5404844f7cc8136fd7e1ad7d77[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 28 11:32:13 2021 +0300
+
+    feat:add action creators to store
+
+[33mcommit f73071eac436bf25eb15889b4ce0c8875734daaa[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Jul 27 17:27:08 2021 +0300
+
+    feat:add data to components
+
+[33mcommit 52ec29584250f3df188294d1215370b184cf4819[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Jul 27 16:41:04 2021 +0300
+
+    feat: add birdsData to components
+
+[33mcommit bdabead2f47cf02f9207ca602b1a6d0e17e78f82[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Jul 27 14:54:36 2021 +0300
+
+    fix thunk creator in birdGameFile
+
+[33mcommit ef93ed32d1271702b94091b2394e7910dd3063fe[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Tue Jul 27 13:36:13 2021 +0300
+
+    add redux-toolkit to app
+
+[33mcommit 4e0af706016c8967bdf9d2db8c6feefe16267206[m
+Merge: 173cbf3 c791ef1
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Jul 26 20:04:45 2021 +0300
+
+    Merge branch 'main' of https://github.com/Anastasiya1982/birds-game into main
+    
+    # Conflicts:
+    #       src/birdData.js
+
+[33mcommit 173cbf3a8d2f1f6a2a09e7d5189ae5345b401b38[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Mon Jul 26 20:01:57 2021 +0300
+
+    feat:add tedux-toolkids for app, make action score and setMistake
+
+[33mcommit c791ef12af34161c2a511b56ea940b7e5ed51877[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Mon Jul 26 12:51:38 2021 +0300
+
+    Update birdData.js
+
+[33mcommit b3e8702d2cd605bf05eb33fcf4f83166e65121ad[m
+Author: Anastasiya1982 <52328409+Anastasiya1982@users.noreply.github.com>
+Date:   Mon Jul 26 12:49:14 2021 +0300
+
+    Update birdData.js
+
+[33mcommit dd5d32055892a3a34851b73c2d06866e56287fd0[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 22:14:20 2021 +0300
+
+    fix bugs in description component
+
+[33mcommit 35e1402219295692328ec894d43dd2c8c618c1d5[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 16:19:47 2021 +0300
+
+    fix style with modules
+
+[33mcommit 324b8f3bbd747559605b42174479443b1030ac54[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 15:45:44 2021 +0300
+
+    fix style to quastion component with modules
+
+[33mcommit 5d45ba7a47772007f244d946cc84fe4ea04a5f47[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 15:33:46 2021 +0300
+
+    fix:refactor styles to modules (title, subtitle, navbar)
+
+[33mcommit 88d22dfea6f7d116597e09cba983ce76eaa215e2[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 13:35:15 2021 +0300
+
+    fix:fix styles for button and refactor main game component
+
+[33mcommit b98643d18acfb95e09356471fbbe4a0cbef4efdd[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 12:57:08 2021 +0300
+
+     fix:styles for finishGame
+
+[33mcommit 840e3cc55cb956680af97800e20dffb01a0b7530[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 12:52:47 2021 +0300
+
+    feat:add finishGameComponent to app
+
+[33mcommit 8b79796e0b3cdfd5a4c989bdf2186775c78ad7a9[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 11:43:19 2021 +0300
+
+    fix:fix style radioBtn for next section in AnsewrList
+
+[33mcommit 4406b466f84c15d5bb0042b0ba31abe5b5581e01[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Thu Jul 22 11:22:43 2021 +0300
+
+    feat:add function to next level and title to question component
+
+[33mcommit 9618904c952d0e877849ce38e2625c4f573c0b5c[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 21 22:03:29 2021 +0300
+
+     feat:add check style to answer list and audio to checklist
+
+[33mcommit 1d46dbd8852348920b5942fb3516b9e2dffe1f1c[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 21 16:38:26 2021 +0300
+
+    feat:add button component to app
+
+[33mcommit b4f6a36fe1282ea4e130be97eeec5d1c616194ee[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 21 16:24:36 2021 +0300
+
+    feat:add answer and description component
+
+[33mcommit 64e0f0699c871aa6f04694596d94f0f5927a9b6f[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 21 13:03:21 2021 +0300
+
+    add question component
+
+[33mcommit 4447093c36d11f2e3ffeeec2f1640c4c96ead203[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 21 11:54:13 2021 +0300
+
+    feat:add header and navbar components
+
+[33mcommit 47a197c9230402647c3226d1b5ed7bce23767f37[m
+Author: ACER <mahanasty@mail.ru>
+Date:   Wed Jul 21 11:52:32 2021 +0300
+
+    start: start birds-game app
